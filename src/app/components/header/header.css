@@ -1,0 +1,13 @@
+.hero-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    max-width: 1444px;
+    width: 100%;
+    min-height: 197px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
