@@ -3,6 +3,11 @@
     justify-items: center;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    font-family: 'Rubik', sans-serif;
+}
+#area h1{
+    font-size: 3rem;
 }
 #caixa{
     display: flex;
@@ -11,14 +16,44 @@
     justify-items: center;
     align-items: center;
     flex-direction: column;
-    height: 500px;
+    height: 450px;
     box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.5);
     width: 50%;
     border-radius: 20px;
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     gap: 70px;
 }
 #cadastrar{
-    margin-top: 70px;
-    
+    text-align: center;
+    margin-top: 40px;
+    padding: 10px;
+    border: 2px rgb(36, 36, 36) solid;
+    border-radius: 10px;
+    width: 300px;
+    transition: .6s;
+    background-color: #43B265;
+    color: white;
+}
+#cadastrar:hover{
+    scale: 1.05;
+    cursor: pointer;
+}
+
+#atualizar{
+    width: 300px;
+    text-align: center;
+    padding: 10px;
+    border: 2px rgb(36, 36, 36) solid;
+    border-radius: 10px;
+}
+#atualizar:hover{
+
+}
+
+#deletar{
+    width: 300px;
+    text-align: center;
+    padding: 10px;
+    border: 2px rgb(36, 36, 36) solid;
+    border-radius: 10px;
 }
