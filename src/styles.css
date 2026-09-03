@@ -19,9 +19,9 @@
      --text-muted: #6c757d;
    
      /* Fontes e Tamanhos */
-     --font-main: 
-     --border-radius: ;
-     --transition-speed: ;
+     --font-main:  font-family: 'Rubik', sans-serif;
+     --border-radius: 8px;
+     --transition-speed: 1.5s;
    }
    
    /* ESTILOS DO CORPO E ESTRUTURA*/
