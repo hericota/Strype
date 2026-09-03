@@ -1,0 +1,24 @@
+#area{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+}
+#caixa{
+    display: flex;
+    align-self: center;
+    justify-self: center;
+    justify-items: center;
+    align-items: center;
+    flex-direction: column;
+    height: 500px;
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.5);
+    width: 50%;
+    border-radius: 20px;
+    font-size: 3.5rem;
+    gap: 70px;
+}
+#cadastrar{
+    margin-top: 70px;
+    
+}
