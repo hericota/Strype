@@ -1,8 +1,9 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { PostProdutos } from './feats/posts/post-produtos/post-produtos';
 
 @Component({
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, PostProdutos],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
