@@ -1,0 +1,45 @@
+<form (submit)="cadastrarProduto($event)">
+    <div class="title">
+        <h1>Cadastre Produto</h1>
+    </div>
+    
+    <div class="formulario">
+        <label>Nome Produto</label>
+        <input type="text" placeholder="Produto:" [formField]="cadastroForm.nome">
+        @if (cadastroForm.nome().touched() && cadastroForm.nome().invalid()) {
+            @for (error of cadastroForm.nome().errors(); track error.kind) {
+                <div class="invalid">
+                    <p>{{error.message}}</p>
+                </div>
+            }
+        }
+        <label>Descrição Produto</label>
+        <input type="text" placeholder="Descrição Produto:" [formField]="cadastroForm.descricao">
+        @if (cadastroForm.descricao().touched() && cadastroForm.descricao().invalid()) {
+            @for (error of cadastroForm.descricao().errors(); track error.kind) {
+                <div class="invalid">
+                    <p>{{error.message}}</p>
+                </div>
+            }
+        }
+        <label>Preço</label>
+        <input type="text" placeholder="R$ 00,00" [formField]="cadastroForm.preco">
+        @if (cadastroForm.preco().touched() && cadastroForm.preco().invalid()) {
+            @for (error of cadastroForm.preco().errors(); track error.kind) {
+                <div class="invalid">
+                    <p>{{error.message}}</p>
+                </div>
+            }
+        }
+        <label>Url da Imagem</label>
+        <input type="text" placeholder="https://www.exemplo.com/a7Kx92LmQ4pZ" [formField]="cadastroForm.urlImagem">
+        @if (cadastroForm.urlImagem().touched() && cadastroForm.urlImagem().invalid()) {
+            @for (error of cadastroForm.urlImagem().errors(); track error.kind) {
+                <div class="invalid">
+                    <p>{{error.message}}</p>
+                </div>
+            }
+        }
+    </div>
+    <button class="btn">Cadastrar</button>
+</form>
