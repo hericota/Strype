@@ -1,20 +1,26 @@
-<div class="hero-container">
-    <div class="hero-content">
+<div class="header-container">
+    <div class="header-content">
         <header>
             <nav class="navigation">
                 <!-- Adcionar rotas quando for criados os componentes-->
-                <a routerLink="/"><!--SMAP LOGO-->a</a>
-                <a routerLink="#">Adidas</a>
-                <a routerLink="#">Nike</a>
-                <a routerLink="#">The North Face</a>
-                <a routerLink="#">Midias e equipamentos</a>
-                <a routerLink="#">Login</a>
-                <a routerLink="#">#</a> <!--icone de carrinho-->
-                <a routerLink="#">#</a> <!--icone de conta-->
+                <div class="logo-col">
+                    <a routerLink="/"><img id="stryde-logo" src="/assets/STRYPE-LOGO.png" alt="Logo da Stryde"></a>
+                </div>
+                <div class="col-1">
+                    <a routerLink="#">Adidas</a>
+                    <a routerLink="#">Nike</a>
+                    <a routerLink="#">The North Face</a>
+                    <a routerLink="#">Midias e equipamentos</a>
+                    <a routerLink="#">Login</a>
+                </div>
+
+
+                <div class="col-2">
+                    <img src="/assets/SEARCH-ICON.png" alt=""><input type="search" placeholder="Pesquisar">
+                    <a routerLink="#"><img src="/assets/SHOPPING-ICON.png" alt=""></a> <!--icone de carrinho-->
+                    <a routerLink="#"><img src="/assets/USER-ICON.png" alt=""></a> <!--icone de conta-->
+                </div>
             </nav>
         </header>
+
     </div>
-    <div class="search-bar">
-        <!-- Aqui é pra mim descobrir como fazer uma barra de pesquisa hahaha -->
-    </div>
-</div>

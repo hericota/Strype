@@ -1,13 +1,35 @@
-.hero-container {
+.header-container {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-
     max-width: 1444px;
     width: 100%;
     min-height: 197px;
     margin: 0 auto;
-    padding: 30px;
+    background-color: black;
 }
 
+.header-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    max-width: 1393px;
+    width: 100%;
+    min-height: 81px;
+    margin: 10px;
+    margin-left: 50px;
+
+}
+
+.navigation {
+    display: flex;
+    gap: 60px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+#stryde-logo {
+    max-width: 109px;
+    min-height: 70px;
+}
