@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { form, required, FormField } from '@angular/forms/signals';
 import { Produto } from '../produto';
+import { ConsumoApi } from '../consumo-api';
 
 @Component({
   selector: 'app-post-produtos',
@@ -9,6 +10,8 @@ import { Produto } from '../produto';
   styleUrl: './post-produtos.css',
 })
 export class PostProdutos {
+
+  readonly cadastroPost = inject(ConsumoApi)
 
   cadastroModel = signal<Produto>({
     nome: '',
@@ -28,6 +31,26 @@ export class PostProdutos {
     event.preventDefault();
 
     const produto = this.cadastroModel();
+
+    this.cadastroPost.cadastrarPostService(produto).subscribe({
+      next: (response)=>{
+        alert("Nome:" + response.nome)
+
+        this.cadastroModel.set({
+          nome: '',
+          descricao: '',
+          preco: null,
+          urlImagem: ''
+        });
+      
+        this.cadastroForm().reset();
+      }, 
+      error:(error)=>{
+        console.error('ERRO AO CADASTRAR:', error);
+
+        alert("Algo deu errado")
+      }
+    })
 
     
   }

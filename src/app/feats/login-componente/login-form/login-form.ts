@@ -6,4 +6,8 @@ import { Component } from '@angular/core';
   styleUrl: './login-form.css',
   templateUrl: './login-form.html',
 })
-export class LoginForm {}
+export class LoginForm {
+
+  // criado só pra não dar o erro e conseguir abrir o angular
+  EntrarUsuario(){}
+}
