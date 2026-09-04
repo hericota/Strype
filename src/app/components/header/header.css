@@ -15,21 +15,76 @@
     width: 100%;
     min-height: 81px;
     margin: 10px;
-    margin-left: 50px;
 
 }
 
 .navigation {
     display: flex;
-    gap: 60px;
+
 }
 
-header {
+.logo-col {
+    padding-left: 10px;
+}
+
+.col-1 {
+    padding-left: 40px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    gap: 65px;
 }
 
-#stryde-logo {
+.col-2 {
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    gap: 10px;
+}
+
+.search-bar {
+    display: flex;
+    border-bottom: 2px solid white;
+    padding-bottom: 7px;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+#strype-logo {
     max-width: 109px;
     min-height: 70px;
+}
+
+#search-icon {
+    margin-right: 5px;
+    margin-top: 7px;
+    width: 24px;
+    height: 24px;
+}
+
+#cart-icon {
+    width: 28px;
+    height: 28px;
+}
+
+#user-icon {
+    width: 24px;
+    height: 24px;
+}
+
+input {
+    width: 235px;
+    height: 35px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+}
+
+a {
+    color: white;
 }

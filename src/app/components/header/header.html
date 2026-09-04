@@ -1,11 +1,12 @@
 <div class="header-container">
-    <div class="header-content">
-        <header>
+        <header class="header-content">
             <nav class="navigation">
                 <!-- Adcionar rotas quando for criados os componentes-->
+                <!-- Coluna com logo da Strype -->
                 <div class="logo-col">
-                    <a routerLink="/"><img id="stryde-logo" src="/assets/STRYPE-LOGO.png" alt="Logo da Stryde"></a>
+                    <a routerLink="/"><img id="strype-logo" src="/assets/STRYPE-LOGO.png" alt="Logo da Stryde"></a>
                 </div>
+                <!-- Coluna com links pras lojas -->
                 <div class="col-1">
                     <a routerLink="#">Adidas</a>
                     <a routerLink="#">Nike</a>
@@ -13,14 +14,20 @@
                     <a routerLink="#">Midias e equipamentos</a>
                     <a routerLink="#">Login</a>
                 </div>
-
-
-                <div class="col-2">
-                    <img src="/assets/SEARCH-ICON.png" alt=""><input type="search" placeholder="Pesquisar">
-                    <a routerLink="#"><img src="/assets/SHOPPING-ICON.png" alt=""></a> <!--icone de carrinho-->
-                    <a routerLink="#"><img src="/assets/USER-ICON.png" alt=""></a> <!--icone de conta-->
-                </div>
             </nav>
+
+            <!-- Coluna com pesquisar e icones de carrinho e usuario -->
+            <div class="col-2">
+                <div class="search-bar">
+                    <img src="/assets/SEARCH-ICON.png" alt="Icone de pesquisa" id="search-icon"><input type="text"
+                        placeholder="Pesquisar">
+                </div>
+                <div class="icons">
+                    <a routerLink="#"><img src="/assets/CART-ICON.png" alt="Icone de Carrinho" id="cart-icon"></a>
+                    <a routerLink="#"><img src="/assets/USER-ICON.png" alt="Icone de usuario" id="user-icon"></a>
+                </div>
+            </div>
+
         </header>
 
     </div>

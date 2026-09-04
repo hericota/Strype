@@ -22,7 +22,7 @@
        --text-muted: #6c757d;
 
        /* Fontes e Tamanhos */
-       --font-main: font-family: 'Rubik', sans-serif;
+       --font-main: 'Rubik', sans-serif;
        --border-radius: 8px;
        --transition-speed: 1.5s;
    }
