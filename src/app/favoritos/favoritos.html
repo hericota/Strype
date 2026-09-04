@@ -1,0 +1,42 @@
+<header class="topo">
+  <span class="icone">🛍️</span>
+  <span class="icone ativo">🧡</span>
+</header>
+
+@for (produto of produtos(); track produto.nome) {
+  <div class="card">
+    <input
+      type="checkbox"
+      class="checkbox"
+      [checked]="produto.selecionado"
+      (change)="toggleSelecionado(produto)"
+    />
+    <div class="imagem-placeholder"></div>
+    <div class="info">
+      <p class="nome">{{ produto.nome }}</p>
+      <p class="preco-de">R$ {{ produto.precoDe | number: '1.2-2' }}</p>
+      <p class="preco-por">R$ {{ produto.precoPor | number: '1.2-2' }}</p>
+      <p class="preco-pix">
+        ou <strong>R$ {{ produto.precoPor | number: '1.2-2' }}</strong> no Pix
+      </p>
+    </div>
+    <button class="btn-carrinho">🛒</button>
+  </div>
+}
+
+<div class="rodape">
+  <div class="rodape-esquerda">
+    <p class="total">
+      Total: <span class="valor">R$ {{ total() | number: '1.2-2' }}</span>
+      <span class="pix">no Pix</span>
+    </p>
+    <div class="acoes">
+      <label class="selecionar-tudo">
+        <input type="checkbox" (change)="selecionarTodos($any($event.target).checked)" />
+        Selecionar Tudo ({{ produtos().length }})
+      </label>
+      <span class="excluir" (click)="excluirSelecionados()">Excluir</span>
+    </div>
+  </div>
+  <button class="btn-comprar">Comprar</button>
+</div>
