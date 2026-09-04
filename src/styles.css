@@ -44,7 +44,6 @@
 
    /*ELEMENTOS GLOBAIS (Links, Botões, Imagens)*/
    a {
-       color: var(--primary-color);
        text-decoration: none;
        transition: color var(--transition-speed) ease;
    }
