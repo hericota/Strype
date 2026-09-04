@@ -10,5 +10,5 @@ import { PostProdutos } from './feats/posts/post-produtos/post-produtos';
   templateUrl: './app.html',
 })
 export class App {
-  protected readonly title = signal('stryde');
+  protected readonly title = signal('pagina-favoritos');
 }
