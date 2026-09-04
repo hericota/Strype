@@ -1,5 +1,3 @@
-
-
 <form (submit)="EntrarUsuario()">
 
 
@@ -7,11 +5,17 @@
     <input id="email" type="email" placeholder="digite seu email...">
 
 
-    <label for="password">SENHA</label>
+
+    <label for="password">SENHA:</label>
     <input id="password" type="password" placeholder="digite sua senha...">
 
-    <label for="checkbox">Aceito os termos de condições</label>
-    <input id="checkbox" type="checkbox">
 
-    <button>ENTRAR</button>
+
+    <label class="termos" for="checkbox"><span class="check"></span><input id="checkbox" type="checkbox">Aceito os termos de condições</label>
+
+
+
+    <div class="btn">
+        <button>ENTRAR</button>
+    </div>
 </form>
