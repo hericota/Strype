@@ -4,16 +4,15 @@ form {
   flex-direction: column;
   gap: 10px;
   width: 30vw;
-
 }
 
 label {
   font-family: var(--font-main);
   font-weight: bold;
-
 }
 
-input {
+/*input de formulario*/
+input:not([type="checkbox"]) {
   border: 1px solid;
   border-color: var(--btn-color);
   padding: 14px;
@@ -21,45 +20,54 @@ input {
   width: 100%;
   color: var(--btn-color);
   border-radius: 8px;
-
 }
 
-.termos {
-  color: var(--text-muted);
-  font-size: small;
+/*checkbox e termos*/
+.wrapper {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: small;
+  width: 300px;
 }
 
-.termos [type=checkbox] {
+input[type='checkbox'] {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 14px;
+  width: 14px;
+  background-color: transparent;
+  border: 2px solid var(--btn-color);
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input[type='checkbox']::after {
+  content: '\e5ca';
+  font-family: 'Material Symbols Outlined';
+  font-size: 14px;
+  font-weight: 900;
+  color: white;
   display: none;
 }
 
-.termos {
-  cursor: pointer;
-  display: flex;
-}
-
-.check {
-  /* criar uma checkbox estilizada */
-  width: 14px;
-  height: 14px;
-  display: flex;
-  background-color: var(--btn-color);
-  border-radius: 4px;
-}
-
-.check:checked {
-  /*cria um visto check dentro do checkbox*/
+input[type='checkbox']:checked {
   background-color: var(--primary-color);
-  background-image: url('/assets/checkbox.png');
-  background-position: center;
-  background-size: contain;
+  border: 1px solid;
+  border-color: var(--primary-color);
 }
 
-button {
+input[type='checkbox']:checked::after {
+  display: block;
+}
 
+/*botão de entrar*/
+button {
   background-color: var(--primary-color);
   color: var(--surface-color);
   padding: 14px 100px;
@@ -70,5 +78,4 @@ button {
   width: 100%;
   height: 100%;
   padding-top: 8%;
-
 }
