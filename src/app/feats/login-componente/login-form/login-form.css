@@ -10,6 +10,7 @@ form {
 label {
   font-family: var(--font-main);
   font-weight: bold;
+  font-size: 14px;
 }
 
 /*input de formulario*/
@@ -38,8 +39,11 @@ input:focus{
   align-items: center;
   gap: 8px;
   color: var(--text-muted);
-  font-size: small;
   width: 300px;
+}
+.wrapper label{
+  font-size: 14px;
+  font-weight: normal;
 }
 
 input[type='checkbox'] {
@@ -79,9 +83,9 @@ input[type='checkbox']:checked::after {
 button {
   background-color: var(--primary-color);
   color: var(--surface-color);
-  padding: 14px;
+  padding: 8px;
   border-radius: 8px;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
   font-weight: bold;
   font-size: 14px;
   width: 100%;
@@ -92,5 +96,21 @@ button:hover{
 
 .btn {
   width: 100%;
-  padding-top: 20px;
+  padding-top: 8px;
+}
+@media(max-height: 700px){
+  input:not([type="checkbox"]){
+    padding: 8px;
+   
+  }
+  label{
+    font-size: 12px;
+  }
+  .wrapper label{
+  font-size: 12px;
+}
+button{
+  font-size: 12px;
+
+}
 }
