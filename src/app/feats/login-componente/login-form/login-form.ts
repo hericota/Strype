@@ -32,6 +32,7 @@ export class LoginForm {
     if (this.usuarioForm().invalid()) return;
     console.log('login sucedido!');
     // this.router.navigate(['/']); /*deve direcionar para a pagina de comprar*/
-    this.usuarioModel.set({ email: '', password: '', checkbox: false });
+    this.usuarioModel.set({ email: '', password: '', checkbox: false })
+    this.usuarioForm().reset();
   }
 }
