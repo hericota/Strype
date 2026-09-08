@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { Home } from "./home/home";
 import { PostProdutos } from './feats/posts/post-produtos/post-produtos';
 import { produtosCadastrados } from './feats/posts/produtos-cadastrados/produtos-cadastrados';
+import { LoginComponente } from './feats/login-componente/login-componente';
 
 @Component({
   imports: [RouterOutlet, PostProdutos, LoginComponente, produtosCadastrados],
