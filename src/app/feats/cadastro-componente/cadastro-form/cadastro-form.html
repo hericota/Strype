@@ -1,0 +1,23 @@
+<form (submit)="cadastrarUser()">
+    <div>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" placeholder="Nome">
+        <label for="sobreNome">Sobre Nome:</label>
+        <input type="text" placeholder="sobre Nome" id="sobreNome">
+    </div>
+
+    <label for="phone">Telefone:</label>
+    <input type="number" id="phone" placeholder="(00) 00000000">
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" placeholder="Email@gmail.com">
+
+    <label for="password">Senha:</label>
+    <input type="password" id="password" placeholder="Senha">
+
+    <div>
+        <label for="check">Aceito os termos de condições</label>
+        <input type="checkbox" id="check">
+    </div>
+    <button [disabled]="">Cadastrar</button>
+</form>
