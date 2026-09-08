@@ -1,42 +1,84 @@
 <header class="topo">
-  <span class="icone">🛍️</span>
-  <span class="icone ativo">🧡</span>
+  <button class="icone" type="button" aria-label="Sacola">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+      <path d="M6 7h12l-1 13H7L6 7Z" stroke-linejoin="round" />
+      <path d="M9 7V5a3 3 0 0 1 6 0v2" stroke-linecap="round" />
+    </svg>
+  </button>
+
+  <button class="icone ativo" type="button" aria-label="Favoritos" aria-current="page">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+      <path d="M12 20s-7-4.35-7-9a4 4 0 0 1 7-2.65A4 4 0 0 1 19 11c0 4.65-7 9-7 9Z"
+            stroke-linejoin="round" />
+    </svg>
+  </button>
 </header>
 
-@for (produto of produtos(); track produto.nome) {
-  <div class="card">
-    <input
-      type="checkbox"
-      class="checkbox"
-      [checked]="produto.selecionado"
-      (change)="toggleSelecionado(produto)"
-    />
-    <div class="imagem-placeholder"></div>
-    <div class="info">
-      <p class="nome">{{ produto.nome }}</p>
-      <p class="preco-de">R$ {{ produto.precoDe | number: '1.2-2' }}</p>
-      <p class="preco-por">R$ {{ produto.precoPor | number: '1.2-2' }}</p>
-      <p class="preco-pix">
-        ou <strong>R$ {{ produto.precoPor | number: '1.2-2' }}</strong> no Pix
-      </p>
-    </div>
-    <button class="btn-carrinho">🛒</button>
-  </div>
-}
+<main class="lista">
+  @for (produto of produtos(); track produto.id) {
+    <article class="card" [class.selecionado]="produto.selecionado">
+      <input
+        type="checkbox"
+        class="checkbox"
+        [checked]="produto.selecionado"
+        (change)="toggleSelecionado(produto.id)"
+        [attr.aria-label]="'Selecionar ' + produto.nome"
+      />
 
-<div class="rodape">
+      <div class="imagem-placeholder"></div>
+
+      <div class="info">
+        <p class="nome">{{ produto.nome }}</p>
+        <p class="preco-de">R$ {{ produto.precoDe | number: '1.2-2' }}</p>
+        <p class="preco-por">R$ {{ produto.precoPor | number: '1.2-2' }}</p>
+        <p class="preco-pix">
+          <span class="destaque">ou R$ {{ produto.precoPix | number: '1.2-2' }}</span> no Pix
+        </p>
+      </div>
+
+      <button class="btn-carrinho" type="button"
+              [attr.aria-label]="'Adicionar ' + produto.nome + ' ao carrinho'">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M3 4h2l2.4 10.4a1 1 0 0 0 1 .8h7.6a1 1 0 0 0 1-.77L19 8H6"
+                stroke-linecap="round" stroke-linejoin="round" />
+          <circle cx="9.5" cy="19" r="1.3" />
+          <circle cx="16.5" cy="19" r="1.3" />
+        </svg>
+      </button>
+    </article>
+  } @empty {
+    <p class="vazio">Você ainda não favoritou nenhum produto.</p>
+  }
+</main>
+
+<footer class="rodape">
   <div class="rodape-esquerda">
     <p class="total">
-      Total: <span class="valor">R$ {{ total() | number: '1.2-2' }}</span>
-      <span class="pix">no Pix</span>
+      <span class="rotulo">Total:</span>
+      <span class="valor">R$ {{ total() | number: '1.2-2' }}</span>
+      <span class="pix">no <em>Pix</em></span>
     </p>
+
     <div class="acoes">
       <label class="selecionar-tudo">
-        <input type="checkbox" (change)="selecionarTodos($any($event.target).checked)" />
-        Selecionar Tudo ({{ produtos().length }})
+        <input
+          type="checkbox"
+          [checked]="todosSelecionados()"
+          [indeterminate]="algunsSelecionados()"
+          (change)="selecionarTodos($any($event.target).checked)"
+        />
+        <span>Selecionar Tudo ({{ produtos().length }})</span>
       </label>
-      <span class="excluir" (click)="excluirSelecionados()">Excluir</span>
+
+      <button class="excluir" type="button"
+              [disabled]="!temSelecionado()" (click)="excluirSelecionados()">
+        Excluir
+      </button>
     </div>
   </div>
-  <button class="btn-comprar">Comprar</button>
-</div>
+
+  <button class="btn-comprar" type="button"
+          [disabled]="!temSelecionado()" (click)="comprar()">
+    Comprar
+  </button>
+</footer>
