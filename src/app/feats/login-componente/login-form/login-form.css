@@ -4,7 +4,6 @@ form {
   flex-direction: column;
   gap: 10px;
   width: 100%;
- 
 }
 
 label {
@@ -14,18 +13,18 @@ label {
 }
 
 /*input de formulario*/
-input:not([type="checkbox"]) {
+input:not([type='checkbox']) {
   border: 1px solid;
   border-color: var(--btn-color);
   padding: 14px;
   width: 100%;
   border-radius: 8px;
 }
-input:hover{
+input:hover {
   border: 1px solid;
   border-color: var(--primary-hover);
 }
-input:focus{
+input:focus {
   outline: none;
   border: 1px solid;
   border-color: var(--primary-hover);
@@ -41,7 +40,7 @@ input:focus{
   color: var(--text-muted);
   width: 300px;
 }
-.wrapper label{
+.wrapper label {
   font-size: 14px;
   font-weight: normal;
 }
@@ -90,7 +89,7 @@ button {
   font-size: 14px;
   width: 100%;
 }
-button:hover{
+button:hover {
   background-color: var(--primary-hover);
 }
 
@@ -98,19 +97,29 @@ button:hover{
   width: 100%;
   padding-top: 8px;
 }
-@media(max-height: 700px){
-  input:not([type="checkbox"]){
+@media (max-height: 700px) {
+  input:not([type='checkbox']) {
     padding: 8px;
-   
   }
-  label{
+  label {
     font-size: 12px;
   }
-  .wrapper label{
-  font-size: 12px;
+  .wrapper label {
+    font-size: 12px;
+  }
+  button {
+    font-size: 12px;
+  }
 }
-button{
+/*validação de formulario*/
+span {
+  font-family: var(--font-main);
   font-size: 12px;
-
+  color: var(--primary-color);
 }
+.validacao {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
