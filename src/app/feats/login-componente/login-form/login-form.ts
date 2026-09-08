@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { LoginInterface } from './login-interface';
 import { email, form, minLength, required, FormField } from '@angular/forms/signals';
+import { Router } from '@angular/router';
 
 @Component({
   imports: [FormField],
@@ -9,13 +10,14 @@ import { email, form, minLength, required, FormField } from '@angular/forms/sign
   templateUrl: './login-form.html',
 })
 export class LoginForm {
-  
+  constructor(private router: Router) {}
+  desabilitado = signal(false);
+
   usuarioModel = signal<LoginInterface>({
     email: '',
     password: '',
     checkbox: false,
   });
-  
 
   usuarioForm = form(this.usuarioModel, (schemaPath) => {
     required(schemaPath.email, { message: '*Insira seu email!' });
@@ -25,9 +27,11 @@ export class LoginForm {
     required(schemaPath.checkbox, { message: '*obrigatorio' });
   });
 
-  EntrarUsuario(event: SubmitEvent) {
+  entrarUsuario(event: SubmitEvent) {
     event.preventDefault();
-    console.log('usuario cadastrado!');
+    if (this.usuarioForm().invalid()) return;
+    console.log('login sucedido!');
+    // this.router.navigate(['/']); /*deve direcionar para a pagina de comprar*/
     this.usuarioModel.set({ email: '', password: '', checkbox: false });
   }
 }
