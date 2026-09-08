@@ -2,9 +2,10 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LoginComponente } from "./feats/login-componente/login-componente";
 import { PostProdutos } from './feats/posts/post-produtos/post-produtos';
+import { produtosCadastrados } from './feats/posts/produtos-cadastrados/produtos-cadastrados';
 
 @Component({
-  imports: [RouterOutlet, PostProdutos, LoginComponente],
+  imports: [RouterOutlet, PostProdutos, LoginComponente, produtosCadastrados],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',

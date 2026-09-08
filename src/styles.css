@@ -14,12 +14,14 @@
        --primary-color: #FF8D28;
        --primary-hover: #FF7800;
        --secondary-color: #424242;
+       
 
        /* Cores de Fundo e Texto */
        --bg-color: #f8f9fa;
        --surface-color: #ffffff;
-       --text-color: #212529;
+       --text-color: #000000;
        --text-muted: #6c757d;
+       
 
        /* Fontes e Tamanhos */
        --font-main: 'Rubik', sans-serif;
