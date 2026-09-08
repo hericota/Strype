@@ -1,0 +1,42 @@
+<form (submit)="cadastrarUser($event)">
+    <div>
+        <label for="nome">Nome:</label>
+        <input [formField]="cadastarForm.nome" type="text" id="nome" placeholder="Nome">
+        @if(cadastarForm.nome().touched() && cadastarForm.nome().invalid())
+        { @for (error of cadastarForm.nome().errors(); track error.kind)
+        {<span>{{error.message}}</span>}}
+
+        <label for="sobreNome">Sobre Nome:</label>
+        <input [formField]="cadastarForm.sobreNome" type="text" placeholder="sobre Nome" id="sobreNome">
+        @if(cadastarForm.sobreNome().touched() && cadastarForm.sobreNome().invalid()){
+        @for (error of cadastarForm.sobreNome().errors(); track error.kind) {
+        <span>{{error.message}}</span>}}
+    </div>
+
+    <label for="phone">Telefone:</label>
+    <input [formField]="cadastarForm.telefone" type="number" id="phone" placeholder="(00) 000000000">
+    @if(cadastarForm.telefone().touched() && cadastarForm.telefone().invalid()){
+    @for (error of cadastarForm.telefone().errors(); track error.kind) {
+    <span>{{error.message}}</span>}}
+
+    <label for="email">Email:</label>
+    <input [formField]="cadastarForm.email" type="email" id="email" placeholder="Email@gmail.com">
+    @if(cadastarForm.email().touched() && cadastarForm.email().invalid()){
+    @for (error of cadastarForm.email().errors(); track error.kind) {
+    <span>{{error.message}}</span>}}
+
+    <label for="password">Senha:</label>
+    <input [formField]="cadastarForm.password" type="password" id="password" placeholder="Senha">
+    @if(cadastarForm.password().touched() && cadastarForm.password().invalid()){
+    @for (error of cadastarForm.password().errors(); track error.kind) {
+    <span>{{error.message}}</span>}}
+
+    <div>
+        <label for="check">Aceito os termos de condições</label>
+        <input [formField]="cadastarForm.check" type="checkbox" id="check">
+        @if(cadastarForm.check().touched() && cadastarForm.check().invalid()){
+        @for (error of cadastarForm.check().errors(); track error.kind) {
+        <span>{{error.message}}</span>}}
+    </div>
+    <button [disabled]="this.cadastarForm().invalid()">Cadastrar</button>
+</form>

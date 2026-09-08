@@ -25,13 +25,16 @@
   font-size: 12px;
   cursor: pointer;
 }
+.criarConta a{
+  color: var(--primary-color);
+}
 /*cria um sublinhado em baixo do criar sua conta**/
-.criarConta a[routerLink="/"]{
+.criarConta a[routerLink="/cadastro"]{
   position: relative;
   text-decoration: none;
  
 }
-.criarConta a[routerLink="/"]::after{
+.criarConta a[routerLink="/cadastro"]::after{
   content: "";
   position: absolute;
   width: 0%;
@@ -42,7 +45,7 @@
   background-color: var(--primary-color);
   transition: width 0.4s ease-in-out;
 }
-.criarConta a[routerLink="/"]:hover::after {
+.criarConta a[routerLink="/cadastro"]:hover::after {
   width: 100%;
 }
 .container-img {
