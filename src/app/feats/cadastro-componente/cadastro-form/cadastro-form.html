@@ -1,5 +1,6 @@
 <form (submit)="cadastrarUser($event)">
-    <div>
+
+    <div class="nomeForm"> <!--nome e sobre nome-->
         <label for="nome">Nome:</label>
         <input [formField]="cadastarForm.nome" type="text" id="nome" placeholder="Nome">
         @if(cadastarForm.nome().touched() && cadastarForm.nome().invalid())
@@ -13,30 +14,39 @@
         <span>{{error.message}}</span>}}
     </div>
 
+    <!--telefone-->
     <label for="phone">Telefone:</label>
     <input [formField]="cadastarForm.telefone" type="number" id="phone" placeholder="(00) 000000000">
     @if(cadastarForm.telefone().touched() && cadastarForm.telefone().invalid()){
     @for (error of cadastarForm.telefone().errors(); track error.kind) {
     <span>{{error.message}}</span>}}
 
+
+    <!--email-->
     <label for="email">Email:</label>
     <input [formField]="cadastarForm.email" type="email" id="email" placeholder="Email@gmail.com">
     @if(cadastarForm.email().touched() && cadastarForm.email().invalid()){
     @for (error of cadastarForm.email().errors(); track error.kind) {
     <span>{{error.message}}</span>}}
 
+
+    <!--senha-->
     <label for="password">Senha:</label>
     <input [formField]="cadastarForm.password" type="password" id="password" placeholder="Senha">
     @if(cadastarForm.password().touched() && cadastarForm.password().invalid()){
     @for (error of cadastarForm.password().errors(); track error.kind) {
     <span>{{error.message}}</span>}}
 
-    <div>
+
+
+    <div><!--termos e condições-->
         <label for="check">Aceito os termos de condições</label>
         <input [formField]="cadastarForm.check" type="checkbox" id="check">
         @if(cadastarForm.check().touched() && cadastarForm.check().invalid()){
         @for (error of cadastarForm.check().errors(); track error.kind) {
         <span>{{error.message}}</span>}}
     </div>
+
+
     <button [disabled]="this.cadastarForm().invalid()">Cadastrar</button>
 </form>
