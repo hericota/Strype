@@ -97,6 +97,10 @@ button:hover {
   width: 100%;
   padding-top: 8px;
 }
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 @media (max-height: 700px) {
   input:not([type='checkbox']) {
     padding: 8px;
