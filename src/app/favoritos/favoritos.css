@@ -179,8 +179,8 @@
 
   .rotulo { font-size: 13px; font-weight: 700; color: var(--texto); }
   .valor  { font-size: 20px; font-weight: 700; color: var(--texto); }
-  .pix    { font-size: 13px; color: var(--cinza); }
-  .pix em { font-style: normal; color: var(--laranja); font-weight: 600; }
+  .pix    { font-size: 13px; color: green; }
+  .pix em { font-style: normal; color: green; font-weight: 600; }
 }
 
 .acoes {
