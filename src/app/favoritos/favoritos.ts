@@ -9,16 +9,16 @@ export interface Produto {
 }
 import { Component, computed, signal } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
-import { Produto } from './produto.model';
+
 
 @Component({
   selector: 'app-favoritos',
-  standalone: true,
   imports: [DecimalPipe],
-  templateUrl: './favoritos.component.html',
-  styleUrl: './favoritos.component.scss',
+  templateUrl: './favoritos.html',
+  styleUrl: './favoritos.css',
 })
-export class FavoritosComponent {
+
+export class Favoritos {
   produtos = signal<Produto[]>([
     { id: 1, nome: "Tênis Nike Air Force 1'07", imagem: '', precoDe: 958.90, precoPor: 800.99, precoPix: 712.99, selecionado: false },
     { id: 2, nome: "Tênis Nike Air Force 1'07", imagem: '', precoDe: 958.90, precoPor: 800.99, precoPix: 712.99, selecionado: true },
