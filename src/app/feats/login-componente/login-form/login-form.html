@@ -1,17 +1,35 @@
+<form (submit)="entrarUsuario($event)">
+
+    <div class="validacao">
+        <label for="email">E-MAIL:</label> @if(usuarioForm.email().touched() && usuarioForm.email().invalid()){
+        @for (error of usuarioForm.email().errors(); track error.kind) {
+        <span>{{error.message}}</span>}}
+    </div>
+    <input [formField]="usuarioForm.email" id="email" type="email" placeholder="digite seu email...">
 
 
-<form (submit)="EntrarUsuario()">
+    <div class="validacao">
+        <label for="password">SENHA:</label>@if (usuarioForm.password().touched() && usuarioForm().invalid()) {
+        @for (error of usuarioForm.password().errors(); track error.kind) {
+        <span>{{error.message}}</span>}}
+        
+    </div>
+    <input [formField]="usuarioForm.password" id="password" type="password" placeholder="digite sua senha...">
 
 
-    <label for="email">E-MAIL:</label>
-    <input id="email" type="email" placeholder="digite seu email...">
+
+    <div class="wrapper">
+        <input [formField]="usuarioForm.checkbox" class="checkbox" id="check" type="checkbox">
+        <div class="validacao">
+            <label for="check">Aceito os termos de condições</label>
+            @if(usuarioForm.checkbox().invalid() && usuarioForm.checkbox().touched()){
+            @for (error of usuarioForm.checkbox().errors(); track error.kind) {
+            <span>{{error.message}}</span>}}
+        </div>
+    </div>
 
 
-    <label for="password">SENHA</label>
-    <input id="password" type="password" placeholder="digite sua senha...">
-
-    <label for="checkbox">Aceito os termos de condições</label>
-    <input id="checkbox" type="checkbox">
-
-    <button>ENTRAR</button>
+    <div class="btn">
+        <button [disabled]="this.usuarioForm().invalid()">ENTRAR</button>
+    </div>
 </form>

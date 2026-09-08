@@ -1,6 +1,5 @@
    /* IMPORTS */
    @import url('https://googleapis.com');
-
    *,
    *::before,
    *::after {
@@ -21,7 +20,7 @@
        --surface-color: #ffffff;
        --text-color: #000000;
        --text-muted: #6c757d;
-       
+       --btn-color: #D2D2D2;
 
        /* Fontes e Tamanhos */
        --font-main: 'Rubik', sans-serif;
@@ -65,3 +64,5 @@
        border: none;
        background: none;
    }
+
+   /* MEDIA QUERIES (Henrique faz ai) */ 
