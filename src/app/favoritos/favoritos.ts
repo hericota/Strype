@@ -1,36 +1,57 @@
-import { Component, signal, computed } from '@angular/core';
-import { CommonModule } from '@angular/common';
+export interface Produto {
+  id: number;
+  nome: string;
+  imagem: string;
+  precoDe: number;
+  precoPor: number;
+  precoPix: number;
+  selecionado: boolean;
+}
+import { Component, computed, signal } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
+import { Produto } from './produto.model';
+
 @Component({
-  imports: [CommonModule],
   selector: 'app-favoritos',
-  styleUrl: './favoritos.css',
-  templateUrl: './favoritos.html',
+  standalone: true,
+  imports: [DecimalPipe],
+  templateUrl: './favoritos.component.html',
+  styleUrl: './favoritos.component.scss',
 })
-export class Favoritos {
-  produtos = signal([
-    { nome: 'Tênis Nike', precoDe: 299.9, precoPor: 199.9, selecionado: false },
-    { nome: 'Camiseta', precoDe: 89.9, precoPor: 59.9, selecionado: false },
-    { nome: 'Boné', precoDe: 49.9, precoPor: 29.9, selecionado: false },
+export class FavoritosComponent {
+  produtos = signal<Produto[]>([
+    { id: 1, nome: "Tênis Nike Air Force 1'07", imagem: '', precoDe: 958.90, precoPor: 800.99, precoPix: 712.99, selecionado: false },
+    { id: 2, nome: "Tênis Nike Air Force 1'07", imagem: '', precoDe: 958.90, precoPor: 800.99, precoPix: 712.99, selecionado: true },
+    { id: 3, nome: "Tênis Nike Air Force 1'07", imagem: '', precoDe: 958.90, precoPor: 800.99, precoPix: 712.99, selecionado: false },
+    { id: 4, nome: "Tênis Nike Air Force 1'07", imagem: '', precoDe: 958.90, precoPor: 800.99, precoPix: 712.99, selecionado: true },
   ]);
 
-  toggleSelecionado(produtoClicado: any) {
-    this.produtos.update((lista) =>
-      lista.map((p) =>
-        p.nome === produtoClicado.nome ? { ...p, selecionado: !p.selecionado } : p,
-      ),
+  private selecionados = computed(() => this.produtos().filter(p => p.selecionado));
+
+  total = computed(() => this.selecionados().reduce((acc, p) => acc + p.precoPix, 0));
+  temSelecionado = computed(() => this.selecionados().length > 0);
+  todosSelecionados = computed(() =>
+    this.produtos().length > 0 && this.selecionados().length === this.produtos().length
+  );
+  algunsSelecionados = computed(() =>
+    this.temSelecionado() && !this.todosSelecionados()
+  );
+
+  toggleSelecionado(id: number): void {
+    this.produtos.update(lista =>
+      lista.map(p => (p.id === id ? { ...p, selecionado: !p.selecionado } : p))
     );
   }
 
-  total = computed(() => {
-    return this.produtos()
-      .filter((p) => p.selecionado)
-      .reduce((soma, p) => soma + p.precoPor, 0);
-  });
-
-  selecionarTodos(marcar: boolean) {
-    this.produtos.update((lista) => lista.map((p) => ({ ...p, selecionado: marcar })));
+  selecionarTodos(valor: boolean): void {
+    this.produtos.update(lista => lista.map(p => ({ ...p, selecionado: valor })));
   }
-  excluirSelecionados() {
-  this.produtos.update(lista => lista.filter(p => !p.selecionado));
-}
+
+  excluirSelecionados(): void {
+    this.produtos.update(lista => lista.filter(p => !p.selecionado));
+  }
+
+  comprar(): void {
+    console.log('Comprar:', this.selecionados());
+  }
 }
