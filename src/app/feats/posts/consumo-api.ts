@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, httpResource } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
 import { Produto } from './produto';
 
@@ -12,5 +12,10 @@ export class ConsumoApi {
     cadastrarPostService(postCadastrado:Produto){
         return this.httpClient.post<Produto>(this.urlApi , postCadastrado)
     }
+
+    readonly produtoCadastrado = httpResource<Produto[]>(
+        () => this.urlApi,
+        {defaultValue:[]}
+    )
 
 }
