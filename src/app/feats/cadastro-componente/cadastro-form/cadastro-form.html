@@ -1,50 +1,87 @@
 <form (submit)="cadastrarUser($event)">
 
-    <div class="nomeForm"> <!--nome e sobre nome-->
-        <label for="nome">Nome:</label>
-        <input [formField]="cadastarForm.nome" type="text" id="nome" placeholder="Nome">
-        @if(cadastarForm.nome().touched() && cadastarForm.nome().invalid())
-        { @for (error of cadastarForm.nome().errors(); track error.kind)
-        {<span>{{error.message}}</span>}}
+    <div class="divForm"> <!--nome e sobre nome-->
+        <div class="inputContainer">
+            <div class="validator">
+                <label for="nome">Nome:</label>
+                @if(cadastarForm.nome().touched() && cadastarForm.nome().invalid())
+                { @for (error of cadastarForm.nome().errors(); track error.kind)
+                {<span>{{error.message}}</span>}}
+            </div>
+            <input [formField]="cadastarForm.nome" type="text" id="nome" placeholder="Nome">
 
-        <label for="sobreNome">Sobre Nome:</label>
-        <input [formField]="cadastarForm.sobreNome" type="text" placeholder="sobre Nome" id="sobreNome">
-        @if(cadastarForm.sobreNome().touched() && cadastarForm.sobreNome().invalid()){
-        @for (error of cadastarForm.sobreNome().errors(); track error.kind) {
-        <span>{{error.message}}</span>}}
+        </div>
+
+        <div class="inputContainer">
+            <div class="validator">
+                <label for="sobreNome">Sobre Nome:</label> @if(cadastarForm.sobreNome().touched() &&
+                cadastarForm.sobreNome().invalid()){
+                @for (error of cadastarForm.sobreNome().errors(); track error.kind) {
+                <span>{{error.message}}</span>}}
+            </div>
+            <input [formField]="cadastarForm.sobreNome" type="text" placeholder="sobre Nome" id="sobreNome">
+
+        </div>
     </div>
 
-    <!--telefone-->
-    <label for="phone">Telefone:</label>
-    <input [formField]="cadastarForm.telefone" type="number" id="phone" placeholder="(00) 000000000">
-    @if(cadastarForm.telefone().touched() && cadastarForm.telefone().invalid()){
-    @for (error of cadastarForm.telefone().errors(); track error.kind) {
-    <span>{{error.message}}</span>}}
+    <div class="divForm">
+        <div class="inputContainer">
+            <div class="validator">
+                <!--telefone-->
+                <label for="phone">Telefone:</label>@if(cadastarForm.telefone().touched() &&
+                cadastarForm.telefone().invalid()){
+                @for (error of cadastarForm.telefone().errors(); track error.kind) {
+                <span>{{error.message}}</span>}}
+            </div>
+            <input [formField]="cadastarForm.telefone" type="number" id="phone" placeholder="(00) 000000000">
+
+        </div>
+        <div class="inputContainer">
+            <div class="validator">
+                <label for="cpf">CPF:</label> @if(cadastarForm.Cpf().touched() && cadastarForm.Cpf().invalid()){
+                @for (error of cadastarForm.Cpf().errors(); track error.kind) {
+                <span>{{error.message}}</span>}}
+            </div>
+            <input [formField]="cadastarForm.Cpf" type="number" id="Cpf" placeholder="000.000.000.00">
+
+        </div>
+    </div>
+
+    <div class="divForm">
+        <div class="inputContainer">
+            <!--email-->
+            <div class="validator">
+                <label for="email">Email:</label> @if(cadastarForm.email().touched() && cadastarForm.email().invalid()){
+                @for (error of cadastarForm.email().errors(); track error.kind) {
+                <span>{{error.message}}</span>}}
+            </div>
+            <input [formField]="cadastarForm.email" type="email" id="email" placeholder="Email@gmail.com">
+
+        </div>
+
+        <div class="inputContainer">
+            <!--senha-->
+            <div class="validator">
+                <label for="password">Senha:</label> @if(cadastarForm.password().touched() &&
+                cadastarForm.password().invalid()){
+                @for (error of cadastarForm.password().errors(); track error.kind) {
+                <span>{{error.message}}</span>}}
+            </div>
+            <input [formField]="cadastarForm.password" type="password" id="password" placeholder="Senha">
+
+        </div>
+    </div>
 
 
-    <!--email-->
-    <label for="email">Email:</label>
-    <input [formField]="cadastarForm.email" type="email" id="email" placeholder="Email@gmail.com">
-    @if(cadastarForm.email().touched() && cadastarForm.email().invalid()){
-    @for (error of cadastarForm.email().errors(); track error.kind) {
-    <span>{{error.message}}</span>}}
-
-
-    <!--senha-->
-    <label for="password">Senha:</label>
-    <input [formField]="cadastarForm.password" type="password" id="password" placeholder="Senha">
-    @if(cadastarForm.password().touched() && cadastarForm.password().invalid()){
-    @for (error of cadastarForm.password().errors(); track error.kind) {
-    <span>{{error.message}}</span>}}
-
-
-
-    <div><!--termos e condições-->
-        <label for="check">Aceito os termos de condições</label>
+    <div class="wrapper">
+        <!--termos e condições-->
         <input [formField]="cadastarForm.check" type="checkbox" id="check">
-        @if(cadastarForm.check().touched() && cadastarForm.check().invalid()){
-        @for (error of cadastarForm.check().errors(); track error.kind) {
-        <span>{{error.message}}</span>}}
+        <div class="validacao">
+            <label for="check">Aceito os termos de condições</label>
+            @if(cadastarForm.check().touched() && cadastarForm.check().invalid()){
+            @for (error of cadastarForm.check().errors(); track error.kind) {
+            <span>{{error.message}}</span>}}
+        </div>
     </div>
 
 

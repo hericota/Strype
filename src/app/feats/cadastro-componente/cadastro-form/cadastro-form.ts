@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class CadastroForm {
 
-  constructor(private router: Router){}
+  constructor(private router: Router) { }
 
   cadastrarModel = signal<CadastroInterface>({
 
@@ -21,6 +21,7 @@ export class CadastroForm {
     email: '',
     password: '',
     check: false,
+    Cpf: null,
 
   })
 
@@ -30,9 +31,10 @@ export class CadastroForm {
     required(schemaPath.password, { message: '*Insira uma senha!' });
     minLength(schemaPath.password, 8, { message: '*minimo 8 caracteres' });
     required(schemaPath.check, { message: '*obrigatório' });
-    required(schemaPath.nome, { message: '*Insira seu nome' })
-    required(schemaPath.sobreNome, { message: '*Insira seu sobre nome' })
-    required(schemaPath.telefone, { message: '*Insira seu telefone' })
+    required(schemaPath.nome, { message: '*Insira seu nome' });
+    required(schemaPath.sobreNome, { message: '*obrigatório' });
+    required(schemaPath.telefone, { message: '*obrigatório' });
+     required(schemaPath.Cpf, { message: '*Insira seu Cpf!' });
   })
 
   cadastrarUser(event: SubmitEvent) {
@@ -47,7 +49,7 @@ export class CadastroForm {
       email: '',
       password: '',
       check: false,
-
+      Cpf: null,
 
     })
     this.cadastarForm().reset();

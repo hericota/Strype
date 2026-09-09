@@ -1,0 +1,154 @@
+form {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.divForm {
+    display: flex;
+    text-align: left;
+    width: 100%;
+    gap: 30px;
+}
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+}
+label {
+    font-family: var(--font-main);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/*input de formulario*/
+input:not([type='checkbox']) {
+    border: 1px solid;
+    border-color: var(--btn-color);
+    padding: 14px;
+    width: 150px;
+    border-radius: 8px;
+}
+
+input:hover {
+    border: 1px solid;
+    border-color: var(--primary-hover);
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid;
+    border-color: var(--primary-hover);
+    box-shadow: 0 0 4px rgba(255, 165, 0, 0.5);
+}
+
+/*checkbox e termos*/
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    width: 300px;
+}
+
+.wrapper label {
+    font-size: 14px;
+    font-weight: normal;
+}
+
+input[type='checkbox'] {
+    appearance: none;
+    -webkit-appearance: none;
+    height: 14px;
+    width: 14px;
+    background-color: transparent;
+    border: 2px solid var(--btn-color);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input[type='checkbox']::after {
+    content: '\e5ca';
+    font-family: 'Material Symbols Outlined';
+    font-size: 14px;
+    font-weight: 900;
+    color: white;
+    display: none;
+}
+
+input[type='checkbox']:checked {
+    background-color: var(--primary-color);
+    border: 1px solid;
+    border-color: var(--primary-color);
+}
+
+input[type='checkbox']:checked::after {
+    display: block;
+}
+
+/*botão de entrar*/
+button {
+    background-color: var(--primary-color);
+    color: var(--surface-color);
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    width: 100%;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn {
+    width: 100%;
+    padding-top: 8px;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media (max-height: 700px) {
+    input:not([type='checkbox']) {
+        padding: 8px;
+    }
+
+    label {
+        font-size: 12px;
+    }
+
+    .wrapper label {
+        font-size: 12px;
+    }
+
+    button {
+        font-size: 12px;
+    }
+}
+
+/*validação de formulario*/
+span {
+    font-family: var(--font-main);
+    font-size: 12px;
+    color: var(--primary-color);
+}
+.validator{
+    display: flex ;
+    flex-direction: row;
+    gap: 5px;
+}
+.validacao {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
