@@ -6,6 +6,7 @@ import { CadastroComponente } from './feats/cadastro-componente/cadastro-compone
 import { LoginComponente } from './feats/login-componente/login-componente';
 import { Favoritos } from './favoritos/favoritos';
 import { DetalheProduto } from './feats/detalhe-produto/detalhe-produto';
+import { Deletar } from './feats/deletar/deletar';
 
 export const routes: Routes = [
     {path:"telaAdmin", component:TelaAdmin},
@@ -14,6 +15,7 @@ export const routes: Routes = [
 
     {path:"favoritos", component:Favoritos},
 
+    {path:"deletar", component:Deletar},
 
 
     {path: '', redirectTo: 'Home', pathMatch: 'full'},
