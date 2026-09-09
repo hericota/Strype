@@ -20,4 +20,5 @@ export const routes: Routes = [
     { path: '**', redirectTo: 'home' },
     {path: 'cadastro', component: CadastroComponente},
     {path: 'login', component: LoginComponente},
+    
 ];
