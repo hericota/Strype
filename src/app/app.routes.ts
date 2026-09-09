@@ -5,6 +5,7 @@ import { Home } from './home/home';
 import { CadastroComponente } from './feats/cadastro-componente/cadastro-componente';
 import { LoginComponente } from './feats/login-componente/login-componente';
 import { Favoritos } from './favoritos/favoritos';
+import { DetalheProduto } from './feats/detalhe-produto/detalhe-produto';
 
 export const routes: Routes = [
     {path:"telaAdmin", component:TelaAdmin},
@@ -20,5 +21,5 @@ export const routes: Routes = [
     { path: '**', redirectTo: 'home' },
     {path: 'cadastro', component: CadastroComponente},
     {path: 'login', component: LoginComponente},
-    
+    {path:'produto/:id', component: DetalheProduto},
 ];
