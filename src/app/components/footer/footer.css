@@ -1,3 +1,50 @@
-:host{
-    
+:host {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+   padding: 15px;
+}
+
+.social-media {
+    display: flex;
+    width: 1313px;
+    height: 150px;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 50px;
+    background-color: black;
+    border-radius: 155px;
+}
+
+.media-icons {
+    display: flex;
+    align-self: center;
+    flex-direction: row;
+}
+
+
+/* Estilos personalizado ex: logos e icones */
+
+#media-text {
+    color: white;
+    font-size: 3.75rem;
+    line-height: 55px;
+    width: 659px;
+    height: 116px;
+}
+
+#hashtag-icon {
+    width: 102px;
+    height: 102px;
+}
+
+.logos {
+    width: 60px;
+    height: 60px;
 }
