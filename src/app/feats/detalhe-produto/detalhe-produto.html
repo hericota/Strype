@@ -1,1 +1,5 @@
-<h1>Id do produto: {{id}}</h1>
+<img [src]="detalheProduto.value()!.urlImagem">
+<h1>{{ detalheProduto.value()!.nome }}</h1>
+<p>descrição {{detalheProduto.value()!.descricao}}</p>
+<p>Preço: R$ {{ detalheProduto.value()!.preco }}</p>
+
