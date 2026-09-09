@@ -5,4 +5,5 @@ export interface CadastroInterface {
     email:string;
     password: string;
     check: boolean;
+    Cpf: number|null;
 }

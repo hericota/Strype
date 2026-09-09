@@ -4,7 +4,7 @@
   height: 100vh;
   background-color: var(--bg-color);
   overflow: hidden;
- 
+
 }
 
 .container-form {
@@ -21,6 +21,7 @@
   padding: 2rem;
   border-radius: 14px;
   margin-bottom: 80px;
+ 
 }
 .criarConta {
   font-size: 12px;
