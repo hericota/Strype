@@ -1,78 +1,156 @@
-@import url('https://googleapis.com');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap');
+
+:host {
+    display: block;
+    min-height: 100vh;
+    padding: 10px;
+
+    background-color: #ffffff;
+    font-family: 'Rubik', sans-serif;
+
+    box-sizing: border-box;
+}
+
+* {
+    box-sizing: border-box;
+}
 
 #area {
     display: flex;
-    justify-items: center;
-    align-items: center;
     justify-content: center;
-    flex-direction: column;
-    font-family: 'Rubik', sans-serif;
-}
 
-#area h1 {
-    font-size: 3rem;
+    width: 100%;
 }
 
 #caixa {
     display: flex;
-    align-self: center;
-    justify-self: center;
-    justify-items: center;
-    align-items: center;
     flex-direction: column;
-    height: 450px;
-    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.5);
-    width: 50%;
-    border-radius: 20px;
-    font-size: 2.5rem;
-    gap: 70px;
+    align-items: center;
+
+    width: 100%;
+    max-width: 540px;
+    height: 700px;
+
+    padding: 43px 60px;
+
+    background-color: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 18px;
+
+    box-shadow:
+        0 2px 3px rgba(0, 0, 0, 0.25),
+        0 0 5px rgba(0, 0, 0, 0.08);
+}
+#caixa h1 {
+    margin: 0 0 70px;
+
+    color: #080808;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.acoes {
+    display: flex;
+    flex-direction: column;
+    gap: 38px;
+
+    width: 100%;
+}
+
+.botao {
+    position: relative;
+
+    width: 100%;
+    min-height: 42px;
+    padding: 10px 48px;
+
+    border: none;
+    border-radius: 7px;
+
+    color: #ffffff;
+    font-family: 'Rubik', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.35);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        filter 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 #cadastrar {
-    text-align: center;
-    margin-top: 40px;
-    padding: 10px;
-    border: 2px rgb(65, 65, 65) solid;
-    border-radius: 10px;
-    width: 300px;
-    transition: .6s;
-    background-color: #43B265;
-    color: white;
-}
-
-#cadastrar:hover {
-    scale: 1.05;
-    cursor: pointer;
+    background-color: #42b768;
 }
 
 #atualizar {
-    width: 300px;
-    text-align: center;
-    padding: 10px;
-    border: 2px rgb(65, 65, 65) solid;
-    border-radius: 10px;
-    background-color: #EBAD26;
-    color: white;
-    transition: .6s;
-}
-
-#atualizar:hover {
-    scale: 1.05;
-    cursor: pointer;
+    background-color: #f2b41f;
 }
 
 #deletar {
-    width: 300px;
-    text-align: center;
-    padding: 10px;
-    border: 2px rgb(65, 65, 65) solid;
-    border-radius: 10px;
-    background-color: #E03E3B;
-    color: white;
-    transition: .6s;
+    background-color: #e83d3d;
 }
 
-#deletar:hover {
-    scale: 1.05;
-    cursor: pointer;
+.botao i {
+    position: absolute;
+    top: 50%;
+    right: 14px;
+
+    transform: translateY(-50%);
+
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+.botao:hover {
+    transform: translateY(-2px) scale(1.02);
+    filter: brightness(1.05);
+
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.25);
+}
+
+.botao:active {
+    transform: scale(0.98);
+}
+
+.botao:focus-visible {
+    outline: 3px solid rgba(40, 110, 255, 0.35);
+    outline-offset: 3px;
+}
+
+@media (max-width: 500px) {
+    :host {
+        padding: 8px;
+    }
+
+    #caixa {
+        height: 410px;
+        padding: 35px 30px;
+    }
+
+    #caixa h1 {
+        margin-bottom: 55px;
+        font-size: 1.4rem;
+    }
+
+    .acoes {
+        gap: 30px;
+    }
+
+    .botao {
+        min-height: 44px;
+        padding: 10px 45px;
+        font-size: 0.95rem;
+    }
+
+    .botao i {
+        right: 13px;
+        font-size: 1.1rem;
+    }
 }
