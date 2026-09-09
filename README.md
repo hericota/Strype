@@ -158,6 +158,6 @@ Para os links de detalhes, os produtos retornados na listagem devem incluir `id`
 - Completar rodapé, newsletter e informações de entrega e pagamento.
 - Revisar responsividade, acessibilidade, estados de erro e testes dos fluxos principais.
 
-## Autor
+## Autores
 
-Desenvolvido por [Henrique (hericota)](https://github.com/hericota).
+Desenvolvido por Smap
