@@ -1,0 +1,71 @@
+.produto{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.info h1{
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.avaliacao {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.avaliacao span {
+  font-size: 1.2rem;
+}
+
+.avaliacao span:first-child {
+  color: #f5b301;
+}
+
+.avaliacao strong {
+  font-size: 1rem;
+  margin-left: 4px;
+}
+
+.price{
+    margin: 5%;
+}
+
+.box-price{
+    margin-top: 20px;
+}
+
+.tamanhos {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tamanhos p {
+  margin: 0;
+  font-weight: 600;
+}
+
+.opcoes-tamanho {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.opcoes-tamanho button {
+  width: 50px;
+  height: 45px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.opcoes-tamanho button.selecionado {
+  background: black;
+  color: white;
+  border-color: black;
+}

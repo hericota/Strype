@@ -12,6 +12,10 @@ import { httpResource } from '@angular/common/http';
 })
 export class DetalheProduto {
 
+  avaliacao = 4.8;
+  tamanhoSelecionado : number | null = null
+
+
   // chamando a url dos produtos 
   private readonly urlApi = 'http://localhost:8080/produtos';
 
@@ -29,6 +33,9 @@ export class DetalheProduto {
         () => this.urlApi + "/" + this.id
     )
 
+    selecionarTamanho(tamanho: number) {
+  this.tamanhoSelecionado = tamanho;
+  }
  
 
 }
