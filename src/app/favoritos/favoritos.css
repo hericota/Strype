@@ -310,3 +310,12 @@
   text-align: center;
   color: var(--cinza);
 }
+/* ---------- Imagem do produto ---------- */
+
+.imagem-produto {
+  width: 88px;
+  height: 88px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  object-fit: cover;
+}
