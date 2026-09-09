@@ -38,9 +38,18 @@
             {{ tamanho }}
           </button>
         }
+        
       </div>
     </div>
   </div>
 
-  <p>{{ detalheProduto.value()!.descricao }}</p>
+  <div>
+    <form>
+      <input type="number" inputmode="numeric" [formField]="contadorForm">
+      <button type="button" (click)="incrementar()">+</button>
+    </form>
+  </div>
+
 </div>
+
+<p>{{ detalheProduto.value()!.descricao }}</p>
