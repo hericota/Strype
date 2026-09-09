@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   imports: [],
@@ -6,4 +7,10 @@ import { Component } from '@angular/core';
   styleUrl: './detalhe-produto.css',
   templateUrl: './detalhe-produto.html',
 })
-export class DetalheProduto {}
+export class DetalheProduto {
+
+  private route = inject(ActivatedRoute);
+
+  id = this.route.snapshot.paramMap.get('id')
+
+}

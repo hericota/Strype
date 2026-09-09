@@ -2,7 +2,7 @@
 <div class="card">
     @for (produto of consumoService.produtoCadastrado.value(); track $index) {
         <div>
-            <a routerLink="#" class="produto">
+            <a [routerLink]="'/produto/' + produto.id" class="produto">
                 <div>
                     <img src={{produto.urlImagem}}>
                     <p class="name">{{produto.nome}}</p>
