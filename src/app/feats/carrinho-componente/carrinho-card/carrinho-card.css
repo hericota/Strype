@@ -94,19 +94,3 @@ hr{
 .comprar:hover{
     background-color: var(--primary-hover);
 }
-.maisProduto{
-    display: flex;
-    justify-content: end;
-    margin-right: 6%;
-    margin-top: 50px;
-}
-.maisProduto a{
-    color: var(--primary-color);
-    font-size: 21px;
-    font-weight: bold;
-    transition: 0.3ms;
-}
-.maisProduto a:hover{
-    color: var(--primary-hover);
-    
-}
