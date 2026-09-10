@@ -2,7 +2,11 @@ import { Routes } from '@angular/router';
 import { PostProdutos } from './feats/posts/post-produtos/post-produtos';
 import { TelaAdmin } from './feats/tela-admin/tela-admin';
 import { Home } from './home/home';
+import { CadastroComponente } from './feats/cadastro-componente/cadastro-componente';
+import { LoginComponente } from './feats/login-componente/login-componente';
 import { Favoritos } from './favoritos/favoritos';
+import { DetalheProduto } from './feats/detalhe-produto/detalhe-produto';
+import { Deletar } from './feats/deletar/deletar';
 
 export const routes: Routes = [
     {path:"telaAdmin", component:TelaAdmin},
@@ -11,9 +15,13 @@ export const routes: Routes = [
 
     {path:"favoritos", component:Favoritos},
 
+    {path:"deletar", component:Deletar},
 
 
-    {path: '', redirectTo: 'Home', pathMatch: 'full'},
     {path: 'Home', component: Home },
-    { path: '**', redirectTo: 'home' },
+    {path: 'cadastro', component: CadastroComponente},
+    {path: 'login', component: LoginComponente},
+    {path:'produto/:id', component: DetalheProduto},
+    {path: '', redirectTo: 'Home', pathMatch: 'full'},
+    { path: '**', redirectTo: 'home' }
 ];
