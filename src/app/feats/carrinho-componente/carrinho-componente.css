@@ -1,6 +1,8 @@
 .container {
-    padding: 80px 40px;
-   
+    padding: 80px;
+    background-color: #ffff;
+    display: flex;
+    flex-direction: column;
 }
 
 .navegacao {
@@ -34,9 +36,8 @@ a[routerLink='/favoritos']::after {
 .navegacao a[routerLink='/carrinho']:hover::after,
 a[routerLink='/favoritos']:hover::after {
     width: 100%;
-   
 }
 /*aplica hover nos icones de navegação*/
-.navegacao a:hover{
+.navegacao a:hover {
     fill: var(--primary-color);
 }
