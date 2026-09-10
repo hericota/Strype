@@ -7,6 +7,7 @@ import { LoginComponente } from './feats/login-componente/login-componente';
 import { Favoritos } from './favoritos/favoritos';
 import { DetalheProduto } from './feats/detalhe-produto/detalhe-produto';
 import { Deletar } from './feats/deletar/deletar';
+import { CarrinhoComponente } from './feats/carrinho-componente/carrinho-componente';
 
 export const routes: Routes = [
     {path:"telaAdmin", component:TelaAdmin},
@@ -22,6 +23,7 @@ export const routes: Routes = [
     {path: 'cadastro', component: CadastroComponente},
     {path: 'login', component: LoginComponente},
     {path:'produto/:id', component: DetalheProduto},
+    {path: 'carrinho', component: CarrinhoComponente},
     {path: '', redirectTo: 'Home', pathMatch: 'full'},
     { path: '**', redirectTo: 'home' }
 ];
