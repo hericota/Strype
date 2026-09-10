@@ -1,7 +1,23 @@
-import { Component, computed, signal } from '@angular/core';
+import { httpResource } from '@angular/common/http';
 import { DecimalPipe } from '@angular/common';
-import { FavoritosInterface } from './favoritos-interface';
+import { Component, computed, signal } from '@angular/core';
 
+type ProdutoApi = {
+  id?: number;
+  nome: string;
+  descricao: string;
+  preco: number | null;
+  urlImagem: string;
+};
+
+type ProdutoFavorito = {
+  id: number;
+  nome: string;
+  descricao: string;
+  preco: number | null;
+  urlImagem: string;
+  selecionado: boolean;
+};
 
 @Component({
   selector: 'app-favoritos',
@@ -9,7 +25,6 @@ import { FavoritosInterface } from './favoritos-interface';
   templateUrl: './favoritos.html',
   styleUrl: './favoritos.css',
 })
-
 export class Favoritos {
   produtos = signal<FavoritosInterface[]>([
     { id: 1, nome: "Tênis Nike Air Force 1'07", imagem: '', precoDe: 958.90, precoPor: 800.99, precoPix: 712.99, selecionado: false },
@@ -25,14 +40,40 @@ export class Favoritos {
   todosSelecionados = computed(() =>
     this.produtos().length > 0 && this.selecionados().length === this.produtos().length
   );
-  algunsSelecionados = computed(() =>
-    this.temSelecionado() && !this.todosSelecionados()
+
+  private readonly idsFavoritos = signal<number[]>(
+    this.lerIdsFavoritos(),
   );
 
   toggleSelecionado(id: number)  {
     this.produtos.update(lista =>
       lista.map(p => (p.id === id ? { ...p, selecionado: !p.selecionado } : p))
     );
+  });
+
+  temSelecionado = computed(() => {
+    return this.selecionados().length > 0;
+  });
+
+  todosSelecionados = computed(() => {
+    return (
+      this.produtos().length > 0 &&
+      this.selecionados().length === this.produtos().length
+    );
+  });
+
+  algunsSelecionados = computed(() => {
+    return this.temSelecionado() && !this.todosSelecionados();
+  });
+
+  toggleSelecionado(id: number): void {
+    this.idsSelecionados.update((ids) => {
+      if (ids.includes(id)) {
+        return ids.filter((idSelecionado) => idSelecionado !== id);
+      }
+
+      return [...ids, id];
+    });
   }
 
   selecionarTodos(valor: boolean)  {

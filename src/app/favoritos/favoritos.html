@@ -9,7 +9,7 @@
   <button class="icone ativo" type="button" aria-label="Favoritos" aria-current="page">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
       <path d="M12 20s-7-4.35-7-9a4 4 0 0 1 7-2.65A4 4 0 0 1 19 11c0 4.65-7 9-7 9Z"
-            stroke-linejoin="round" />
+        stroke-linejoin="round" />
     </svg>
   </button>
 </header>
@@ -25,22 +25,33 @@
         [attr.aria-label]="'Selecionar ' + produto.nome"
       />
 
-      <div class="imagem-placeholder"></div>
+      @if (produto.urlImagem) {
+        <img
+          class="imagem-produto"
+          [src]="produto.urlImagem"
+          [alt]="produto.nome"
+        />
+      } @else {
+        <div class="imagem-placeholder" aria-hidden="true"></div>
+      }
 
       <div class="info">
         <p class="nome">{{ produto.nome }}</p>
-        <p class="preco-de">R$ {{ produto.precoDe | number: '1.2-2' }}</p>
-        <p class="preco-por">R$ {{ produto.precoPor | number: '1.2-2' }}</p>
-        <p class="preco-pix">
-          <span class="destaque">ou R$ {{ produto.precoPix | number: '1.2-2' }}</span> no Pix
-        </p>
+
+        @if (produto.preco !== null) {
+          <p class="preco-por">
+            R$ {{ produto.preco | number: '1.2-2' }}
+          </p>
+        } @else {
+          <p class="preco-por">Preço indisponível</p>
+        }
       </div>
 
       <button class="btn-carrinho" type="button"
-              [attr.aria-label]="'Adicionar ' + produto.nome + ' ao carrinho'">
+        [attr.aria-label]="'Adicionar ' + produto.nome + ' ao carrinho'">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
           <path d="M3 4h2l2.4 10.4a1 1 0 0 0 1 .8h7.6a1 1 0 0 0 1-.77L19 8H6"
-                stroke-linecap="round" stroke-linejoin="round" />
+            stroke-linecap="round" stroke-linejoin="round" />
           <circle cx="9.5" cy="19" r="1.3" />
           <circle cx="16.5" cy="19" r="1.3" />
         </svg>
@@ -71,14 +82,14 @@
       </label>
 
       <button class="excluir" type="button"
-              [disabled]="!temSelecionado()" (click)="excluirSelecionados()">
+        [disabled]="!temSelecionado()" (click)="excluirSelecionados()">
         Excluir
       </button>
     </div>
   </div>
 
   <button class="btn-comprar" type="button"
-          [disabled]="!temSelecionado()" (click)="comprar()">
+    [disabled]="!temSelecionado()" (click)="comprar()">
     Comprar
   </button>
 </footer>
