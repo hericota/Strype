@@ -8,24 +8,31 @@
 .footer-content {
     display: flex;
     flex-direction: column;
-   padding: 15px;
+    align-items: center;
+    padding: 15px;
+    padding-top: 30px;
 }
 
 .social-media {
     display: flex;
-    width: 1313px;
-    height: 150px;
+    width: 1263px;
+    height: 136px;
     flex-direction: row;
     align-items: center;
-    padding-left: 50px;
-    background-color: black;
+    padding-left: 45px;
+    background: linear-gradient(200deg, #000000, #333333);
+
     border-radius: 155px;
+    gap: 16px;
 }
 
 .media-icons {
     display: flex;
     align-self: center;
     flex-direction: row;
+    margin-left: auto;
+    margin-right: 100px;
+    gap: 16px
 }
 
 
