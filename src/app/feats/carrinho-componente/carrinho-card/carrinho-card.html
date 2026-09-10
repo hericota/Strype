@@ -1,44 +1,37 @@
 <div class="container">
-  <div class="card-itens">
+    <div class="card-itens">
+        <img src="https://imgnike-a.akamaihd.net/360x360/058889IEA2.jpg" alt="produto" />
+        <div class="descricao">
+            <h1>produto</h1>
+            <p>tamanho</p>
+            <p>cor</p>
+            <p>descricao</p>
+        </div>
 
-    <img src="https://imgnike-a.akamaihd.net/360x360/058889IEA2.jpg" alt="produto">
-    <div class="descricao">
-      <h1> produto</h1>
-      <p>tamanho</p>
-      <p>cor</p>
-      <p>descricao</p>
+        <div class="card-preco">
+            <div>
+                <button class="excluir">
+                    <span class="material-symbols-outlined"> delete </span>
+                </button>
+                <button class="diminuir">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FF8D28"><path d="M240-120v-80h480v80H240Z"/></svg>
+                </button>
+                <!--logica de if e else, quando o card tiver mais de 1 do mesmo produto aparece o botão de menos-->
+                <button class="aumentar">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FF8D28"><path d="M440-120v-320H120v-80h320v-320h80v320h320v80H520v320h-80Z"/></svg>
+                </button>
+            </div>
+            <div>
+                <h2>Preço</h2>
+            </div>
+        </div>
     </div>
 
-    <div class="card-preco">
-      <div>
-        <button class="excluir"><span class="material-symbols-outlined">
-            delete
-          </span></button>
-        <button class="diminuir"><span class="material-symbols-outlined">
-            do_not_disturb_on
-          </span></button> <!--logica de if e else, quando o card tiver mais de 1 do mesmo produto aparece o botão de menos-->
-        <button class="aumentar"> <span class="material-symbols-outlined">
-            add_circle
-          </span></button>
-
-      </div>
-      <div>
-        <h2>Preço</h2>
-      </div>
+    <div class="card-detalhes">
+        <p>Produtos</p>
+        <p>Desconto no pix</p>
+        <p>Desconto total</p>
+        <p>Total valor</p>
+        <button>Comprar</button>
     </div>
-
-
-  </div>
-
-
-  <div class="card-detalhes">
-    <p>Produtos</p>
-    <p>Desconto no pix</p>
-    <p>Desconto total</p>
-    <p>Total valor</p>
-    <button>Comprar</button>
-  </div>
-
-
-
 </div>
