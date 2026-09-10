@@ -13,12 +13,12 @@ import { produtosCadastrados } from './feats/posts/produtos-cadastrados/produtos
 export const routes: Routes = [
     {path:"telaAdmin", component:TelaAdmin},
 
-    {path:"produtos", component:PostProdutos},
+    {path:"CadastroProdutos", component:PostProdutos},
 
     {path:"favoritos", component:Favoritos},
 
     {path:"deletar", component:Deletar},
-    {path:'ProdutosCadastrados', component:produtosCadastrados},
+    {path:'produtos', component:produtosCadastrados},
 
 
     {path: 'Home', component: Home },
