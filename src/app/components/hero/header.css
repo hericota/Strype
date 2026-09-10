@@ -1,0 +1,277 @@
+.header-container {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+    padding-bottom: 30px;
+    background-color: black;
+    box-sizing: border-box;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    min-height: 81px;
+    margin: 10px;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+}
+
+.logo-col {
+    padding-left: 10px;
+}
+
+.col-1 {
+    padding-left: 40px;
+    display: flex;
+    align-items: center;
+    gap: 65px;
+}
+
+.col-2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: auto;
+    gap: 10px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid white;
+    padding-bottom: 7px;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+#strype-logo {
+    max-width: 109px;
+    min-height: 70px;
+}
+
+#search-icon {
+    margin-right: 5px;
+    width: 24px;
+    height: 24px;
+}
+
+#cart-icon {
+    width: 28px;
+    height: 28px;
+}
+
+#user-icon {
+    width: 24px;
+    height: 24px;
+}
+
+input {
+    width: 235px;
+    height: 35px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+}
+
+input::placeholder {
+    color: #aaa;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+/* botão sanduíche escondido no desktop */
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    border-radius: 10px;
+}
+
+
+/* TABLET */
+
+@media (max-width: 1024px) {
+
+    .col-1 {
+        gap: 30px;
+    }
+
+    input {
+        width: 180px;
+    }
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    .header-container {
+        padding: 10px 15px 15px;
+    }
+
+    .header-content {
+        flex-direction: column;
+        margin: 0;
+        gap: 15px;
+    }
+
+    .navigation {
+        width: 100%;
+        justify-content: space-between;
+        position: relative;
+    }
+
+    .logo-col {
+        padding-left: 0;
+    }
+
+    #strype-logo {
+        width: 85px;
+        min-height: auto;
+    }
+
+
+    /* MOSTRA MENU SANDUÍCHE */
+
+    .menu-toggle {
+        display: block;
+        z-index: 20;
+    }
+
+
+    /* ESCONDE LINKS */
+
+    .col-1 {
+        display: none;
+
+        position: absolute;
+
+        top: 70px;
+        left: 0;
+
+        width: 100%;
+
+        padding: 20px;
+
+        background-color: black;
+
+        flex-direction: column;
+        align-items: center;
+
+        gap: 20px;
+
+        box-sizing: border-box;
+
+        z-index: 10;
+    }
+
+
+    /* QUANDO CLICAR NO MENU */
+
+    .col-1.menu-open {
+        display: flex;
+    }
+
+    .col-1 a {
+        width: 100%;
+        text-align: center;
+
+        padding: 10px;
+
+        font-size: 16px;
+
+        border-bottom: 1px solid #333;
+
+        box-sizing: border-box;
+    }
+
+
+    /* PESQUISA + ÍCONES */
+
+    .col-2 {
+        width: 100%;
+        margin-left: 0;
+
+        justify-content: space-between;
+
+        gap: 15px;
+    }
+
+    .search-bar {
+        flex: 1;
+    }
+
+    .search-bar input {
+        width: 100%;
+    }
+
+    .icons {
+        flex-shrink: 0;
+    }
+}
+
+
+/* CELULAR PEQUENO */
+
+@media (max-width: 480px) {
+
+    .header-container {
+        padding: 10px;
+    }
+
+    #strype-logo {
+        width: 75px;
+    }
+
+    .menu-toggle span {
+        width: 25px;
+    }
+
+    .col-1 {
+        top: 65px;
+    }
+
+    .col-1 a {
+        font-size: 14px;
+    }
+
+    #search-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    #cart-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    #user-icon {
+        width: 21px;
+        height: 21px;
+    }
+}
