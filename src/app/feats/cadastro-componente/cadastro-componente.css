@@ -4,6 +4,7 @@
   height: 100vh;
   background-color: var(--bg-color);
   overflow: hidden;
+
 }
 
 .container-form {
@@ -20,6 +21,7 @@
   padding: 2rem;
   border-radius: 14px;
   margin-bottom: 80px;
+ 
 }
 .criarConta {
   font-size: 12px;
@@ -29,12 +31,12 @@
   color: var(--primary-color);
 }
 /*cria um sublinhado em baixo do criar sua conta**/
-.criarConta a[routerLink="/cadastro"]{
+.criarConta a[routerLink="/login"]{
   position: relative;
   text-decoration: none;
  
 }
-.criarConta a[routerLink="/cadastro"]::after{
+.criarConta a[routerLink="/login"]::after{
   content: "";
   position: absolute;
   width: 0%;
@@ -45,7 +47,7 @@
   background-color: var(--primary-color);
   transition: width 0.4s ease-in-out;
 }
-.criarConta a[routerLink="/cadastro"]:hover::after {
+.criarConta a[routerLink="/login"]:hover::after {
   width: 100%;
 }
 .container-img {

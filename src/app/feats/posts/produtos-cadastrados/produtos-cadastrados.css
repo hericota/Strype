@@ -1,0 +1,16 @@
+.card{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 10%;
+}
+
+.name{
+    color: var(--text-color);
+}
+
+.text{
+    color: #b7b5b5;
+
+}
