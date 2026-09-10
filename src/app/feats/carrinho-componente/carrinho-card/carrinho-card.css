@@ -36,3 +36,34 @@ flex-direction: column;
 justify-content: space-between;
 align-items: flex-end;
 }
+ .excluir{
+    background-color: var(--primary-color);
+    width: 34px;
+    height: 34px;
+    color: var(--bg-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.aumentar , .diminuir{
+    width: 34px;
+    height: 34px;
+    border: 1px solid;
+    border-color: var(--primary-color);
+    border-radius: 50%;
+    
+}
+.aumentar, .diminuir{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+ .diminuir{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+}
