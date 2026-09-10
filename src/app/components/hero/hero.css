@@ -1,11 +1,45 @@
-.header-container {
-    display: flex;
-    width: 100%;
-    margin: 0 auto;
-    padding: 10px;
-    padding-bottom: 30px;
-    background-color: black;
+*, *::before, *::after {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important; 
+}
+
+.header-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 2;
 }
 
 .header-content {
@@ -14,12 +48,17 @@
     align-items: center;
     width: 100%;
     min-height: 81px;
-    margin: 10px;
+    padding: 10px 20px;
+    position: relative;
+    z-index: 3;
+    box-sizing: border-box;
+    
 }
 
 .navigation {
     display: flex;
     align-items: center;
+    flex: 1;
 }
 
 .logo-col {
@@ -27,10 +66,11 @@
 }
 
 .col-1 {
-    padding-left: 40px;
+    padding-left: 20px;
     display: flex;
     align-items: center;
-    gap: 65px;
+    gap: 2vw;
+    flex-wrap: wrap;
 }
 
 .col-2 {
@@ -131,13 +171,14 @@ a {
 @media (max-width: 768px) {
 
     .header-container {
-        padding: 10px 15px 15px;
+        padding: 10px 0;
     }
 
     .header-content {
         flex-direction: column;
         margin: 0;
         gap: 15px;
+        padding: 0 15px;
     }
 
     .navigation {
@@ -155,18 +196,18 @@ a {
         min-height: auto;
     }
 
-
-    /* MOSTRA MENU SANDUÍCHE */
-
-    .menu-toggle {
-        display: block;
-        z-index: 20;
-    }
-
-
-    /* ESCONDE LINKS */
-
     .col-1 {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 20px;
+        background-color: black;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        z-index: 10;
         display: none;
 
         position: absolute;
@@ -188,13 +229,6 @@ a {
         box-sizing: border-box;
 
         z-index: 10;
-    }
-
-
-    /* QUANDO CLICAR NO MENU */
-
-    .col-1.menu-open {
-        display: flex;
     }
 
     .col-1 a {
