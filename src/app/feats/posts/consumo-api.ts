@@ -12,6 +12,9 @@ export class ConsumoApi {
     cadastrarPostService(postCadastrado:Produto){
         return this.httpClient.post<Produto>(this.urlApi , postCadastrado)
     }
+    atualizarService(atualizar:Produto){
+        return this.httpClient.put<Produto>(this.urlApi , atualizar)
+    }
 
     readonly produtoCadastrado = httpResource<Produto[]>(
         () => this.urlApi,
