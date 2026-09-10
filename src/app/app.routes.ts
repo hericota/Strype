@@ -8,6 +8,7 @@ import { Favoritos } from './favoritos/favoritos';
 import { DetalheProduto } from './feats/detalhe-produto/detalhe-produto';
 import { Deletar } from './feats/deletar/deletar';
 import { CarrinhoComponente } from './feats/carrinho-componente/carrinho-componente';
+import { produtosCadastrados } from './feats/posts/produtos-cadastrados/produtos-cadastrados';
 
 export const routes: Routes = [
     {path:"telaAdmin", component:TelaAdmin},
@@ -17,6 +18,7 @@ export const routes: Routes = [
     {path:"favoritos", component:Favoritos},
 
     {path:"deletar", component:Deletar},
+    {path:'ProdutosCadastrados', component:produtosCadastrados},
 
 
     {path: 'Home', component: Home },

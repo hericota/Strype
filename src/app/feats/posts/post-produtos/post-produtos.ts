@@ -34,7 +34,7 @@ export class PostProdutos {
 
     this.cadastroPost.cadastrarPostService(produto).subscribe({
       next: (response)=>{
-        alert("Nome:" + response.nome)
+        console.log("Nome:" + response.nome)
 
         this.cadastroModel.set({
           nome: '',
@@ -48,7 +48,7 @@ export class PostProdutos {
       error:(error)=>{
         console.error('ERRO AO CADASTRAR:', error);
 
-        alert("Algo deu errado")
+        
       }
     })
 
