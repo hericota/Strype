@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './login-form.html',
 })
 export class LoginForm {
+
   constructor(private router: Router) {}
   desabilitado = signal(false);
 
@@ -30,7 +31,7 @@ export class LoginForm {
   entrarUsuario(event: SubmitEvent) {
     event.preventDefault();
     if (this.usuarioForm().invalid()) return;
-    console.log('login sucedido!');
+    console.log('login bem-sucedido!');
     // this.router.navigate(['/']); /*deve direcionar para a pagina de comprar*/
     this.usuarioModel.set({ email: '', password: '', checkbox: false })
     this.usuarioForm().reset();

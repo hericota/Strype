@@ -1,8 +1,22 @@
-<div id="area">
-    <h1>ADMINISTRADOR</h1>
-    <div id="caixa">
-        <div id="cadastrar">Cadastrar</div>
-        <div id="atualizar">Atualizar</div>
-        <div id="deletar">Deletar</div>
-    </div>
-</div>
+<main id="area">
+    <section id="caixa">
+        <h1>ADMINISTRADOR</h1>
+
+        <div class="acoes">
+            <button id="cadastrar" class="botao" type="button">
+                <span>Cadastrar produtos</span>
+                <i class="bi bi-plus-lg"></i>
+            </button>
+
+            <button id="atualizar" class="botao" type="button">
+                <span>Editar produto</span>
+                <i class="bi bi-pencil-square"></i>
+            </button>
+
+            <button routerLink="/deletar" id="deletar" class="botao" type="button">
+                <span>Deletar produto</span>
+                <i class="bi bi-trash3"></i>
+            </button>
+        </div>
+    </section>
+</main>
