@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 50px ;
+    
+}
+.card-itens {
+    background-color: #f5f5f5;
+    width: 50%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+img {
+    width: 200px;
+    object-fit: contain;
+}
+.descricao {
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+.descricao h1 {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+.descricao p {
+    font-size: 0.9rem;
+    font-weight: normal;
+}
+.card-preco{
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: flex-end;
+}
