@@ -8,9 +8,4 @@ import { RouterLink } from "@angular/router";
   templateUrl: './header.html',
 })
 export class Header {
-  menuAberto = false;
-
-toggleMenu() {
-    this.menuAberto = !this.menuAberto;
-}
 }

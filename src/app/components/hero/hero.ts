@@ -7,3 +7,4 @@ import { Component } from '@angular/core';
     templateUrl: './hero.html',
 })
 export class Hero {}
+
