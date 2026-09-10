@@ -41,8 +41,11 @@ export class DetalheProduto {
   }
  
   incrementar(){
-    this.contador.update(valor => valor + 1) 
+    this.contador.update(valor => valor + 1);
   }
 
+  decrementar(){
+    this.contador.update(valor => valor - 1);
+  }
 
 }
