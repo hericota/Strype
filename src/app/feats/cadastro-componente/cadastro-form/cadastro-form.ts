@@ -35,6 +35,7 @@ export class CadastroForm {
     required(schemaPath.sobreNome, { message: '*obrigatório' });
     required(schemaPath.telefone, { message: '*obrigatório' });
      required(schemaPath.Cpf, { message: '*Insira seu Cpf!' });
+    
   })
 
   cadastrarUser(event: SubmitEvent) {
