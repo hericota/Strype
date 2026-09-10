@@ -27,7 +27,7 @@
 
     width: 100%;
     max-width: 540px;
-    height: 700px;
+    height: 500px;
 
     padding: 43px 60px;
 
@@ -47,8 +47,9 @@
     font-weight: 700;
     text-align: center;
 }
-h3{
+#caixa h3{
     text-align: center;
+    margin-top: 20px;
 }
 
 .acoes {
@@ -72,7 +73,7 @@ h3{
 
     color: #ffffff;
     font-family: 'Rubik', sans-serif;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 500;
     text-align: center;
 
@@ -84,14 +85,6 @@ h3{
         transform 0.25s ease,
         filter 0.25s ease,
         box-shadow 0.25s ease;
-}
-
-#cadastrar {
-    background-color: #42b768;
-}
-
-#atualizar {
-    background-color: #f2b41f;
 }
 
 #deletar {
@@ -129,9 +122,12 @@ h3{
 #input_admin{
     margin-top: 30px;
     width: 100%;
-    margin-bottom: 70px;
+    margin-bottom: 40px;
     font-size: x-large;
     text-align: center;
+    border-radius: 10px;
+    border: 1px solid;
+    padding: 5px;
 }
 
 @media (max-width: 500px) {

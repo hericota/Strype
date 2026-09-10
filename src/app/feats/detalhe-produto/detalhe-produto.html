@@ -1,1 +1,55 @@
-<h1>Id do produto: {{id}}</h1>
+<div class="produto">
+  <div>
+    <img [src]="detalheProduto.value()!.urlImagem" />
+  </div>
+
+  <div class="info">
+    <h1>{{ detalheProduto.value()!.nome }}</h1>
+    <p>Casual</p>
+
+    <div class="avaliacao">
+      @for (estrela of [1, 2, 3, 4, 5]; track estrela) {
+        <span>★</span>
+      }
+
+      <strong>{{ avaliacao }}</strong>
+
+      <span>(127 avaliações)</span>
+    </div>
+
+    <div class="box-price">
+      <hr />
+
+      <p class="price">Preço: R$ {{ detalheProduto.value()!.preco }}</p>
+
+      <hr />
+    </div>
+
+    <div class="tamanhos">
+      <p>Tamanho:</p>
+
+      <div class="opcoes-tamanho">
+        @for (tamanho of [38, 39, 40, 41, 42, 43, 44]; track tamanho) {
+          <button
+            type="button"
+            [class.selecionado]="tamanhoSelecionado === tamanho"
+            (click)="selecionarTamanho(tamanho)"
+          >
+            {{ tamanho }}
+          </button>
+        }
+        
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <form>
+      <input type="number" inputmode="numeric" [formField]="contadorForm">
+      <button type="button" (click)="incrementar()">+</button>
+    </form>
+  </div>
+
+</div>
+
+<p>{{ detalheProduto.value()!.descricao }}</p>

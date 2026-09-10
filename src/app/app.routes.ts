@@ -19,11 +19,11 @@ export const routes: Routes = [
     {path:"deletar", component:Deletar},
 
 
-    {path: '', redirectTo: 'Home', pathMatch: 'full'},
     {path: 'Home', component: Home },
-    { path: '**', redirectTo: 'home' },
     {path: 'cadastro', component: CadastroComponente},
     {path: 'login', component: LoginComponente},
     {path:'produto/:id', component: DetalheProduto},
     {path: 'carrinho', component: CarrinhoComponente},
+    {path: '', redirectTo: 'Home', pathMatch: 'full'},
+    { path: '**', redirectTo: 'home' }
 ];
