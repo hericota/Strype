@@ -1,3 +1,4 @@
+/* Sessão de promoções */
 .promotions {
     display: flex;
     width: 100%;
@@ -9,15 +10,15 @@
 }
 
 .promo-banner {
-display: flex;
-width: 100%;
-align-items: center;
-flex-direction: column;
-color: white;
-background-color: #090B0A;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    background-color: #090B0A;
 }
 
-.promo-subtitle  {
+.promo-subtitle {
     font-size: 1.6rem;
 }
 
@@ -50,18 +51,61 @@ background-color: #090B0A;
 }
 
 .promo-btn {
-background-color: white;
-width: 154px;
-height: 40px;
-border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 10px 35px;
+    border-radius: 14px;
 }
 
-.promo-btn a {
+.promo-btn span {
     color: black;
     font-weight: 500;
     transition: 0.3s ease;
 }
 
-.promo-btn a:hover {
+.promo-btn span:hover {
+    color: var(--primary-color);
+}
+
+/* Sessão Nike */
+
+.nike-section {
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+}
+
+.sneakers-cards {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    padding-top: 20px;
+    border: 1px solid black;
+    gap: 16px;
+    padding: 26px;
+}
+
+.sneaker-img {
+    width: 300px;
+    height: 400px;
+    border-radius: 4px;
+}
+
+.sneaker-tagline {
+    font-size: 1.7rem;
+    font-weight: 500;
+
+}
+
+.sneaker-link {
+    color: black;
+    transition: 0.2s ease;
+}
+
+.sneaker-link:hover {
 color: var(--primary-color);
 }
