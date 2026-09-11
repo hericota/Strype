@@ -1,7 +1,8 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { ItensInterface } from './itens-interface';
+import { CarrinhoService } from './carrinhoService/carrinho-service';
 
 @Component({
     imports: [RouterLink],
@@ -10,38 +11,9 @@ import { ItensInterface } from './itens-interface';
     templateUrl: './carrinho-card.html',
 })
 export class CarrinhoCard {
-    carrinho = signal<ItensInterface[]>([
-        {
-            produto: {
-                id: 1,
-                nome: 'Camiseta Angular',
-                descricao: 'Camiseta confortável para programar',
-                preco: 59.9,
-                urlImagem: 'https://imgnike-a.akamaihd.net/360x360/058889IEA2.jpg',
-            },
-            quantidade: 1,
-        },
-        {
-            produto: {
-                id: 2,
-                nome: 'Caneca TypeScript',
-                descricao: 'Caneca de cerâmica 350ml',
-                preco: 35.0,
-                urlImagem: 'https://imgnike-a.akamaihd.net/360x360/058889IEA2.jpg',
-            },
-            quantidade: 1,
-        },
-        {
-            produto: {
-                id: 3,
-                nome: 'Moletom Developer',
-                descricao: 'Moletom quentinho para dias frios',
-                preco: 120.0,
-                urlImagem: 'https://imgnike-a.akamaihd.net/360x360/058889IEA2.jpg',
-            },
-            quantidade: 1,
-        },
-    ]); //cria uma array de teste e pega a interface dos produtos
+    protected carrinhoService =  inject(CarrinhoService);
+
+    carrinho = this.carrinhoService.carrinhoModel;
 
     aumentar(produtoId: number) {
         //produtoId é uma variavel que recebe o valor
@@ -52,7 +24,7 @@ export class CarrinhoCard {
                 (item) =>
                     //o map cria um novo array a partir da array antiga
                     item.produto.id === produtoId
-                        ? { ...item, quantidade: item.quantidade + 1 } //Se for igual, cria um objeto novo copiando tudo o que ele já tinha (...item), mas soma +1 na quantidade
+                        ? { ...item, quantidade: item.quantidade!+ 1 } //Se for igual, cria um objeto novo copiando tudo o que ele já tinha (...item), mas soma +1 na quantidade
                         : item, //Se não for igual (é outro produto do carrinho), deixa o item exatamente como está, sem mexer em nada
             ),
         );
