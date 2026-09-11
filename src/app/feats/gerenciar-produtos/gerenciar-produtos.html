@@ -1,1 +1,59 @@
-<p>gerenciar-produtos works!</p>
+<main class="pagina-produtos">
+  <section class="painel-produtos">
+
+    <header class="cabecalho">
+      <h1>GERENCIAR PRODUTOS</h1>
+      <p>Visualize e escolha um produto para editar.</p>
+    </header>
+
+    <div class="campo-pesquisa">
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <circle cx="11" cy="11" r="7"></circle>
+        <path d="M20 20L16.65 16.65"></path>
+      </svg>
+
+      <input
+        type="search"
+        placeholder="Pesquisar por nome ou ID"
+        aria-label="Pesquisar produto"
+      >
+    </div>
+
+    <div class="tabela-produtos">
+
+      <div class="cabecalho-tabela">
+        <span>PRODUTO</span>
+        <span>CATEGORIA</span>
+        <span>PREÇO</span>
+        <span>AÇÃO</span>
+      </div>
+      <article class="produto">
+        <div class="informacoes-produto">
+          <div class="numero bege">01</div>
+
+          <div class="nome-produto">
+            <strong>Nike Air Force 1 '07</strong>
+            <small>ID 01</small>
+          </div>
+        </div>
+
+        <span class="categoria">Calçados</span>
+        <strong class="preco">R$ 759,99</strong>
+
+        <button
+          class="botao-editar"
+          type="button"
+          aria-label="Editar Nike Air Force 1"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 20H5a1 1 0 0 1-1-1v-7"></path>
+            <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L11 15l-4 1 1-4Z"></path>
+          </svg>
+        </button>
+      </article>
+    </div>
+  </section>
+</main>
