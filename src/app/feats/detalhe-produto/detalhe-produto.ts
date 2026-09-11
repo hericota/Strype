@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ConsumoApi } from '../posts/consumo-api';
 import { Produto } from '../posts/produto';
 import { httpResource } from '@angular/common/http';
@@ -7,7 +7,7 @@ import { form, FormField } from '@angular/forms/signals';
 import { CarrinhoService } from '../carrinho-componente/carrinho-card/carrinhoService/carrinho-service';
 
 @Component({
-  imports: [FormField],
+  imports: [FormField, RouterLink],
   selector: 'app-detalhe-produto',
   styleUrl: './detalhe-produto.css',
   templateUrl: './detalhe-produto.html',
@@ -56,6 +56,7 @@ export class DetalheProduto {
     const produto = this.detalheProduto.value();
 
     if(produto){
+      console.log("nnkknk")
       this.carrinhoService.carrinhoModel.update(itens => [... itens , {
         produto:produto,
         quantidade: this.contador()

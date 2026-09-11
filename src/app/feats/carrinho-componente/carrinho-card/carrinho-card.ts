@@ -40,7 +40,7 @@ export class CarrinhoCard {
     diminuir(produtoId: number) {
         this.carrinho.update((itens) =>
             itens.map((item) =>
-                item.produto.id === produtoId ? { ...item, quantidade: item.quantidade - 1 } : item,
+                item.produto.id === produtoId ? { ...item, quantidade: item.quantidade! - 1 } : item,
     ))}
             
     
