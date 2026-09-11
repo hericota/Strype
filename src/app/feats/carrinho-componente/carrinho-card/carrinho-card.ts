@@ -69,7 +69,7 @@ export class CarrinhoCard {
         this.carrinho.update((itens) =>
             itens.map((item) =>
                 item.produto.id === produtoId ? { ...item, quantidade: item.quantidade - 1 } : item,
-      ).filter((item) => item.quantidade >0))//se o item for 0, exclui o item do carrinho
+    ))}
             
-    }
+    
 }
