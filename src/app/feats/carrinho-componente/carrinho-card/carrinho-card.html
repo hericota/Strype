@@ -7,10 +7,8 @@
         <div class="card-itens">
             <img [src]="item.produto.urlImagem" alt="produto" />
             <div class="descricao">
-                <h1>produto</h1>
-                <p>tamanho</p>
-                <p>cor</p>
-                <p>descricao</p>
+                <h1>{{item.produto.nome}}</h1>
+                <p>{{item.produto.descricao}}</p>
             </div>
 
             <div class="card-preco">
@@ -20,7 +18,7 @@
                     </button>
 
 
-                    @if (item.quantidade > 1) { 
+                    @if (item.quantidade! > 1) { 
                         <!--se o item for maior q 1, esse botão aparece para que o usuario possa diminuir a quantidade-->
 
                     <button (click)="diminuir(item.produto.id!)" class="diminuir">
@@ -36,7 +34,9 @@
                     </button>
                 </div>
                 <div>
-                    <h2 class="valor">Preço</h2>
+                    <h2 class="valor">
+                        R$ {{ item.produto.preco }}
+                    </h2>
                 </div>
             </div>
         </div>
