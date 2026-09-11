@@ -133,14 +133,6 @@ a {
     text-decoration: none;
 }
 
-/* botão sanduíche escondido no desktop */
-.menu-toggle {
-    display: none;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-}
 
 .menu-toggle span {
     display: block;
