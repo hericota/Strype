@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { ConsumoApi } from '../posts/consumo-api';
+import { RouterLink } from '@angular/router';
 
 @Component({
-    imports: [],
+    imports: [RouterLink],
     selector: 'app-gerenciar-produtos',
     styleUrl: './gerenciar-produtos.css',
     templateUrl: './gerenciar-produtos.html',

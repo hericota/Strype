@@ -45,6 +45,7 @@
             <strong class="preco">R$ {{produto.preco}}</strong>
 
             <button
+            [routerLink]="'/atualizar/' + produto.id"
             class="botao-editar"
             type="button"
             aria-label="Editar {{produto.nome}}"

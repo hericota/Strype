@@ -22,7 +22,7 @@ export const routes: Routes = [
     {path:"deletar", component:Deletar},
     {path:'produtos', component:produtosCadastrados},
 
-    {path:"atualizar", component:AtualizarProduto},
+    {path:"atualizar/:id", component:AtualizarProduto},
     {path:"gerenciar", component:GerenciarProdutos},
 
 
