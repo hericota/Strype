@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ConsumoApi } from '../posts/consumo-api';
 
 @Component({
     imports: [],
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
     styleUrl: './gerenciar-produtos.css',
     templateUrl: './gerenciar-produtos.html',
 })
-export class GerenciarProdutos {}
+export class GerenciarProdutos {
+    protected readonly consumoService = inject(ConsumoApi);
+}

@@ -7,13 +7,10 @@ export class ConsumoApi {
 
     private readonly httpClient = inject(HttpClient);
 
-    private readonly urlApi = 'https://ease-mas-paste-ranking.trycloudflare.com/produtos'
+    private readonly urlApi = 'http://localhost:8080/produtos'
 
     cadastrarPostService(postCadastrado:Produto){
         return this.httpClient.post<Produto>(this.urlApi , postCadastrado)
-    }
-    atualizarService(atualizar:Produto){
-        return this.httpClient.put<Produto>(this.urlApi , atualizar)
     }
 
     readonly produtoCadastrado = httpResource<Produto[]>(
