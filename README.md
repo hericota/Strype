@@ -16,7 +16,7 @@
 
 O **Strype** é um projeto acadêmico de loja virtual voltada a tênis, roupas, acessórios e equipamentos esportivos. A interface segue o planejamento criado no Figma, com identidade visual em preto, branco e laranja.
 
-O desenvolvimento atual envolve a construção das telas de acesso, a interação com favoritos, a adaptação do cabeçalho para celulares e a integração de produtos com uma API. A área administrativa também está sendo estruturada para cadastrar, editar e excluir produtos.
+O desenvolvimento atual reúne catálogo e detalhes de produtos, carrinho com estado compartilhado, favoritos baseados em IDs salvos no navegador e telas de acesso. Na administração, já existem uma listagem para escolher o produto pelo ícone de edição e uma tela de edição com prévia. O cabeçalho possui menu para celulares, e a home já inclui o rodapé.
 
 > **Em desenvolvimento:** este repositório contém o front-end. Algumas funcionalidades usam dados demonstrativos ou ainda precisam de integração. O protótipo no Figma representa o escopo planejado da plataforma.
 
@@ -24,18 +24,26 @@ O desenvolvimento atual envolve a construção das telas de acesso, a interaçã
 
 | Área | O que já existe no código | O que falta concluir |
 | --- | --- | --- |
-| Página inicial | Home com cabeçalho, marca, pesquisa e atalhos visuais | Banners, vitrines e conexão dos atalhos com as páginas |
-| Navegação mobile | Media queries e menu sanduíche com abertura e fechamento | Revisão da navegação e da responsividade nas demais telas |
-| Login | Formulário com validação de e-mail, campos obrigatórios e senha mínima de 8 caracteres | Autenticação pela API e gerenciamento de sessão |
-| Cadastro de usuário | Campos de nome, sobrenome, telefone, CPF, e-mail e senha, com validações de formulário | Persistência dos dados e integração com o back-end |
-| Favoritos | Dados demonstrativos, seleção individual ou de todos os itens, exclusão dos selecionados e total pelo preço Pix | Persistência, integração com produtos reais e fluxo de compra |
-| Cadastro de produtos | Formulário com Signal Forms e chamada HTTP de cadastro | Concluir a configuração da integração e validar o fluxo com a API |
-| Listagem de produtos | Consulta com `httpResource` e componente de cards com imagem, nome e preço | Integrar a listagem à navegação e concluir o catálogo |
-| Detalhes do produto | Consulta por ID e template com imagem, nome, descrição e preço | Ajustar a rota e tratar carregamento, erros e produto não encontrado |
-| Administração | Painel com ações de cadastro, edição e exclusão | Conectar todas as ações e implementar edição |
-| Exclusão de produtos | Tela com campo para ID e botão de exclusão | Implementar a chamada de exclusão à API |
+| Página inicial | Home com cabeçalho e rodapé | Banners e vitrines de produtos |
+| Cabeçalho | Menu sanduíche e atalhos para login e carrinho | Pesquisa e links de marcas e categorias |
+| Rodapé | Seções de redes sociais, sobre nós, entregas, ajuda e logos | Destinos reais para os links |
+| Login e cadastro | Formulários com validações locais e navegação após envio | Autenticação, criação de conta na API e sessão |
+| Catálogo | Rota própria, consulta à API e cards com imagem, nome, preço e link para detalhes | Filtros e tratamento de carregamento e erros |
+| Detalhes do produto | Consulta por ID, escolha visual de tamanho, controle de quantidade e adição ao carrinho | Validar quantidades, incluir tamanho no item e substituir avaliações demonstrativas |
+| Carrinho | Estado compartilhado em serviço, listagem, aumento e redução de quantidade, remoção e estado vazio | Persistência, cálculo de totais e descontos e finalização da compra |
+| Favoritos | Consulta à API, leitura dos IDs salvos no navegador, seleção, total e remoção persistida dos IDs | Ação de favoritar no catálogo e integração com carrinho e compra |
+| Cadastro de produtos | Formulário com Signal Forms e chamada POST | Validar o fluxo completo com a API e concluir a configuração HTTP |
+| Administração | Painel com ações de cadastro, edição e exclusão | Conectar os botões de cadastro e edição e proteger o acesso |
+| Gerenciamento | Listagem da API com ID, imagem, nome, preço e lápis que abre a edição | Implementar a pesquisa por nome ou ID |
+| Edição | Consulta por ID, campos com dados do produto e painel de prévia | Capturar e validar alterações e implementar o envio à API |
+| Exclusão | Tela por ID e método DELETE inicial no serviço | Corrigir a URL do método e conectar a tela ao serviço |
 
-Os formulários de login e cadastro de usuário validam os dados localmente, mas ainda não autenticam nem criam contas no servidor. Em favoritos, a ação de comprar apenas registra os itens selecionados no console.
+### Comportamento atual
+
+- **Acesso:** login e cadastro validam os campos localmente. O login navega para `/Home`, e o cadastro navega para `/login`; ainda não há autenticação no servidor. Os botões Google e Apple são visuais.
+- **Carrinho:** os itens ficam em memória no `CarrinhoService` e são perdidos ao recarregar a página. O resumo ainda exibe textos de exemplo no lugar de totais e descontos, e o botão de compra não finaliza pedidos.
+- **Favoritos:** a tela cruza os produtos da API com IDs da chave `strype-favoritos` no `localStorage`. A remoção atualiza esses IDs. O código ainda não oferece uma ação para adicionar novos favoritos; comprar apenas registra os selecionados no console.
+- **Edição:** o lápis de gerenciamento abre `/atualizar/:id`. A tela consulta o produto, mas o método `atualizar()` ainda está vazio. O campo de categoria atualmente reutiliza a descrição; a interface `Produto` ainda não possui uma categoria própria.
 
 ## Tecnologias utilizadas
 
@@ -43,7 +51,7 @@ Os formulários de login e cadastro de usuário validam os dados localmente, mas
 | --- | --- |
 | Angular 22.1 | Componentes standalone e estrutura da aplicação |
 | TypeScript 6.0 | Tipagem e lógica dos componentes |
-| Signals e `computed` | Estado reativo e cálculos dos favoritos |
+| Signals e `computed` | Estado reativo, carrinho e cálculos dos favoritos |
 | Signal Forms | Formulários e validações |
 | Angular Router | Definição de rotas e navegação |
 | HttpClient e `httpResource` | Código de comunicação com a API de produtos |
@@ -71,7 +79,7 @@ Para os recursos de produtos, também é necessário iniciar uma API compatível
 
 ### Integração com a API
 
-O endereço está definido diretamente em `src/app/feats/posts/consumo-api.ts` e `src/app/feats/detalhe-produto/detalhe-produto.ts`:
+A base da API está definida diretamente no serviço de produtos e nos componentes de detalhes, edição e favoritos:
 
 ```text
 http://localhost:8080/produtos
@@ -81,7 +89,9 @@ http://localhost:8080/produtos
 | --- | --- | --- |
 | `GET` | `/produtos` | Retornar um array de produtos |
 | `POST` | `/produtos` | Cadastrar um produto |
-| `GET` | `/produtos/:id` | Retornar um produto pelo ID |
+| `GET` | `/produtos/:id` | Consultar um produto para detalhes ou edição |
+
+O método DELETE está iniciado no serviço, mas ainda concatena o ID sem a barra separadora e não está ligado à tela de exclusão. O envio de atualização por PUT ou PATCH ainda não foi implementado.
 
 Exemplo de corpo para cadastro:
 
@@ -100,7 +110,7 @@ Para os links de detalhes, os produtos retornados na listagem devem incluir `id`
 
 - Registrar o provedor HTTP na configuração da aplicação; o `app.config.ts` atual ainda não inclui `provideHttpClient()`.
 - Permitir na API as requisições da origem do front-end, quando necessário.
-- Revisar a ordem das rotas conforme a observação abaixo.
+- Ajustar o destino da rota curinga conforme a observação abaixo.
 
 ## Rotas declaradas
 
@@ -109,14 +119,18 @@ Para os links de detalhes, os produtos retornados na listagem devem incluir `id`
 | `/` | Redirecionamento para `/Home` |
 | `/Home` | Página inicial |
 | `/telaAdmin` | Painel administrativo |
-| `/produtos` | Formulário de cadastro de produtos |
-| `/favoritos` | Lista demonstrativa de favoritos |
+| `/CadastroProdutos` | Formulário de cadastro de produtos |
+| `/produtos` | Catálogo de produtos |
+| `/gerenciar` | Listagem administrativa com acesso à edição |
+| `/atualizar/:id` | Tela de edição de um produto |
+| `/carrinho` | Carrinho de compras |
+| `/favoritos` | Produtos da API filtrados pelos IDs favoritos salvos |
 | `/deletar` | Interface de exclusão de produtos |
 | `/cadastro` | Cadastro de usuário |
 | `/login` | Login |
 | `/produto/:id` | Detalhes de um produto |
 
-> Em `app.routes.ts`, a rota curinga `**` está antes de `cadastro`, `login` e `produto/:id`, interceptando esses caminhos. Ela também redireciona para `home`, enquanto a rota declarada é `Home`. É necessário mover a curinga para o final e ajustar o destino para liberar essa navegação.
+> A rota curinga `**` já está no final de `app.routes.ts`. Ainda é necessário trocar seu destino de `home` para `Home`, respeitando a capitalização da rota declarada.
 
 ## Scripts disponíveis
 
@@ -132,15 +146,18 @@ Para os links de detalhes, os produtos retornados na listagem devem incluir `id`
 | Caminho | Responsabilidade |
 | --- | --- |
 | `public/assets/` | Logos, ícones e imagens |
-| `src/app/components/` | Cabeçalho e estrutura inicial do rodapé |
+| `src/app/components/` | Cabeçalho e rodapé |
 | `src/app/home/` | Página inicial |
-| `src/app/favoritos/` | Interface e estado local dos favoritos |
+| `src/app/favoritos/` | Consulta de produtos, IDs favoritos no navegador e seleção |
 | `src/app/feats/login-componente/` | Tela e formulário de login |
 | `src/app/feats/cadastro-componente/` | Tela e formulário de cadastro de usuário |
 | `src/app/feats/posts/` | Serviço, cadastro, listagem e interface de produtos |
 | `src/app/feats/detalhe-produto/` | Consulta e exibição de produto por ID |
 | `src/app/feats/tela-admin/` | Painel administrativo |
 | `src/app/feats/deletar/` | Interface de exclusão |
+| `src/app/feats/gerenciar-produtos/` | Listagem administrativa com acesso à edição |
+| `src/app/feats/atualizar-produto/` | Consulta e formulário de edição com prévia |
+| `src/app/feats/carrinho-componente/` | Página, cards e serviço de estado do carrinho |
 | `src/app/app.routes.ts` | Rotas da aplicação |
 | `src/app/app.config.ts` | Configuração e provedores |
 | `src/styles.css` | Estilos globais |
@@ -150,12 +167,13 @@ Para os links de detalhes, os produtos retornados na listagem devem incluir `id`
 - Concluir os ajustes de roteamento e integração HTTP.
 - Integrar o catálogo e os detalhes dos produtos ao fluxo da loja.
 - Conectar login e cadastro à API, com sessão e controle de acesso à administração.
-- Implementar edição e exclusão de produtos.
-- Persistir favoritos e desenvolver o carrinho com quantidades, descontos e total.
+- Concluir o envio das alterações de produto e conectar a exclusão à API.
+- Adicionar a ação de favoritar produtos e conectar favoritos ao carrinho.
+- Persistir o carrinho, validar quantidades e implementar totais, descontos e finalização da compra.
 - Conectar pesquisa, categorias e filtros.
 - Completar banners, vitrines e catálogos previstos no Figma, incluindo Air Force, Dunk, Air Jordan, Air Max e roupas.
 - Desenvolver as integrações de acesso com Google e Apple previstas no protótipo.
-- Completar rodapé, newsletter e informações de entrega e pagamento.
+- Conectar os links do rodapé e implementar newsletter e informações de entrega e pagamento.
 - Revisar responsividade, acessibilidade, estados de erro e testes dos fluxos principais.
 
 ## Autores
