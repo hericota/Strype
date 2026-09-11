@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Produto } from '../../posts/produto';
+
 import { ItensInterface } from './itens-interface';
 
 @Component({
