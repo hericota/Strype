@@ -1,0 +1,67 @@
+.promotions {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    color: white;
+    background-color: #090B0A;
+}
+
+.promo-banner {
+display: flex;
+width: 100%;
+align-items: center;
+flex-direction: column;
+color: white;
+background-color: #090B0A;
+}
+
+.promo-subtitle  {
+    font-size: 1.6rem;
+}
+
+.promo-title {
+    line-height: 0.9;
+    font-size: 5rem;
+}
+
+.promo-discount {
+    font-size: 2.2rem;
+    line-height: 1;
+    font-weight: bold;
+}
+
+.promo-tagline {
+    line-height: 2;
+    font-size: 2.2rem;
+    font-weight: 100;
+}
+
+.options {
+    display: flex;
+    padding: 35px;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    gap: 70px;
+    color: white;
+    background-color: #090B0A;
+}
+
+.promo-btn {
+background-color: white;
+width: 154px;
+height: 40px;
+border-radius: 14px;
+}
+
+.promo-btn a {
+    color: black;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+.promo-btn a:hover {
+color: var(--primary-color);
+}
