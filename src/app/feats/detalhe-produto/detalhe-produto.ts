@@ -54,7 +54,7 @@ export class DetalheProduto {
   
   adicionarCarrinho(){
     const produto = this.detalheProduto.value();
-
+    alert("clicado")
     if(produto){
       console.log("nnkknk")
       this.carrinhoService.carrinhoModel.update(itens => [... itens , {
