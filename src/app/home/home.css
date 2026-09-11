@@ -112,5 +112,23 @@
 }
 
 .sneaker-link:hover {
-color: var(--primary-color);
+    color: var(--primary-color);
 }
+
+/* Sessão Adidas */
+
+.adidas-section {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.adidas-video {}
