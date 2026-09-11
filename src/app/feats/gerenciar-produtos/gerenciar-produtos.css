@@ -1,0 +1,313 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap');
+
+:host {
+  display: block;
+  font-family: 'Rubik', sans-serif;
+  color: #191919;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.pagina-produtos {
+  min-height: 100vh;
+  padding: 14px;
+  background-color: #f5f5f5;
+}
+
+.painel-produtos {
+  width: 100%;
+  max-width: 920px;
+  min-height: 900px;
+  margin: 0 auto;
+  padding: 50px 58px;
+  background-color: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 17px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.13);
+}
+
+.cabecalho h1 {
+  margin: 0 0 6px;
+  font-size: 27px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.cabecalho p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.campo-pesquisa {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 475px;
+  height: 49px;
+  margin-top: 31px;
+  padding: 0 15px;
+  border: 1px solid #8c96a3;
+  border-radius: 9px;
+  background-color: #ffffff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.campo-pesquisa:focus-within {
+  border-color: #ff6500;
+  box-shadow: 0 0 0 3px rgba(255, 101, 0, 0.13);
+}
+
+.campo-pesquisa svg {
+  width: 18px;
+  height: 18px;
+  margin-right: 12px;
+  fill: none;
+  stroke: #687386;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+}
+
+.campo-pesquisa input {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #252525;
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.campo-pesquisa input::placeholder {
+  color: #737d8e;
+}
+
+.tabela-produtos {
+  margin-top: 34px;
+}
+
+.cabecalho-tabela,
+.produto {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr 0.85fr 52px;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.cabecalho-tabela {
+  min-height: 45px;
+  padding: 0 18px;
+  border-radius: 8px;
+  background-color: #151515;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.cabecalho-tabela span:last-child {
+  text-align: center;
+}
+
+.produto {
+  min-height: 76px;
+  margin-top: 15px;
+  padding: 10px 17px;
+  border: 1px solid #dfe2e6;
+  border-radius: 11px;
+  background-color: #fdfdfd;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.produto:hover {
+  transform: translateY(-2px);
+  border-color: #ffb27f;
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.08);
+}
+
+.informacoes-produto {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.numero {
+  display: flex;
+  flex: 0 0 52px;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-right: 18px;
+  border-radius: 7px;
+  color: #667181;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.numero.bege {
+  background-color: #f2e7dc;
+}
+
+.numero.cinza {
+  background-color: #e9edf3;
+}
+
+.nome-produto {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nome-produto strong {
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nome-produto small {
+  color: #7c8593;
+  font-size: 10px;
+}
+
+.categoria {
+  font-size: 11px;
+}
+
+.preco {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.botao-editar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 43px;
+  height: 43px;
+  padding: 0;
+  border: none;
+  border-radius: 11px;
+  background-color: #ff6500;
+  color: #ffffff;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.botao-editar:hover {
+  background-color: #db5700;
+  transform: scale(1.06);
+}
+
+.botao-editar:active {
+  transform: scale(0.96);
+}
+
+.botao-editar:focus-visible {
+  outline: 3px solid rgba(255, 101, 0, 0.3);
+  outline-offset: 3px;
+}
+
+.botao-editar svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Tablet */
+
+@media (max-width: 700px) {
+  .painel-produtos {
+    min-height: calc(100vh - 28px);
+    padding: 35px 25px;
+  }
+
+  .cabecalho-tabela,
+  .produto {
+    grid-template-columns: 2fr 1fr 48px;
+  }
+
+  .cabecalho-tabela span:nth-child(3),
+  .preco {
+    display: none;
+  }
+}
+
+/* Celular */
+
+@media (max-width: 500px) {
+  .pagina-produtos {
+    padding: 8px;
+  }
+
+  .painel-produtos {
+    min-height: calc(100vh - 16px);
+    padding: 28px 16px;
+    border-radius: 13px;
+  }
+
+  .cabecalho h1 {
+    font-size: 23px;
+  }
+
+  .cabecalho p {
+    font-size: 12px;
+  }
+
+  .campo-pesquisa {
+    max-width: none;
+    margin-top: 24px;
+  }
+
+  .tabela-produtos {
+    margin-top: 25px;
+  }
+
+  .cabecalho-tabela {
+    display: none;
+  }
+
+  .produto {
+    grid-template-columns: 1fr 42px;
+    gap: 10px;
+    min-height: 76px;
+    margin-top: 11px;
+    padding: 10px;
+  }
+
+  .categoria {
+    display: none;
+  }
+
+  .numero {
+    flex-basis: 48px;
+    width: 48px;
+    height: 48px;
+    margin-right: 12px;
+    font-size: 15px;
+  }
+
+  .nome-produto strong {
+    font-size: 12px;
+  }
+
+  .botao-editar {
+    width: 40px;
+    height: 40px;
+  }
+}

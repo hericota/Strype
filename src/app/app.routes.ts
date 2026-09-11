@@ -9,6 +9,8 @@ import { DetalheProduto } from './feats/detalhe-produto/detalhe-produto';
 import { Deletar } from './feats/deletar/deletar';
 import { CarrinhoComponente } from './feats/carrinho-componente/carrinho-componente';
 import { produtosCadastrados } from './feats/posts/produtos-cadastrados/produtos-cadastrados';
+import { AtualizarProduto } from './feats/atualizar-produto/atualizar-produto';
+import { GerenciarProdutos } from './feats/gerenciar-produtos/gerenciar-produtos';
 
 export const routes: Routes = [
     {path:"telaAdmin", component:TelaAdmin},
@@ -19,6 +21,9 @@ export const routes: Routes = [
 
     {path:"deletar", component:Deletar},
     {path:'produtos', component:produtosCadastrados},
+
+    {path:"atualizar", component:AtualizarProduto},
+    {path:"gerenciar", component:GerenciarProdutos},
 
 
     {path: 'Home', component: Home },
