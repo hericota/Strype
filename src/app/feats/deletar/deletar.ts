@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   styleUrl: './deletar.css',
   templateUrl: './deletar.html',
 })
-export class Deletar {}
+export class Deletar {
+  
+}
