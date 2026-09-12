@@ -1,15 +1,16 @@
-
 <div class="card">
-    @for (produto of consumoService.produtoCadastrado.value(); track $index) {
+    @for (produto of produtosFiltrados(); track $index) {
         <div>
             <a [routerLink]="'/produto/' + produto.id" class="produto">
                 <div>
-                    <img src={{produto.urlImagem}}>
+                    <img [src]="produto.urlImagem" [alt]="produto.nome">
                     <p class="name">{{produto.nome}}</p>
                     <p class="name text">Casual</p>
                     <p class="name">R$ {{produto.preco}}</p>
                 </div>
             </a>
         </div>
+    } @empty {
+        <p>Nenhum produto encontrado.</p>
     }
 </div>
