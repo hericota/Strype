@@ -13,7 +13,8 @@ import { ConsumoApi } from '../posts/consumo-api';
 export class Pesquisa {
   termo = '';
 
-  constructor(private consumoService: ConsumoApi) {}
+  
+  constructor(protected consumoService: ConsumoApi) {}
 
   get resultados() {
     const termo = this.termo.trim().toLowerCase();
@@ -23,10 +24,11 @@ export class Pesquisa {
       return [];
     }
 
+   
     return produtos.filter(
       (p) =>
-        p.nome.toLowerCase().includes(termo) ||
-        p.descricao.toLowerCase().includes(termo)
+        p.nome?.toLowerCase().includes(termo) ||
+        p.descricao?.toLowerCase().includes(termo)
     );
   }
 }
