@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { ConsumoApi } from '../posts/consumo-api';
 
 @Component({
-  imports: [RouterLink],
+  imports: [FormsModule, RouterLink],
   selector: 'app-pesquisa',
   standalone: true,
   styleUrl: './pesquisa.css',
@@ -12,19 +13,10 @@ import { ConsumoApi } from '../posts/consumo-api';
 export class Pesquisa {
   termo = '';
 
-  constructor(
-    private route: ActivatedRoute,
-    private consumoService: ConsumoApi
-  ) {}
-
-  ngOnInit() {
-    this.route.queryParamMap.subscribe((params) => {
-      this.termo = (params.get('q') ?? '').trim();
-    });
-  }
+  constructor(private consumoService: ConsumoApi) {}
 
   get resultados() {
-    const termo = this.termo.toLowerCase();
+    const termo = this.termo.trim().toLowerCase();
     const produtos = this.consumoService.produtoCadastrado.value();
 
     if (termo === '') {
