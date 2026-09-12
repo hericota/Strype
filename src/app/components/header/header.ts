@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   imports: [RouterLink],
@@ -9,8 +9,19 @@ import { RouterLink } from "@angular/router";
 })
 export class Header {
   menuAberto = false;
+  termoPesquisa = '';
 
-toggleMenu() {
+  constructor(private readonly router: Router) {}
+
+  toggleMenu() {
     this.menuAberto = !this.menuAberto;
-}
+  }
+
+  pesquisar() {
+    const termo = this.termoPesquisa.trim();
+
+    this.router.navigate(['/produtos'], {
+      queryParams: termo ? { q: termo } : {},
+    });
+  }
 }
