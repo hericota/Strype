@@ -34,7 +34,7 @@ export class Pesquisa {
     return produtos.filter(
       (p) =>
         p.nome.toLowerCase().includes(termo) ||
-        p.marca.toLowerCase().includes(termo)
+        p.descricao.toLowerCase().includes(termo)
     );
   }
 }
