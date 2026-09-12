@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ConsumoApi } from '../consumo-api';
-import { RouterLink } from "@angular/router";
 
 @Component({
   imports: [RouterLink],
@@ -10,8 +11,22 @@ import { RouterLink } from "@angular/router";
 })
 export class produtosCadastrados {
   protected readonly consumoService = inject(ConsumoApi);
+  private readonly route = inject(ActivatedRoute);
 
-  protected recarregarPosts(){
+  private readonly queryParams = toSignal(this.route.queryParamMap);
+
+  protected readonly produtosFiltrados = computed(() => {
+    const termo = (this.queryParams()?.get('q') ?? '').trim().toLowerCase();
+    const produtos = this.consumoService.produtoCadastrado.value();
+
+    if (!termo) {
+      return produtos;
+    }
+
+    return produtos.filter((p) => p.nome?.toLowerCase().includes(termo));
+  });
+
+  protected recarregarPosts() {
     this.consumoService.produtoCadastrado.reload();
   }
 }
