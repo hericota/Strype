@@ -13,17 +13,23 @@ export class produtosCadastrados {
   protected readonly consumoService = inject(ConsumoApi);
   private readonly route = inject(ActivatedRoute);
 
-  private readonly queryParams = toSignal(this.route.queryParamMap);
+  protected readonly termoPesquisa = toSignal(this.route.queryParamMap, {
+    initialValue: this.route.snapshot.queryParamMap,
+  });
 
   protected readonly produtosFiltrados = computed(() => {
-    const termo = (this.queryParams()?.get('q') ?? '').trim().toLowerCase();
     const produtos = this.consumoService.produtoCadastrado.value();
+
+    const termo =
+      this.termoPesquisa().get('busca')?.trim().toLowerCase() ?? '';
 
     if (!termo) {
       return produtos;
     }
 
-    return produtos.filter((p) => p.nome?.toLowerCase().includes(termo));
+    return produtos.filter((produto) =>
+      produto.nome.toLowerCase().includes(termo)
+    );
   });
 
   protected recarregarPosts() {

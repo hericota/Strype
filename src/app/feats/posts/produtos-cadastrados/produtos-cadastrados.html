@@ -3,14 +3,16 @@
         <div>
             <a [routerLink]="'/produto/' + produto.id" class="produto">
                 <div>
-                    <img [src]="produto.urlImagem" [alt]="produto.nome">
+                    <img src={{produto.urlImagem}}>
                     <p class="name">{{produto.nome}}</p>
                     <p class="name text">Casual</p>
                     <p class="name">R$ {{produto.preco}}</p>
                 </div>
             </a>
         </div>
-    } @empty {
+    }
+
+    @if (produtosFiltrados().length === 0) {
         <p>Nenhum produto encontrado.</p>
     }
 </div>
