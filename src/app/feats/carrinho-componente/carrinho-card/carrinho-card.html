@@ -1,6 +1,6 @@
 <div class="container">
 
-<!--se a quantidade no carrinho for maior q o aparece o card dos itens-->
+    <!--se a quantidade no carrinho for maior q o aparece o card dos itens-->
     @if (carrinho().length > 0) {
     <div class="lista-itens">
         @for (item of carrinho(); track $index) {
@@ -18,8 +18,8 @@
                     </button>
 
 
-                    @if (item.quantidade! > 1) { 
-                        <!--se o item for maior q 1, esse botão aparece para que o usuario possa diminuir a quantidade-->
+                    @if (item.quantidade! > 1) {
+                    <!--se o item for maior q 1, esse botão aparece para que o usuario possa diminuir a quantidade-->
 
                     <button (click)="diminuir(item.produto.id!)" class="diminuir">
                         <svg xmlns="http://www.w3.org/2000/svg" height="34px" viewBox="0 -960 960 960" width="34px" fill="#FF8D28">
@@ -49,34 +49,37 @@
     <div class="card-detalhes">
         <div class="detalhes">
             <p>Produtos</p>
-            <p>valor</p>
+            <p>{{carrinhoService.precoProduto() | number:'1.2-2'}}</p>
         </div>
         <hr />
 
         <div class="detalhes">
             <p>Desconto no pix</p>
-            <p>valor</p>
+            <p style="color: #34C759;">{{carrinhoService.descontoPix() | number:'1.2-2'}}</p>
         </div>
         <hr />
 
         <div class="detalhes">
-            <p>Desconto total</p>
-            <p>valor</p>
+            <p>Cupom</p>
+            @if (carrinhoService.desconto()) {
+            <p style="color: #34C759;">{{carrinhoService.desconto() | number:'1.2-2'}}</p>
+        }@else {<p style="color: red;">{{carrinhoService.desconto() | number:'1.2-2'}}</p>}
+
         </div>
         <hr />
 
         <div class="detalhes">
             <p class="valor">Total</p>
-            <p class="valor">valor</p>
+            <p class="valor">{{carrinhoService.precoFinal() | number:'1.2-2'}} <span style="color: #34C759; font-size: 14px; text-decoration: underline">no pix</span></p>
         </div>
 
-        <button class="comprar">Comprar</button>
+        <button (click)="comprar()" class="comprar">Comprar</button>
     </div>
 
     } @else {<!-- Se o carrinho estiver vazio aparece esse aviso-->
     <div class="carrinho-vazio">
         <span class="material-symbols-outlined" style="font-size: 64px; color: #ccc;">production_quantity_limits</span>
         <h1>Sem Produtos no carrinho</h1>
-        <a routerLink="/" class="comprar">Ver Produtos</a> <!--essa rota irá jogar para a pagina de produtos-->
+        <a routerLink="/produtos" class="comprar">Ver Produtos</a> <!--essa rota irá jogar para a pagina de produtos-->
     </div>}
 </div>

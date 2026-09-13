@@ -14,8 +14,19 @@
     padding-bottom: 10px;
 }
 
+a[routerLink='/carrinho'] {
+    fill: var(--primary-color);
+    border-bottom: 2px solid;
+    border-color: var(--primary-hover);
+    transition: 0.8ms;
+}
+a[routerLink='/carrinho']:hover {
+    fill: var(--primary-hover);
+    transform: scale(1.05);
+   
+}
 /*cria um efeito laranja ao passar o mouse nos icones*/
-.navegacao a[routerLink='/carrinho'],
+/* .navegacao a[routerLink='/carrinho'],
 a[routerLink='/favoritos'] {
     position: relative;
     text-decoration: none;
@@ -38,6 +49,6 @@ a[routerLink='/favoritos']:hover::after {
     width: 100%;
 }
 /*aplica hover nos icones de navegação*/
-.navegacao a:hover {
+/* .navegacao a:hover {
     fill: var(--primary-color);
-}
+} */
