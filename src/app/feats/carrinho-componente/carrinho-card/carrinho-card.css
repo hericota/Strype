@@ -125,3 +125,108 @@ hr {
     font-weight: 600;
     color: var(--text-muted);
 }
+
+.sucesso-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 50px auto;
+    max-width: 500px;
+}
+
+.icone-sucesso {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sucesso-animacao-container {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.spinner-circulo {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 6px solid #e0e0e0;
+    border-top: 6px solid var(--primary-color);
+    border-radius: 50%;
+    animation:
+        girar 0.8s linear infinite,
+        sumir 0.1s ease 0.75s forwards;
+}
+.icone-check {
+    font-size: 90px;
+    color: var(--primary-hover);
+    opacity: 0;
+    transform: scale(0);
+    animation: aparecerCheck 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.75s forwards;
+}
+@keyframes girar {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes sumir {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+@keyframes aparecerCheck {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.sucesso-card h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.sucesso-card p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.btn-voltar {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.btn-voltar:hover {
+    background-color: var(--primary-hover);
+}
