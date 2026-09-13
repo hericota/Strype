@@ -1,7 +1,18 @@
 <div class="container">
 
-    <!--se a quantidade no carrinho for maior q o aparece o card dos itens-->
-    @if (carrinho().length > 0) {
+    @if (compraFinalizada) { <!--se o usuario clicar em finalizar a compra-->
+      <div class="sucesso-card">
+    <div class="sucesso-animacao-container">
+        <div class="spinner-circulo"></div>
+        <span class="material-symbols-outlined icone-check">check</span>
+    </div>
+
+    <h1>Pedido Finalizado com Sucesso!</h1>
+    <p>Obrigado por comprar conosco. Seu pedido está sendo processado.</p>
+    <a routerLink="/produtos" class="btn-voltar">Voltar à Loja</a>
+</div>
+    }
+    @else if (carrinho().length > 0) {<!--se a quantidade no carrinho for maior q o aparece o card dos itens-->
     <div class="lista-itens">
         @for (item of carrinho(); track $index) {
         <div class="card-itens">
