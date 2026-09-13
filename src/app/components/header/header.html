@@ -25,10 +25,10 @@
 
         <div class="col-2">
             <div class="search-bar">
-                <img src="/assets/SEARCH-ICON.png" alt="" id="search-icon">
+                <img src="/assets/SEARCH-ICON.png" alt="Icone de pesquisa" id="search-icon" (click)="pesquisar()">
 
-                <input type="search" placeholder="Pesquisar" aria-label="Pesquisar produtos" [(ngModel)]="termoPesquisa"
-                    (keyup.enter)="pesquisar()">
+                <input #campoBusca type="search" placeholder="Pesquisar" [value]="termoPesquisa"
+                    (input)="termoPesquisa = campoBusca.value" (keyup.enter)="pesquisar()">
             </div>
 
             <div class="icons">

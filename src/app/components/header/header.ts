@@ -1,18 +1,17 @@
 import { Component, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
+  imports: [RouterLink],
   selector: 'app-header',
-  imports: [RouterLink, FormsModule],
-  templateUrl: './header.html',
   styleUrl: './header.css',
+  templateUrl: './header.html',
 })
 export class Header {
+  private readonly router = inject(Router);
+
   menuAberto = false;
   termoPesquisa = '';
-
-  private readonly router = inject(Router);
 
   toggleMenu() {
     this.menuAberto = !this.menuAberto;
@@ -22,7 +21,7 @@ export class Header {
     const termo = this.termoPesquisa.trim();
 
     this.router.navigate(['/produtos'], {
-      queryParams: termo ? { q: termo } : {},
+      queryParams: termo ? { busca: termo } : {},
     });
   }
 }
