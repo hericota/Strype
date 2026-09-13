@@ -1,130 +1,64 @@
 <main class="pagina-edicao">
   <section class="painel-edicao">
-
     <header class="cabecalho">
-      <a
-        class="botao-voltar"
-        routerLink="/gerenciar"
-        aria-label="Voltar para produtos"
-      >
-        ←
-      </a>
-
+      <a class="botao-voltar" routerLink="/gerenciar" aria-label="Voltar para produtos">←</a>
       <div>
         <h1>EDITAR PRODUTO</h1>
         <p>Atualize as informações do produto selecionado.</p>
       </div>
     </header>
 
-    <div class="conteudo">
+    @if (id() === undefined) {
+      <p class="mensagem-erro" role="alert">ID de produto inválido.</p>
+    } @else if (produtoEspecifico.isLoading()) {
+      <p role="status">Carregando produto...</p>
+    } @else if (produtoEspecifico.error()) {
+      <p class="mensagem-erro" role="alert">Não foi possível carregar o produto. Verifique se ele ainda existe.</p>
+      <button type="button" (click)="produtoEspecifico.reload()">Tentar novamente</button>
+    } @else if (produtoEspecifico.hasValue()) {
+      @if (erro()) { <p class="mensagem-erro" role="alert">{{ erro() }}</p> }
+      <div class="conteudo">
+        <form class="formulario" (submit)="atualizar($event)">
+          <fieldset [disabled]="salvando()">
+            <div class="campo">
+              <label for="nome">Nome do produto</label>
+              <input id="nome" type="text" [formField]="edicaoForm.nome" placeholder="Digite o nome do produto">
+            </div>
+            <div class="campo">
+              <label for="descricao">Descrição</label>
+              <textarea id="descricao" [formField]="edicaoForm.descricao" placeholder="Digite uma descrição"></textarea>
+            </div>
+            <div class="campo">
+              <label for="preco">Preço (R$)</label>
+              <input id="preco" type="number" step="0.01" [formField]="edicaoForm.preco" placeholder="0,00">
+            </div>
+            <div class="campo">
+              <label for="imagem">URL da imagem</label>
+              <input id="imagem" type="url" [formField]="edicaoForm.urlImagem" placeholder="https://exemplo.com/imagem.jpg">
+            </div>
+          </fieldset>
+          <div class="acoes">
+            <a class="botao cancelar" routerLink="/gerenciar">Cancelar</a>
+            <button class="botao salvar" type="submit" [disabled]="salvando()">
+              {{ salvando() ? 'Salvando...' : 'Salvar alterações' }}
+            </button>
+          </div>
+        </form>
 
-      <form class="formulario">
-
-        <div class="campo">
-          <label for="nome">Nome do produto</label>
-
-          <input
-            #nomeProduto
-            id="nome"
-            name="nome"
-            type="text"
-            value="{{produtoEspecifico.value()?.nome}}"
-            placeholder="Digite o nome do produto"
-          >
-        </div>
-
-        <div class="campo">
-          <label for="descricao">Descrição</label>
-
-          <textarea
-            id="descricao"
-            name="descricao"
-            placeholder="Digite uma descrição"
-            value={{produtoEspecifico.value()?.descricao}}
-          ></textarea>
-        </div>
-
-        <div class="campo">
-          <label for="preco">Preço</label>
-
-          <input
-            #precoProduto
-            id="preco"
-            name="preco"
-            type="text"
-            placeholder="R${{produtoEspecifico.value()?.preco}}"
-          >
-        </div>
-
-        <div class="campo">
-          <label for="imagem">Url imagem</label>
-
-          <input
-            #imagemProduto
-            id="imagem"
-            name="imagem"
-            type="url"
-            value= {{produtoEspecifico.value()?.urlImagem}}
-            placeholder="https://exemplo.com/imagem.jpg"
-          >
-        </div>
-
-        <div class="campo">
-          <label for="categoria">Categoria</label>
-
-          <input
-            #categoriaProduto
-            id="categoria"
-            name="categoria"
-            type="text"
-            value={{produtoEspecifico.value()?.descricao}}
-            placeholder="Digite a categoria"
-          >
-        </div>
-
-        <div class="acoes">
-          <a class="botao cancelar" href="/produtos">
-            Cancelar
-          </a>
-
-          <button class="botao salvar" type="submit" (submit)="atualizar()">
-            Salvar alterações
-          </button>
-        </div>
-
-      </form>
-
-      <aside class="previa">
-        <span class="titulo-previa">PRÉVIA</span>
-
-        <div class="imagem-produto">
-          @if (imagemProduto.value) {
-            <img
-              [src]="imagemProduto.value"
-              alt="Prévia do produto"
-            >
-          } @else {
-            <strong>AIR FORCE 1</strong>
-          }
-        </div>
-
-        <h2>
-          {{ nomeProduto.value || "Nome do produto" }}
-        </h2>
-
-        <p>
-          {{ categoriaProduto.value || "Categoria" }}
-        </p>
-
-        <div class="rodape-previa">
-          <strong>
-            {{ precoProduto.value || "R$ "+produtoEspecifico.value()?.preco }}
-          </strong>
-
-          <span class="status">Ativo</span>
-        </div>
-      </aside>
-
-    </div>
+        <aside class="previa">
+          <span class="titulo-previa">PRÉVIA</span>
+          <div class="imagem-produto">
+            @if (edicaoModel().urlImagem) {
+              <img [src]="edicaoModel().urlImagem" [alt]="edicaoModel().nome || 'Prévia do produto'">
+            } @else { <strong>SEM IMAGEM</strong> }
+          </div>
+          <h2>{{ edicaoModel().nome || 'Nome do produto' }}</h2>
+          <p>{{ edicaoModel().descricao || 'Descrição do produto' }}</p>
+          <div class="rodape-previa">
+            <strong>{{ (edicaoModel().preco ?? 0) | currency:'BRL' }}</strong>
+          </div>
+        </aside>
+      </div>
+    }
   </section>
 </main>
