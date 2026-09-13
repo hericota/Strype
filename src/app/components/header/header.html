@@ -8,7 +8,7 @@
                 </a>
             </div>
 
-            <button class="menu-toggle" (click)="toggleMenu()" aria-label="Abrir menu">
+            <button class="menu-toggle" type="button" (click)="toggleMenu()" aria-label="Abrir menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -25,21 +25,18 @@
 
         <div class="col-2">
             <div class="search-bar">
-                <img
-                    src="/assets/SEARCH-ICON.png"
-                    alt="Icone de pesquisa"
-                    id="search-icon"
-                >
+                <img src="/assets/SEARCH-ICON.png" alt="" id="search-icon">
 
-                <input type="text" placeholder="Pesquisar">
+                <input type="search" placeholder="Pesquisar" aria-label="Pesquisar produtos" [(ngModel)]="termoPesquisa"
+                    (keyup.enter)="pesquisar()">
             </div>
 
             <div class="icons">
-                <a routerLink="/carrinho"> 
+                <a routerLink="/carrinho">
                     <img src="/assets/CART-ICON.png" alt="Icone de Carrinho" id="cart-icon">
                 </a>
 
-                <a routerLink="/login" > 
+                <a routerLink="/login">
                     <img src="/assets/USER-ICON.png" alt="Icone de usuario" id="user-icon">
                 </a>
             </div>

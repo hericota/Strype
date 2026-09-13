@@ -1,0 +1,24 @@
+<h1>Pesquisar</h1>
+
+<input
+  type="text"
+ name="termo"
+    placeholder="Digite o nome do produto"
+  [(ngModel)]="termo"
+>
+
+@if (consumoService.produtoCadastrado.isLoading()) {
+  <p>Carregando...</p>
+} @else if (resultados.length > 0) {
+  <section>
+    @for (produto of resultados; track produto.id) {
+      <a [routerLink]="['/produto', produto.id]">
+        <h2>{{ produto.nome }}</h2>
+        <p>{{ produto.descricao }}</p>
+        <p>R$ {{ produto.preco }}</p>
+      </a>
+    }
+  </section>
+} @else if (termo.trim() !== '') {
+  <p>Nenhum produto encontrado.</p>
+}
