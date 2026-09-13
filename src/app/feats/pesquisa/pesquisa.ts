@@ -20,11 +20,11 @@ export class Pesquisa {
     const termo = this.termo.trim().toLowerCase();
     const produtos = this.consumoService.produtoCadastrado.value();
 
+   
     if (termo === '') {
-      return [];
+      return produtos;
     }
 
-   
     return produtos.filter(
       (p) =>
         p.nome?.toLowerCase().includes(termo) ||

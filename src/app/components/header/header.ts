@@ -1,17 +1,17 @@
 import { Component, inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms'; 
+import { Router, RouterLink } from '@angular/router'; 
 
 @Component({
-  imports: [RouterLink],
   selector: 'app-header',
-  styleUrl: './header.css',
+  imports: [RouterLink, FormsModule], 
   templateUrl: './header.html',
+  styleUrl: './header.css',
 })
 export class Header {
-  private readonly router = inject(Router);
-
   menuAberto = false;
   termoPesquisa = '';
+  private readonly router = inject(Router);
 
   toggleMenu() {
     this.menuAberto = !this.menuAberto;

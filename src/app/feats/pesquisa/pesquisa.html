@@ -2,23 +2,24 @@
 
 <input
   type="text"
- name="termo"
-    placeholder="Digite o nome do produto"
+  name="termo"
+  placeholder="Digite o nome do produto"
   [(ngModel)]="termo"
 >
 
 @if (consumoService.produtoCadastrado.isLoading()) {
-  <p>Carregando...</p>
+  <p class="status">Carregando...</p>
 } @else if (resultados.length > 0) {
-  <section>
-    @for (produto of resultados; track produto.id) {
-      <a [routerLink]="['/produto', produto.id]">
+  <section class="card">
+    @for (produto of resultados; track $index) {
+      <a [routerLink]="['/produto', produto.id]" class="produto-card">
+        <img [src]="produto.urlImagem" [alt]="produto.nome">
         <h2>{{ produto.nome }}</h2>
-        <p>{{ produto.descricao }}</p>
-        <p>R$ {{ produto.preco }}</p>
+        <p class="desc">{{ produto.descricao }}</p>
+        <p class="preco">R$ {{ produto.preco }}</p>
       </a>
     }
   </section>
 } @else if (termo.trim() !== '') {
-  <p>Nenhum produto encontrado.</p>
+  <p class="status">Nenhum produto encontrado.</p>
 }

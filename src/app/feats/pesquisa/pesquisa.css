@@ -1,0 +1,80 @@
+input {
+    width: 100%;
+    max-width: 480px;
+    display: block;
+    margin: 16px auto 0;
+    padding: 12px 18px;
+    border-radius: 999px;
+    border: 1px solid #444;
+    background: #1a1a1a;
+    color: var(--text-color, #fff);
+    font-size: 1rem;
+    outline: none;
+}
+
+input:focus {
+    border-color: #888;
+}
+
+h1 {
+    text-align: center;
+    color: var(--text-color, #fff);
+    margin-top: 24px;
+}
+
+.status {
+    text-align: center;
+    color: #b7b5b5;
+    margin-top: 32px;
+}
+
+.card {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+    padding: 0 40px 40px;
+}
+
+.produto-card {
+    background: #111;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 16px;
+    text-decoration: none;
+    display: block;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.produto-card:hover {
+    transform: translateY(-4px);
+    border-color: #555;
+}
+
+.produto-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    display: block;
+    background: #fff;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.produto-card h2 {
+    color: var(--text-color, #fff);
+    font-size: 1.05rem;
+    margin: 0 0 6px;
+}
+
+.desc {
+    color: #b7b5b5;
+    font-size: 0.9rem;
+    margin: 0 0 8px;
+}
+
+.preco {
+    color: var(--text-color, #fff);
+    font-weight: bold;
+    margin: 0;
+}

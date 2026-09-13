@@ -18,7 +18,8 @@ export class ConsumoApi {
         {defaultValue:[]}
     )
     deletarPostService(postCadastrado:Produto){
-        return this.httpClient.delete<Produto>(this.urlApi+postCadastrado.id)
+      return this.httpClient.delete<Produto>(`${this.urlApi}/${postCadastrado.id}`);
+    }
     }
 
-}
+
