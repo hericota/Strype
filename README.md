@@ -16,7 +16,7 @@
 
 O **Strype** é um projeto acadêmico de loja virtual voltada a tênis, roupas, acessórios e equipamentos esportivos. A interface segue o planejamento criado no Figma, com identidade visual em preto, branco e laranja.
 
-O desenvolvimento atual reúne catálogo e detalhes de produtos, carrinho com estado compartilhado, favoritos baseados em IDs salvos no navegador e telas de acesso. Na administração, já existem uma listagem para escolher o produto pelo ícone de edição e uma tela de edição com prévia. O cabeçalho possui menu para celulares, e a home já inclui o rodapé.
+O desenvolvimento atual reúne catálogo e detalhes de produtos, carrinho com estado compartilhado, favoritos baseados em IDs salvos no navegador e telas de acesso. Na administração, o gerenciamento permite pesquisar por nome ou ID, editar com prévia e excluir produtos com confirmação, usando o serviço `ConsumoApi`. O cabeçalho possui menu para celulares, e a home já inclui o rodapé.
 
 > **Em desenvolvimento:** este repositório contém o front-end. Algumas funcionalidades usam dados demonstrativos ou ainda precisam de integração. O protótipo no Figma representa o escopo planejado da plataforma.
 
@@ -32,18 +32,19 @@ O desenvolvimento atual reúne catálogo e detalhes de produtos, carrinho com es
 | Detalhes do produto | Consulta por ID, escolha visual de tamanho, controle de quantidade e adição ao carrinho | Validar quantidades, incluir tamanho no item e substituir avaliações demonstrativas |
 | Carrinho | Estado compartilhado em serviço, listagem, aumento e redução de quantidade, remoção e estado vazio | Persistência, cálculo de totais e descontos e finalização da compra |
 | Favoritos | Consulta à API, leitura dos IDs salvos no navegador, seleção, total e remoção persistida dos IDs | Ação de favoritar no catálogo e integração com carrinho e compra |
-| Cadastro de produtos | Formulário com Signal Forms e chamada POST | Validar o fluxo completo com a API e concluir a configuração HTTP |
-| Administração | Painel com ações de cadastro, edição e exclusão | Conectar os botões de cadastro e edição e proteger o acesso |
-| Gerenciamento | Listagem da API com ID, imagem, nome, preço e lápis que abre a edição | Implementar a pesquisa por nome ou ID |
-| Edição | Consulta por ID, campos com dados do produto e painel de prévia | Capturar e validar alterações e implementar o envio à API |
-| Exclusão | Tela por ID e método DELETE inicial no serviço | Corrigir a URL do método e conectar a tela ao serviço |
+| Cadastro de produtos | Formulário com Signal Forms e chamada POST | Validar o fluxo completo com a API |
+| Administração | Painel com atalhos de cadastro e gerenciamento | Proteger o acesso com autenticação |
+| Gerenciamento | Lista com pesquisa por nome ou ID, edição, exclusão e estados de carregamento e erro | Validar com o back-end real |
+| Edição | Signal Forms com validação, prévia e envio PUT pelo `ConsumoApi` | Validar com o back-end real |
+| Exclusão | Botão na lista, confirmação e DELETE pelo `ConsumoApi` | Validar com o back-end real |
 
 ### Comportamento atual
 
 - **Acesso:** login e cadastro validam os campos localmente. O login navega para `/Home`, e o cadastro navega para `/login`; ainda não há autenticação no servidor. Os botões Google e Apple são visuais.
 - **Carrinho:** os itens ficam em memória no `CarrinhoService` e são perdidos ao recarregar a página. O resumo ainda exibe textos de exemplo no lugar de totais e descontos, e o botão de compra não finaliza pedidos.
 - **Favoritos:** a tela cruza os produtos da API com IDs da chave `strype-favoritos` no `localStorage`. A remoção atualiza esses IDs. O código ainda não oferece uma ação para adicionar novos favoritos; comprar apenas registra os selecionados no console.
-- **Edição:** o lápis de gerenciamento abre `/atualizar/:id`. A tela consulta o produto, mas o método `atualizar()` ainda está vazio. O campo de categoria atualmente reutiliza a descrição; a interface `Produto` ainda não possui uma categoria própria.
+- **Edição:** o lápis em `/gerenciar` abre `/atualizar/:id`. A tela carrega os dados pelo `ConsumoApi`, valida nome, descrição, preço não negativo e URL da imagem, envia PUT e retorna ao gerenciamento após sucesso. Em caso de erro, mantém os valores digitados. A interface `Produto` não possui categoria própria.
+- **Exclusão:** a lixeira solicita confirmação com nome e ID e envia DELETE. O produto só é removido da lista após sucesso. A rota antiga `/deletar` redireciona para `/gerenciar`; o componente e o serviço de exclusão antigos foram removidos.
 
 ## Tecnologias utilizadas
 
@@ -79,7 +80,7 @@ Para os recursos de produtos, também é necessário iniciar uma API compatível
 
 ### Integração com a API
 
-A base da API está definida diretamente no serviço de produtos e nos componentes de detalhes, edição e favoritos:
+A base da API está definida diretamente no serviço de produtos e nos componentes de detalhes e favoritos:
 
 ```text
 http://localhost:8080/produtos
@@ -90,8 +91,10 @@ http://localhost:8080/produtos
 | `GET` | `/produtos` | Retornar um array de produtos |
 | `POST` | `/produtos` | Cadastrar um produto |
 | `GET` | `/produtos/:id` | Consultar um produto para detalhes ou edição |
+| `PUT` | `/produtos/:id` | Atualizar nome, descrição, preço e URL da imagem |
+| `DELETE` | `/produtos/:id` | Excluir o produto pelo ID |
 
-O método DELETE está iniciado no serviço, mas ainda concatena o ID sem a barra separadora e não está ligado à tela de exclusão. O envio de atualização por PUT ou PATCH ainda não foi implementado.
+As operações de gerenciamento usam `ConsumoApi`. PUT e DELETE aceitam resposta de sucesso sem corpo (204). Após sucesso, a listagem compartilhada é recarregada. O contrato PUT/DELETE precisa ser confirmado com a API real, que não está incluída neste repositório.
 
 Exemplo de corpo para cadastro:
 
@@ -108,9 +111,8 @@ Para os links de detalhes, os produtos retornados na listagem devem incluir `id`
 
 ### Ajustes de integração pendentes
 
-- Registrar o provedor HTTP na configuração da aplicação; o `app.config.ts` atual ainda não inclui `provideHttpClient()`.
+- O provedor `provideHttpClient()` já está registrado no `app.config.ts`.
 - Permitir na API as requisições da origem do front-end, quando necessário.
-- Ajustar o destino da rota curinga conforme a observação abaixo.
 
 ## Rotas declaradas
 
@@ -121,16 +123,16 @@ Para os links de detalhes, os produtos retornados na listagem devem incluir `id`
 | `/telaAdmin` | Painel administrativo |
 | `/CadastroProdutos` | Formulário de cadastro de produtos |
 | `/produtos` | Catálogo de produtos |
-| `/gerenciar` | Listagem administrativa com acesso à edição |
+| `/gerenciar` | Listagem administrativa com pesquisa, edição e exclusão |
 | `/atualizar/:id` | Tela de edição de um produto |
 | `/carrinho` | Carrinho de compras |
 | `/favoritos` | Produtos da API filtrados pelos IDs favoritos salvos |
-| `/deletar` | Interface de exclusão de produtos |
+| `/deletar` | Redirecionamento para `/gerenciar` |
 | `/cadastro` | Cadastro de usuário |
 | `/login` | Login |
 | `/produto/:id` | Detalhes de um produto |
 
-> A rota curinga `**` já está no final de `app.routes.ts`. Ainda é necessário trocar seu destino de `home` para `Home`, respeitando a capitalização da rota declarada.
+> A rota curinga `**` fica no final de `app.routes.ts` e redireciona para `/Home`.
 
 ## Scripts disponíveis
 
@@ -154,8 +156,7 @@ Para os links de detalhes, os produtos retornados na listagem devem incluir `id`
 | `src/app/feats/posts/` | Serviço, cadastro, listagem e interface de produtos |
 | `src/app/feats/detalhe-produto/` | Consulta e exibição de produto por ID |
 | `src/app/feats/tela-admin/` | Painel administrativo |
-| `src/app/feats/deletar/` | Interface de exclusão |
-| `src/app/feats/gerenciar-produtos/` | Listagem administrativa com acesso à edição |
+| `src/app/feats/gerenciar-produtos/` | Listagem administrativa com pesquisa, edição e exclusão |
 | `src/app/feats/atualizar-produto/` | Consulta e formulário de edição com prévia |
 | `src/app/feats/carrinho-componente/` | Página, cards e serviço de estado do carrinho |
 | `src/app/app.routes.ts` | Rotas da aplicação |
@@ -164,10 +165,9 @@ Para os links de detalhes, os produtos retornados na listagem devem incluir `id`
 
 ## Próximas etapas
 
-- Concluir os ajustes de roteamento e integração HTTP.
+- Validar o contrato de edição e exclusão com o back-end real.
 - Integrar o catálogo e os detalhes dos produtos ao fluxo da loja.
 - Conectar login e cadastro à API, com sessão e controle de acesso à administração.
-- Concluir o envio das alterações de produto e conectar a exclusão à API.
 - Adicionar a ação de favoritar produtos e conectar favoritos ao carrinho.
 - Persistir o carrinho, validar quantidades e implementar totais, descontos e finalização da compra.
 - Conectar pesquisa, categorias e filtros.
