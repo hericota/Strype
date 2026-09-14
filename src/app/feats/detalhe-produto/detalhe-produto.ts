@@ -1,12 +1,13 @@
 import { Component, inject, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ConsumoApi } from '../posts/consumo-api';
 import { Produto } from '../posts/produto';
 import { httpResource } from '@angular/common/http';
 import { form, FormField } from '@angular/forms/signals';
+import { CarrinhoService } from '../carrinho-componente/carrinho-card/carrinhoService/carrinho-service';
 
 @Component({
-  imports: [FormField],
+  imports: [FormField, RouterLink],
   selector: 'app-detalhe-produto',
   styleUrl: './detalhe-produto.css',
   templateUrl: './detalhe-produto.html',
@@ -17,6 +18,8 @@ export class DetalheProduto {
   avaliacao = 4.8;
   tamanhoSelecionado : number | null = null
 
+  protected consumoService = inject(ConsumoApi)
+
   contadorForm = form(this.contador);
 
   // chamando a url dos produtos 
@@ -26,7 +29,7 @@ export class DetalheProduto {
   private route = inject(ActivatedRoute);
 
   // chamando a API
-  protected consumoService = inject(ConsumoApi)
+  protected carrinhoService = inject(CarrinhoService)
 
   // colocando o valor do ID na variavel id
   id = this.route.snapshot.paramMap.get('id')
@@ -46,6 +49,21 @@ export class DetalheProduto {
 
   decrementar(){
     this.contador.update(valor => valor - 1);
+  }
+
+  
+  adicionarCarrinho(){
+    const produto = this.detalheProduto.value();
+    alert("clicado")
+    if(produto){
+      console.log("nnkknk")
+      this.carrinhoService.carrinhoModel.update(itens => [... itens , {
+        produto:produto,
+        quantidade: this.contador()
+      }])
+    }
+
+
   }
 
 }

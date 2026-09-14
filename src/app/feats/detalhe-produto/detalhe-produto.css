@@ -161,3 +161,18 @@ margin: 0;
 hr{
   width: 100px;
 }
+
+.link-carrinho{
+  height: 32px;  
+  transition: transform  0.5s ease;
+}
+.link-carrinho:hover{
+  transform: scale(1.08);
+}
+
+.card-carrinho{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}

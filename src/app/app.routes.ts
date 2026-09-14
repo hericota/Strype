@@ -6,9 +6,11 @@ import { CadastroComponente } from './feats/cadastro-componente/cadastro-compone
 import { LoginComponente } from './feats/login-componente/login-componente';
 import { Favoritos } from './favoritos/favoritos';
 import { DetalheProduto } from './feats/detalhe-produto/detalhe-produto';
-import { Deletar } from './feats/deletar/deletar';
 import { CarrinhoComponente } from './feats/carrinho-componente/carrinho-componente';
 import { produtosCadastrados } from './feats/posts/produtos-cadastrados/produtos-cadastrados';
+import { AtualizarProduto } from './feats/atualizar-produto/atualizar-produto';
+import { GerenciarProdutos } from './feats/gerenciar-produtos/gerenciar-produtos';
+import { Pesquisa } from './feats/pesquisa/pesquisa';
 
 export const routes: Routes = [
     {path:"telaAdmin", component:TelaAdmin},
@@ -17,9 +19,14 @@ export const routes: Routes = [
 
     {path:"favoritos", component:Favoritos},
 
-    {path:"deletar", component:Deletar},
+    {path:"deletar", redirectTo:'gerenciar', pathMatch:'full'},
     {path:'produtos', component:produtosCadastrados},
 
+    {path:"atualizar/:id", component:AtualizarProduto},
+    {path:"gerenciar", component:GerenciarProdutos},
+
+  
+    {path:'pesquisa', component: Pesquisa},
 
     {path: 'Home', component: Home },
     {path: 'cadastro', component: CadastroComponente},
@@ -27,5 +34,6 @@ export const routes: Routes = [
     {path:'produto/:id', component: DetalheProduto},
     {path: 'carrinho', component: CarrinhoComponente},
     {path: '', redirectTo: 'Home', pathMatch: 'full'},
-    { path: '**', redirectTo: 'home' }
+   
+    { path: '**', redirectTo: 'Home' }
 ];

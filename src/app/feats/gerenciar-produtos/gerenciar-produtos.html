@@ -1,0 +1,64 @@
+<main class="pagina-produtos">
+  <section class="painel-produtos">
+    <header class="cabecalho">
+      <h1>GERENCIAR PRODUTOS</h1>
+      <p>Pesquise, edite ou exclua os produtos cadastrados.</p>
+    </header>
+
+    <div class="campo-pesquisa">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"></circle>
+        <path d="M20 20L16.65 16.65"></path>
+      </svg>
+      <input #busca type="search" placeholder="Pesquisar por nome ou ID"
+        aria-label="Pesquisar produto" [value]="pesquisa()" (input)="pesquisa.set(busca.value)">
+    </div>
+
+    @if (mensagem()) { <p class="mensagem-sucesso" role="status">{{ mensagem() }}</p> }
+    @if (erro()) { <p class="mensagem-erro" role="alert">{{ erro() }}</p> }
+
+    @if (consumoService.produtoCadastrado.isLoading()) {
+      <p role="status">Carregando produtos...</p>
+    } @else if (consumoService.produtoCadastrado.error()) {
+      <p class="mensagem-erro" role="alert">Não foi possível carregar os produtos.</p>
+      <button type="button" (click)="consumoService.produtoCadastrado.reload()">Tentar novamente</button>
+    } @else {
+      <div class="tabela-produtos">
+        <div class="cabecalho-tabela">
+          <span>PRODUTO</span><span>DESCRIÇÃO</span><span>PREÇO</span><span>AÇÕES</span>
+        </div>
+        @for (produto of produtosFiltrados(); track produto.id) {
+          <article class="produto">
+            <div class="informacoes-produto">
+              <img class="numero bege" [src]="produto.urlImagem" [alt]="produto.nome">
+              <div class="nome-produto">
+                <strong>{{ produto.nome }}</strong>
+                <small>ID {{ produto.id }}</small>
+              </div>
+            </div>
+            <span class="categoria">{{ produto.descricao }}</span>
+            <strong class="preco">{{ produto.preco | currency:'BRL' }}</strong>
+            <div class="acoes-produto">
+              <button [routerLink]="['/atualizar', produto.id]" class="botao-editar" type="button"
+                [disabled]="produto.id == null || excluindoId() !== null" [attr.aria-label]="'Editar ' + produto.nome">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 20H5a1 1 0 0 1-1-1v-7"></path>
+                  <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L11 15l-4 1 1-4Z"></path>
+                </svg>
+              </button>
+              <button class="botao-editar botao-excluir" type="button" (click)="excluirProduto(produto)"
+                [disabled]="produto.id == null || excluindoId() !== null"
+                [attr.aria-label]="excluindoId() === produto.id ? 'Excluindo ' + produto.nome : 'Excluir ' + produto.nome">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7"></path>
+                </svg>
+              </button>
+            </div>
+          </article>
+        } @empty {
+          <p role="status">{{ pesquisa().trim() ? 'Nenhum produto encontrado.' : 'Nenhum produto cadastrado.' }}</p>
+        }
+      </div>
+    }
+  </section>
+</main>

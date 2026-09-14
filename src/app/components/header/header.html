@@ -8,13 +8,18 @@
                 </a>
             </div>
 
+            <button class="menu-toggle" type="button" (click)="toggleMenu()" aria-label="Abrir menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
 
             <div class="col-1">
                 <a routerLink="#">Adidas</a>
                 <a routerLink="#">Nike</a>
                 <a routerLink="#">The North Face</a>
                 <a routerLink="#">Midias e equipamentos</a>
-                <a routerLink="#">Login</a>
+                <a routerLink="/telaAdmin">Admin</a>
             </div>
         </nav>
 
@@ -22,19 +27,26 @@
             <div class="search-bar">
                 <img
                     src="/assets/SEARCH-ICON.png"
-                    alt="Icone de pesquisa"
+                    alt=""
                     id="search-icon"
                 >
 
-                <input type="text" placeholder="Pesquisar">
+            
+                <input
+                    type="search"
+                    placeholder="Pesquisar"
+                    aria-label="Pesquisar produtos"
+                    [(ngModel)]="termoPesquisa"
+                    (keyup.enter)="pesquisar()"
+                >
             </div>
 
             <div class="icons">
-                <a routerLink="/carrinho"> 
+                <a routerLink="/carrinho">
                     <img src="/assets/CART-ICON.png" alt="Icone de Carrinho" id="cart-icon">
                 </a>
 
-                <a routerLink="/login" > 
+                <a routerLink="/login">
                     <img src="/assets/USER-ICON.png" alt="Icone de usuario" id="user-icon">
                 </a>
             </div>
