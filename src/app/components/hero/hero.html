@@ -1,4 +1,15 @@
 <div class="header-container">
+
+<!-- Video de fundo -->
+ <video autoplay [volume]="0" loop class="hero-video">
+    <source  src="/assets/brands-videos-n-photos/Nike-video.mp4" alt="Video de um jogador de basquete utilizando um tenis da Nike">
+
+
+ </video>
+
+ <!-- Overlay -->
+  <div class="hero-overlay"></div>
+
     <header class="header-content">
 
         <nav class="navigation">
@@ -8,49 +19,34 @@
                 </a>
             </div>
 
-            <button class="menu-toggle" type="button" (click)="toggleMenu()" aria-label="Abrir menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-
             <div class="col-1">
                 <a routerLink="#">Adidas</a>
                 <a routerLink="#">Nike</a>
                 <a routerLink="#">The North Face</a>
                 <a routerLink="#">Midias e equipamentos</a>
-                <a routerLink="/telaAdmin">Admin</a>
+                <a routerLink="">Login</a>
             </div>
         </nav>
 
         <div class="col-2">
             <div class="search-bar">
-                <img
-                    src="/assets/SEARCH-ICON.png"
-                    alt=""
-                    id="search-icon"
-                >
+                <img src="/assets/SEARCH-ICON.png" alt="Icone de pesquisa" id="search-icon">
 
-            
-                <input
-                    type="search"
-                    placeholder="Pesquisar"
-                    aria-label="Pesquisar produtos"
-                    [(ngModel)]="termoPesquisa"
-                    (keyup.enter)="pesquisar()"
-                >
+                <input type="text" placeholder="Pesquisar">
             </div>
 
             <div class="icons">
-                <a routerLink="/carrinho">
+                <a routerLink="#">
                     <img src="/assets/CART-ICON.png" alt="Icone de Carrinho" id="cart-icon">
                 </a>
 
-                <a routerLink="/login">
+                <a routerLink="#">
                     <img src="/assets/USER-ICON.png" alt="Icone de usuario" id="user-icon">
                 </a>
             </div>
         </div>
+
+        <img src="/assets/STRYPE-LOGO.png" alt="Logo da Strype" class="brand-hero-logo">
 
     </header>
 </div>
