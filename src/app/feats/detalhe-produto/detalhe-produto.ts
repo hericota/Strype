@@ -5,9 +5,10 @@ import { Produto } from '../posts/produto';
 import { httpResource } from '@angular/common/http';
 import { form, FormField } from '@angular/forms/signals';
 import { CarrinhoService } from '../carrinho-componente/carrinho-card/carrinhoService/carrinho-service';
+import { Header } from '../../components/header/header';
 
 @Component({
-  imports: [FormField, RouterLink],
+  imports: [FormField, RouterLink, Header],
   selector: 'app-detalhe-produto',
   styleUrl: './detalhe-produto.css',
   templateUrl: './detalhe-produto.html',

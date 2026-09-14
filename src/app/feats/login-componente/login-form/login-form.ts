@@ -2,9 +2,10 @@ import { Component, signal } from '@angular/core';
 import { LoginInterface } from './login-interface';
 import { email, form, minLength, required, FormField } from '@angular/forms/signals';
 import { Router } from '@angular/router';
+import { Header } from '../../../components/header/header';
 
 @Component({
-  imports: [FormField],
+  imports: [FormField, Header],
   selector: 'app-login-form',
   styleUrl: './login-form.css',
   templateUrl: './login-form.html',

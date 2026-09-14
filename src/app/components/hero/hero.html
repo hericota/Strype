@@ -32,7 +32,13 @@
             <div class="search-bar">
                 <img src="/assets/SEARCH-ICON.png" alt="Icone de pesquisa" id="search-icon">
 
-                <input type="text" placeholder="Pesquisar">
+                <input
+                    type="search"
+                    placeholder="Pesquisar"
+                    aria-label="Pesquisar produtos"
+                    [(ngModel)]="termoPesquisa"
+                    (keyup.enter)="pesquisar()"
+                >
             </div>
 
             <div class="icons">
