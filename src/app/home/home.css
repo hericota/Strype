@@ -119,8 +119,11 @@
 
 .adidas-section {
     display: flex;
-    width: 100%;
     flex-direction: column;
+    margin: 50px;
+}
+
+.adi-video-container {
     position: relative;
     width: 100%;
     min-height: 100vh;
@@ -128,7 +131,63 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 20px;
 }
 
-.adidas-video {}
+.video-resize {
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    display: flex;
+}
+
+#adidas-video {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.brand-hero-logo {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 310px;
+    height: auto;
+    max-width: 25vw;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.adidas-title {
+    margin-bottom: 20px;
+    font-size: 1.9rem;
+}
+
+.adidas-cards {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    border-bottom: 1px solid black;
+    gap: 16px;
+    padding-top: 100px;
+}
+
+.adidas-img {
+    width: 300px;
+    height: 400px;
+}
+
+.adidas-tagline {
+    font-size: 1.7rem;
+    font-weight: 500;
+}
+
+.adidas-link {
+    color: black;
+    transition: 0.2s ease;
+}
+
+.adidas-link:hover {
+    color: var(--primary-color);
+}

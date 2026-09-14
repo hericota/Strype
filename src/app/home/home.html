@@ -46,29 +46,44 @@
 
 <!-- Sessão ADIDAS -->
 
-<div class="adidas-section">
+<div class="adi-video-container">
+
     <h2 class="adidas-title">Adidas</h2>
-    <div class="adidas-video">
-        <video autoplay [volume]="0" loop class="" >
-        <source src="/assets/brands-videos-n-photos/Adidas-video.mp4" alt="Video de um tenis da adidas">
+    <div class="video-resize">
+        <video id="adidas-video" autoplay [volume]="0" loop class="">
+            <source src="/assets/brands-videos-n-photos/Adidas-video.mp4" alt="Video de um tenis da adidas">
         </video>
     </div>
+    <img src="/assets/STRYPE-LOGO.png" alt="Logo da Strype" class="brand-hero-logo">
+</div>
+<div class="adidas-section">
     <div class="adidas-cards">
         <div class="adidas-card-n-text">
-            <img src="/assets/Adidas-imgs/adidas-sneaker.png" alt="Imagem de um Adidas Sneaker" class="adidas-img">
-            <h3 class="adidas-tagline">LifeStyle</h3>
+            <a routerLink="#" class="adidas-link">
+                <img src="/assets/Adidas-imgs/adidas-sneaker.png" alt="Imagem de um Adidas Sneaker" class="adidas-img">
+                <h3 class="adidas-tagline">LifeStyle</h3>
+            </a>
         </div>
         <div class="adidas-card-n-text">
-            <img src="/assets/Adidas-imgs/adidas-lifestyle.png" alt="Imagem de um modelo usando roupas da Adidas" class="adidas-img">
-            <h3 class="adidas-tagline">Roupas</h3>
+            <a routerLink="#" class="adidas-link">
+                <img src="/assets/Adidas-imgs/adidas-lifestyle.png" alt="Imagem de um modelo usando roupas da Adidas"
+                    class="adidas-img">
+                <h3 class="adidas-tagline">Roupas</h3>
+            </a>
         </div>
         <div class="adidas-card-n-text">
-            <img src="/assets/Adidas-imgs/adidas-slide.png" alt="Imagem de um chinelo slide da Adidas" class="adidas-img">
-            <h3 class="adidas-tagline">Chinelos</h3>
+            <a routerLink="#" class="adidas-link">
+                <img src="/assets/Adidas-imgs/adidas-slide.png" alt="Imagem de um chinelo slide da Adidas"
+                    class="adidas-img">
+                <h3 class="adidas-tagline">Chinelos</h3>
+            </a>
         </div>
         <div class="adidas-card-n-text">
-            <img src="/assets/Adidas-imgs/adidas-runner.png" alt="Imagem de uma corredora da Adidas" class="adidas-img">
-            <h3 class="adidas-tagline">Esportes</h3>
+            <a routerLink="#" class="adidas-link">
+                <img src="/assets/Adidas-imgs/adidas-runner.png" alt="Imagem de uma corredora da Adidas"
+                    class="adidas-img">
+                <h3 class="adidas-tagline">Esportes</h3>
+            </a>
         </div>
     </div>
 </div>
