@@ -6,7 +6,6 @@ import { CadastroComponente } from './feats/cadastro-componente/cadastro-compone
 import { LoginComponente } from './feats/login-componente/login-componente';
 import { Favoritos } from './favoritos/favoritos';
 import { DetalheProduto } from './feats/detalhe-produto/detalhe-produto';
-import { GerenciarProdutos } from './feats/gerenciar-produtos/gerenciar-produtos';
 import { CarrinhoComponente } from './feats/carrinho-componente/carrinho-componente';
 import { produtosCadastrados } from './feats/posts/produtos-cadastrados/produtos-cadastrados';
 import { AtualizarProduto } from './feats/atualizar-produto/atualizar-produto';
