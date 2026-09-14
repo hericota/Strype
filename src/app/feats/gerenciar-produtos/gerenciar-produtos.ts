@@ -5,9 +5,10 @@ import { RouterLink } from '@angular/router';
 import { finalize } from 'rxjs';
 import { ConsumoApi } from '../posts/consumo-api';
 import { Produto } from '../posts/produto';
+import { Header } from '../../components/header/header';
 
 @Component({
-  imports: [RouterLink, CurrencyPipe],
+  imports: [RouterLink, CurrencyPipe, Header],
   selector: 'app-gerenciar-produtos',
   styleUrl: './gerenciar-produtos.css',
   templateUrl: './gerenciar-produtos.html',

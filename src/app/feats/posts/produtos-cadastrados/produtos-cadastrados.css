@@ -1,11 +1,12 @@
 :host {
     display: block;
-    padding: 48px 0 64px;
     background-color: var(--bg-color, #f8f9fa);
     color: var(--text-color, #000000);
     font-family: var(--font-main, 'Rubik', sans-serif);
 }
-
+#area{
+padding: 48px 0 64px;
+}
 .card {
     display: flex;
     flex-wrap: wrap;

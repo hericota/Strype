@@ -2,10 +2,11 @@ import { Component, inject, signal } from '@angular/core';
 import { form, required, FormField } from '@angular/forms/signals';
 import { Produto } from '../produto';
 import { ConsumoApi } from '../consumo-api';
+import { Header } from '../../../components/header/header';
 
 @Component({
   selector: 'app-post-produtos',
-  imports: [FormField],
+  imports: [FormField, Header],
   templateUrl: './post-produtos.html',
   styleUrl: './post-produtos.css',
 })

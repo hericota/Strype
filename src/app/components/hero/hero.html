@@ -23,7 +23,7 @@
                 <a routerLink="#">Nike</a>
                 <a routerLink="#">The North Face</a>
                 <a routerLink="#">Midias e equipamentos</a>
-                <a routerLink="">Login</a>
+                <a routerLink="/telaAdmin">Admin</a>
             </div>
         </nav>
 
@@ -31,7 +31,13 @@
             <div class="search-bar">
                 <img src="/assets/SEARCH-ICON.png" alt="Icone de pesquisa" id="search-icon">
 
-                <input type="text" placeholder="Pesquisar">
+                <input
+                    type="search"
+                    placeholder="Pesquisar"
+                    aria-label="Pesquisar produtos"
+                    [(ngModel)]="termoPesquisa"
+                    (keyup.enter)="pesquisar()"
+                >
             </div>
 
             <div class="icons">

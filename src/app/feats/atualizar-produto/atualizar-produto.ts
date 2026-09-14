@@ -6,9 +6,10 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { finalize } from 'rxjs';
 import { ConsumoApi } from '../posts/consumo-api';
 import { Produto } from '../posts/produto';
+import { Header } from '../../components/header/header';
 
 @Component({
-  imports: [RouterLink, FormField, CurrencyPipe],
+  imports: [RouterLink, FormField, CurrencyPipe, Header],
   selector: 'app-atualizar-produto',
   styleUrl: './atualizar-produto.css',
   templateUrl: './atualizar-produto.html',

@@ -1,3 +1,6 @@
+<app-header></app-header>
+<div id="area">
+
 <div class="card">
 
     @for (produto of produtosFiltrados(); track $index) {
@@ -16,4 +19,5 @@
     @empty {
         <p>Nenhum produto encontrado.</p>
     }
+</div>
 </div>

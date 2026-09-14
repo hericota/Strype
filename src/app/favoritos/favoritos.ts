@@ -1,6 +1,7 @@
 import { httpResource } from '@angular/common/http';
 import { DecimalPipe } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
+import { Header } from '../components/header/header';
 
 type ProdutoApi = {
   id?: number;
@@ -21,7 +22,7 @@ type ProdutoFavorito = {
 
 @Component({
   selector: 'app-favoritos',
-  imports: [DecimalPipe],
+  imports: [DecimalPipe, Header],
   templateUrl: './favoritos.html',
   styleUrl: './favoritos.css',
 })
