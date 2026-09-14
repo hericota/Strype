@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap');
-
 :host {
   display: block;
   font-family: 'Rubik', sans-serif;
@@ -93,7 +91,7 @@
 .cabecalho-tabela,
 .produto {
   display: grid;
-  grid-template-columns: 2.2fr 1fr 0.85fr 52px;
+  grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr) 0.85fr 94px;
   align-items: center;
   column-gap: 20px;
 }
@@ -239,7 +237,7 @@
 
   .cabecalho-tabela,
   .produto {
-    grid-template-columns: 2fr 1fr 48px;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) 94px;
   }
 
   .cabecalho-tabela span:nth-child(3),
@@ -283,7 +281,7 @@
   }
 
   .produto {
-    grid-template-columns: 1fr 42px;
+    grid-template-columns: minmax(0, 1fr) 88px;
     gap: 10px;
     min-height: 76px;
     margin-top: 11px;
@@ -311,3 +309,11 @@
     height: 40px;
   }
 }
+.acoes-produto { display: flex; gap: 8px; }
+.botao-excluir { background-color: #b42318; }
+.botao-excluir:hover { background-color: #912018; }
+button:disabled { opacity: 0.5; cursor: wait; transform: none; }
+.numero { object-fit: cover; }
+.categoria { overflow-wrap: anywhere; }
+.mensagem-erro { color: #b42318; }
+.mensagem-sucesso { color: #18703a; }

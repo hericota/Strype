@@ -3,45 +3,46 @@ import { RouterLink } from '@angular/router';
 
 import { ItensInterface } from './itens-interface';
 import { CarrinhoService } from './carrinhoService/carrinho-service';
+import { CommonModule } from '@angular/common';
 
 @Component({
-    imports: [RouterLink],
+    imports: [RouterLink, CommonModule], //commonModule faz com q eu consiga padronizar a formatação de valores no html usando o | number:'1.2-2'
     selector: 'app-carrinho-card',
     styleUrl: './carrinho-card.css',
     templateUrl: './carrinho-card.html',
 })
 export class CarrinhoCard {
-    protected carrinhoService =  inject(CarrinhoService);
+    protected carrinhoService = inject(CarrinhoService);
 
     carrinho = this.carrinhoService.carrinhoModel;
 
+    //mudei a logica do carrinho para o service !!!
+
     aumentar(produtoId: number) {
-        //produtoId é uma variavel que recebe o valor
-        //sempre que o botão aumentar é clicado, o valor aumenta mais um item
-        this.carrinho.update((itens) =>
-            //itens é o array q criei agora, e item é uma variavel q esta dentro dessa array
-            itens.map(
-                (item) =>
-                    //o map cria um novo array a partir da array antiga
-                    item.produto.id === produtoId
-                        ? { ...item, quantidade: item.quantidade!+ 1 } //Se for igual, cria um objeto novo copiando tudo o que ele já tinha (...item), mas soma +1 na quantidade
-                        : item, //Se não for igual (é outro produto do carrinho), deixa o item exatamente como está, sem mexer em nada
-            ),
-        );
-        console.log('Carrinho atualizado:', this.carrinho());
+        //pega a função aumentar que esta no service
+        this.carrinhoService.aumentar(produtoId);
+    }
+
+    diminuir(produtoId: number) {
+        //pega a função diminuir que esta no service
+        this.carrinhoService.diminuir(produtoId);
     }
 
     excluir(produtoId: number) {
-        //exclui o item do carrinho
-        this.carrinho.update((itens) => itens.filter((item) => item.produto.id !== produtoId));
+        //pega a função excluir que esta no service
+        this.carrinhoService.excluir(produtoId);
     }
 
-    //diminui o item do carrinho
-    diminuir(produtoId: number) {
-        this.carrinho.update((itens) =>
-            itens.map((item) =>
-                item.produto.id === produtoId ? { ...item, quantidade: item.quantidade! - 1 } : item,
-    ))}
-            
     
+    // caso a compra seja finalizada
+    compraFinalizada = false;
+
+    comprar() {
+        this.compraFinalizada = true;
+        this.carrinhoService.carrinhoModel.set([]); // Limpa o carrinho
+    }
+  
+    voltarCompras() {
+        this.compraFinalizada = false;
+    }
 }
