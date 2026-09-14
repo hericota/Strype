@@ -25,13 +25,14 @@ body {
 }
 
 .brand-hero-logo {
-    position: absolute;
-    top: 440px;   
-    right: 1px;        
-    width: 310px;  
-    height: 198px;           
-    z-index: 10;        
-    pointer-events: none; 
+   position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 310px;
+    height: auto;
+    max-width: 25vw;
+    z-index: 10;
+    pointer-events: none;
 }
 
 .hero-video {
