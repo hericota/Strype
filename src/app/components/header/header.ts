@@ -21,7 +21,7 @@ export class Header {
     const termo = this.termoPesquisa.trim();
 
     this.router.navigate(['/produtos'], {
-      queryParams: termo ? { busca: termo } : {},
+      queryParams: termo ? { q: termo } : {},
     });
   }
 }
