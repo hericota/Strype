@@ -55,7 +55,7 @@ export class CadastroForm {
     })
     this.cadastarForm().reset();
 
-    this.router.navigate(['/login']);
+    this.router.navigate(['/Home']);
   }
 
 }
