@@ -25,7 +25,7 @@ body {
 }
 
 .brand-hero-logo {
-   position: absolute;
+    position: absolute;
     bottom: 20px;
     right: 20px;
     width: 310px;
@@ -62,8 +62,11 @@ body {
     width: 100%;
     min-height: 81px;
     padding: 10px 20px;
-    position: relative;
-    z-index: 3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
     box-sizing: border-box;
 
 }
@@ -160,6 +163,7 @@ a:hover {
     margin: 5px 0;
     border-radius: 10px;
 }
+
 .search-bar {
     width: 250px;
 
