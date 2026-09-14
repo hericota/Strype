@@ -2,23 +2,13 @@ import { Component, signal } from '@angular/core';
 import { LoginInterface } from './login-interface';
 import { email, form, minLength, required, FormField, maxLength, pattern } from '@angular/forms/signals';
 import { Router } from '@angular/router';
-<<<<<<< HEAD
 import { Header } from '../../../components/header/header';
 
 @Component({
   imports: [FormField, Header],
   selector: 'app-login-form',
   styleUrl: './login-form.css',
-  templateUrl: './login-form.html',
-=======
-import { max } from 'rxjs';
-
-@Component({
-    imports: [FormField],
-    selector: 'app-login-form',
-    styleUrl: './login-form.css',
-    templateUrl: './login-form.html',
->>>>>>> 531a64043b336bc1b7d1f9a0da72e558669d2486
+  templateUrl: './login-form.html'
 })
 export class LoginForm {
     constructor(private router: Router) {}
