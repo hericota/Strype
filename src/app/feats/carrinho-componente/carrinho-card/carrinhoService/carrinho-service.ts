@@ -4,9 +4,7 @@ import { ItensInterface } from '../itens-interface';
 @Service()
 export class CarrinhoService {
     //cria uma array de teste e pega a interface dos produtos
-    carrinhoModel = signal<ItensInterface[]>([
-       
-    ]);
+    carrinhoModel = signal<ItensInterface[]>([]);
 
     aumentar(produtoId: number) {
         //produtoId é uma variavel que recebe o valor
