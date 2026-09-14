@@ -3,7 +3,6 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
 
 registerLocaleData(localePt);
