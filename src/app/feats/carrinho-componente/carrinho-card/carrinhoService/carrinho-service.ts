@@ -5,36 +5,7 @@ import { ItensInterface } from '../itens-interface';
 export class CarrinhoService {
     //cria uma array de teste e pega a interface dos produtos
     carrinhoModel = signal<ItensInterface[]>([
-        {
-            produto: {
-                id: 1,
-                nome: 'Camiseta Angular',
-                descricao: 'Camiseta confortável para programar',
-                preco: 59.9,
-                urlImagem: 'https://imgnike-a.akamaihd.net/360x360/058889IEA2.jpg',
-            },
-            quantidade: 1,
-        },
-        {
-            produto: {
-                id: 2,
-                nome: 'Caneca TypeScript',
-                descricao: 'Caneca de cerâmica 350ml',
-                preco: 35.0,
-                urlImagem: 'https://imgnike-a.akamaihd.net/360x360/058889IEA2.jpg',
-            },
-            quantidade: 1,
-        },
-        {
-            produto: {
-                id: 3,
-                nome: 'Moletom Developer',
-                descricao: 'Moletom quentinho para dias frios',
-                preco: 120.0,
-                urlImagem: 'https://imgnike-a.akamaihd.net/360x360/058889IEA2.jpg',
-            },
-            quantidade: 1,
-        },
+       
     ]);
 
     aumentar(produtoId: number) {
