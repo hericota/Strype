@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ConsumoApi } from '../posts/consumo-api';
+import { Header } from '../../components/header/header';
 
 @Component({
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, Header],
   selector: 'app-pesquisa',
   standalone: true,
   styleUrl: './pesquisa.css',

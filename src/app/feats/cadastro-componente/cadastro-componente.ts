@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 import { Header } from '../../components/header/header';
 
 @Component({
-  imports: [CadastroForm, RouterLink, Header],
+  imports: [CadastroForm, RouterLink],
   selector: 'app-cadastro-componente',
   styleUrl: './cadastro-componente.css',
   templateUrl: './cadastro-componente.html',

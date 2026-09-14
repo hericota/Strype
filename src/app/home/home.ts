@@ -5,7 +5,7 @@ import { Hero } from '../components/hero/hero';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  imports: [Header, Footer, Hero, RouterLink],
+  imports: [Footer, Hero, RouterLink],
   selector: 'app-home',
   styleUrl: './home.css',
   templateUrl: './home.html',

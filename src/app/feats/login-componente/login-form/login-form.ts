@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Header } from '../../../components/header/header';
 
 @Component({
-  imports: [FormField, Header],
+  imports: [FormField],
   selector: 'app-login-form',
   styleUrl: './login-form.css',
   templateUrl: './login-form.html'
