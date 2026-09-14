@@ -12,14 +12,13 @@ import { ConsumoApi } from '../consumo-api';
 export class produtosCadastrados {
   protected readonly consumoService = inject(ConsumoApi);
   private readonly route = inject(ActivatedRoute);
-
   private readonly queryParams = toSignal(this.route.queryParamMap);
 
-  protected readonly produtosFiltrados = computed(() => {
+ protected readonly produtosFiltrados = computed(() => {
     const termo = (this.queryParams()?.get('q') ?? '').trim().toLowerCase();
     const produtos = this.consumoService.produtoCadastrado.value();
 
-    if (!termo) {
+ if (!termo) {
       return produtos;
     }
 

@@ -10,8 +10,8 @@ import { GerenciarProdutos } from './feats/gerenciar-produtos/gerenciar-produtos
 import { CarrinhoComponente } from './feats/carrinho-componente/carrinho-componente';
 import { produtosCadastrados } from './feats/posts/produtos-cadastrados/produtos-cadastrados';
 import { AtualizarProduto } from './feats/atualizar-produto/atualizar-produto';
-import { Pesquisa } from './feats/pesquisa/pesquisa'; 
-
+import { GerenciarProdutos } from './feats/gerenciar-produtos/gerenciar-produtos';
+import { Pesquisa } from './feats/pesquisa/pesquisa';
 
 export const routes: Routes = [
     {path:"telaAdmin", component:TelaAdmin},
@@ -26,13 +26,15 @@ export const routes: Routes = [
     {path:"atualizar/:id", component:AtualizarProduto},
     {path:"gerenciar", component:GerenciarProdutos},
 
+  
+    {path:'pesquisa', component: Pesquisa},
 
     {path: 'Home', component: Home },
     {path: 'cadastro', component: CadastroComponente},
     {path: 'login', component: LoginComponente},
     {path:'produto/:id', component: DetalheProduto},
-     {path:'pesquisa', component: Pesquisa}, 
     {path: 'carrinho', component: CarrinhoComponente},
     {path: '', redirectTo: 'Home', pathMatch: 'full'},
+   
     { path: '**', redirectTo: 'Home' }
 ];

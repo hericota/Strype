@@ -1,4 +1,5 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, LOCALE_ID } from '@angular/core';
+import { provideHttpClient } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
@@ -12,6 +13,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideHttpClient(),
     provideRouter(routes),
+    provideHttpClient(),
     { provide: LOCALE_ID, useValue: 'pt-BR' }
   ]
 };
