@@ -1,7 +1,8 @@
    /* IMPORTS */
    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
    @import url('https://googleapis.com');
-   * ,
+
+   *,
    *::before,
    *::after {
        box-sizing: border-box;
@@ -14,7 +15,7 @@
        --primary-color: #FF8D28;
        --primary-hover: #FF7800;
        --secondary-color: #424242;
-       
+
 
        /* Cores de Fundo e Texto */
        --bg-color: #f8f9fa;
@@ -66,4 +67,36 @@
        background: none;
    }
 
-   /* MEDIA QUERIES (Henrique faz ai) */ 
+   /* MEDIA QUERIES */
+
+   @media (max-width: 576px) {
+       body {
+           font-size: 14px;
+       }
+
+       /* Ajuste de espaçamentos para telas pequenas */
+       :root {
+           --border-radius: 6px;
+       }
+   }
+
+   /* Dispositivos Médios */
+   @media (min-width: 577px) and (max-width: 768px) {
+       body {
+           font-size: 15px;
+       }
+   }
+
+   /* Dispositivos Grandes */
+   @media (min-width: 769px) and (max-width: 992px) {
+       body {
+           font-size: 16px;
+       }
+   }
+
+   /* Desktops e Telas Maiores  */
+   @media (min-width: 993px) {
+       body {
+           font-size: 16px;
+       }
+   }
