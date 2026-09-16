@@ -4,7 +4,7 @@
 
 **Loja virtual de moda e produtos esportivos desenvolvida com Angular.**
 
-Catálogo, pesquisa, carrinho e gerenciamento de produtos em uma aplicação acadêmica com identidade visual em preto, branco e laranja.
+Projeto acadêmico concluído: página inicial com vídeos, catálogo, pesquisa, carrinho e gerenciamento de produtos, com identidade visual em preto, branco e laranja.
 
 [![Angular](https://img.shields.io/badge/Angular-22-DD0031?logo=angular&logoColor=white)](https://angular.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
@@ -16,19 +16,20 @@ Catálogo, pesquisa, carrinho e gerenciamento de produtos em uma aplicação aca
 
 ## Sobre o projeto
 
-O Strype é um projeto acadêmico de e-commerce voltado a tênis, roupas, acessórios e equipamentos esportivos. O desenvolvimento reúne navegação entre páginas, formulários, estado reativo e comunicação com uma API de produtos.
+O Strype é um projeto acadêmico de e-commerce voltado a tênis, roupas, acessórios e equipamentos esportivos. A versão final reúne uma página inicial com conteúdo visual de Nike, Adidas e The North Face, navegação entre páginas, formulários, estado reativo e comunicação com uma API de produtos.
 
 A aplicação utiliza componentes standalone, Signals e serviços compartilhados. O fluxo administrativo permite cadastrar, consultar, editar e excluir produtos. A experiência de compra inclui pesquisa, detalhes, carrinho e uma tela de favoritos.
 
-**O projeto está em desenvolvimento.** Este repositório contém o front-end; o back-end deve ser executado separadamente. Login, cadastro de usuários e finalização da compra ainda não estão integrados a serviços reais de autenticação ou pedidos.
+**Status: concluído no escopo acadêmico.** Este repositório contém o front-end; a API de produtos deve ser executada separadamente. A entrega demonstra os fluxos da loja e as operações de cadastro, consulta, edição e exclusão de produtos. Login, cadastro de usuários e finalização da compra possuem comportamento demonstrativo, descrito na seção de escopo.
 
 ## Funcionalidades
 
 | Área | Implementação atual |
 | --- | --- |
-| Navegação | Cabeçalho e rodapé compartilhados, menu para celulares e navegação com Angular Router |
-| Catálogo | Consulta de produtos à API, cards com imagem, nome e preço e acesso aos detalhes |
-| Pesquisa | Busca do cabeçalho por nome no catálogo e página própria de pesquisa por nome ou descrição |
+| Página inicial | Hero com vídeo, banner promocional, vitrines Nike e Adidas, seção The North Face e rodapé |
+| Navegação | Cabeçalho com pesquisa, atalhos de marcas, acesso à administração, login e carrinho |
+| Catálogo | Produtos da API em três cards por linha no desktop, dois no tablet e um no celular, com imagens limitadas e acesso aos detalhes |
+| Pesquisa | Busca parcial por nome no catálogo, atalhos de marcas via URL e página própria de pesquisa por nome ou descrição |
 | Detalhes | Consulta por ID, seleção visual de tamanho, quantidade e adição ao carrinho |
 | Cadastro de produtos | Formulário com Signal Forms e envio de dados por POST |
 | Gerenciamento | Listagem administrativa com busca por nome ou ID, edição e exclusão com confirmação |
@@ -50,9 +51,31 @@ A rota antiga `/deletar` redireciona para `/gerenciar`. O componente de exclusã
 
 ### Carrinho e favoritos
 
-O `CarrinhoService` mantém os itens em memória e inicia com produtos demonstrativos. O resumo calcula o subtotal, um desconto de 10% identificado como Pix e um desconto adicional de R$ 100 quando o subtotal atinge R$ 900. Esses cálculos são locais; a finalização da compra é uma simulação, sem pagamento ou criação de pedido no servidor.
+O `CarrinhoService` inicia vazio e mantém em memória os produtos adicionados pela tela de detalhes. O resumo calcula o subtotal, um desconto de 10% identificado como Pix e um desconto adicional de R$ 100 quando o subtotal atinge R$ 900. Esses cálculos são locais. Ao finalizar a compra, a aplicação exibe a confirmação e limpa o carrinho, simulando o encerramento do fluxo sem pagamento ou criação de pedido no servidor.
 
-Os favoritos usam a chave `strype-favoritos` do `localStorage` para guardar IDs. A tela cruza esses IDs com os produtos da API e permite selecionar e remover favoritos. A ação de adicionar novos favoritos pelo catálogo e a integração com a compra ainda precisam ser implementadas.
+Os favoritos usam a chave `strype-favoritos` do `localStorage` para guardar IDs. A tela cruza esses IDs com os produtos da API e permite selecionar e remover favoritos. Nesta entrega, a tela trabalha com IDs já armazenados: o catálogo não possui ação de adicionar favoritos, e a compra a partir dessa tela apenas registra os itens selecionados no console.
+
+## Pesquisa e navegação por marcas
+
+A pesquisa do cabeçalho é enviada ao pressionar **Enter**. O catálogo lê o parâmetro `q` da URL e filtra os nomes dos produtos por correspondência parcial, sem diferenciar maiúsculas e minúsculas.
+
+| Endereço | Resultado |
+| --- | --- |
+| `/produtos` | Todos os produtos retornados pela API |
+| `/produtos?q=adidas` | Produtos com “adidas” no nome |
+| `/produtos?q=nike` | Produtos com “nike” no nome |
+| `/produtos?q=north` | Produtos com “north” no nome |
+
+Os atalhos de marcas do cabeçalho e do hero utilizam esse mesmo mecanismo. O filtro é textual, aplicado no front-end; não depende de um campo específico de marca na API.
+
+## Escopo da entrega
+
+- **Produtos:** cadastro, consulta, edição e exclusão enviam requisições à API externa.
+- **Contas:** login e cadastro validam os campos e navegam para a home, sem criar usuários ou autenticar no servidor. Os botões de Google e Apple são elementos visuais.
+- **Administração:** as rotas administrativas são acessíveis diretamente, sem autenticação ou controle de permissões.
+- **Carrinho:** o estado dura enquanto a aplicação está aberta e é perdido ao recarregar. A seleção visual de tamanho não é incluída no item do carrinho.
+- **Compra:** confirmação demonstrativa e cálculos locais, sem processamento de pagamentos.
+- **Conteúdo visual:** promoções, avaliações e parte dos links de vitrines e rodapé são demonstrativos.
 
 ## Tecnologias
 
@@ -88,7 +111,7 @@ npm ci
 npm start
 ```
 
-Abra [http://localhost:4200](http://localhost:4200). A entrada da aplicação redireciona para `/Home`, cujo conteúdo central ainda está em construção. Para consultar os produtos, acesse [http://localhost:4200/produtos](http://localhost:4200/produtos); para administrá-los, use [http://localhost:4200/telaAdmin](http://localhost:4200/telaAdmin).
+Abra [http://localhost:4200](http://localhost:4200). A entrada da aplicação redireciona para `/Home`, com vídeos, vitrines e seções de marcas. Para consultar os produtos, acesse [http://localhost:4200/produtos](http://localhost:4200/produtos); para administrá-los, use [http://localhost:4200/telaAdmin](http://localhost:4200/telaAdmin).
 
 O comando `npm start` inicia apenas o front-end. Inicie o back-end separadamente e permita o acesso da origem `http://localhost:4200` na configuração de CORS da API.
 
@@ -118,7 +141,7 @@ As chamadas administrativas estão no [ConsumoApi](src/app/feats/posts/consumo-a
 | `PUT` | `/produtos/:id` | ID e campos atualizados do produto | Produto atualizado ou sucesso sem corpo, como 204 |
 | `DELETE` | `/produtos/:id` | Sem corpo | Resposta de sucesso, como 204 |
 
-O contrato de PUT e DELETE foi usado nos testes com HTTP simulado. A compatibilidade com o back-end real ainda precisa ser validada.
+A API externa deve atender a esse contrato. Os testes automatizados de HTTP usam respostas simuladas.
 
 ### Modelo de produto
 
@@ -154,7 +177,7 @@ As rotas estão definidas em [app.routes.ts](src/app/app.routes.ts). Respeite as
 | Rota | Destino |
 | --- | --- |
 | `/` | Redirecionamento para `/Home` |
-| `/Home` | Página inicial em construção |
+| `/Home` | Página inicial com vídeos, promoções e vitrines |
 | `/produtos` | Catálogo; aceita `?q=termo` para filtrar por nome |
 | `/produto/:id` | Detalhes do produto |
 | `/pesquisa` | Pesquisa por nome ou descrição |
@@ -185,9 +208,7 @@ Para executar apenas os testes do serviço de produtos, gerenciamento e edição
 npm test -- --watch=false --include="src/app/feats/posts/consumo-api.spec.ts" --include="src/app/feats/gerenciar-produtos/gerenciar-produtos.spec.ts" --include="src/app/feats/atualizar-produto/atualizar-produto.spec.ts"
 ```
 
-Esses três arquivos reúnem 10 testes de envio de alterações, resposta 204, exclusão, cancelamento da confirmação, pesquisa, validação, bloqueio de envios duplicados e preservação dos dados em caso de erro.
-
-As respostas HTTP desses testes são simuladas: eles não dependem do back-end em execução e não substituem a validação do fluxo com a API real. A aprovação desse grupo também não representa aprovação de toda a suíte do projeto.
+Os testes HTTP simulam respostas da API e podem ser executados sem o back-end. Para verificar a integração completa, utilize também a aplicação com uma API compatível em execução.
 
 ## Scripts
 
@@ -204,7 +225,7 @@ As respostas HTTP desses testes são simuladas: eles não dependem do back-end e
 | Caminho | Responsabilidade |
 | --- | --- |
 | `public/assets/` | Imagens, logos e ícones |
-| `src/app/components/` | Cabeçalho e rodapé compartilhados |
+| `src/app/components/` | Cabeçalho, hero com vídeo e rodapé |
 | `src/app/home/` | Página inicial |
 | `src/app/feats/posts/` | Serviço `ConsumoApi`, modelo `Produto`, cadastro e catálogo |
 | `src/app/feats/gerenciar-produtos/` | Listagem administrativa, pesquisa e exclusão |
@@ -219,16 +240,6 @@ As respostas HTTP desses testes são simuladas: eles não dependem do back-end e
 | `src/app/app.routes.ts` | Rotas da aplicação |
 | `src/app/app.config.ts` | Provedores HTTP, navegação e localização |
 | `src/styles.css` | Estilos globais |
-
-## Próximas etapas
-
-- Validar cadastro, edição e exclusão com a API real e uniformizar as validações dos formulários de produto.
-- Integrar login e cadastro de usuários ao back-end, com sessão e controle de acesso às operações administrativas.
-- Persistir o carrinho e validar quantidades, itens repetidos e o tamanho selecionado ao adicionar produtos.
-- Conectar a finalização da compra a pedidos e pagamentos reais.
-- Implementar a ação de favoritar no catálogo e a integração dos favoritos com o carrinho.
-- Completar a página inicial, os filtros por categoria e os destinos dos links de navegação e rodapé.
-- Substituir dados demonstrativos e ampliar os testes, a acessibilidade e o tratamento de erros nas demais telas.
 
 ## Autoria
 
