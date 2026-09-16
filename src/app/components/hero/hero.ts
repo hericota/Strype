@@ -17,7 +17,7 @@ export class Hero {
     const termo = this.termoPesquisa.trim();
 
     this.router.navigate(['/produtos'], {
-      queryParams: termo ? { busca: termo } : {},
+      queryParams: termo ? { q: termo } : {},
     });
   }
 }
