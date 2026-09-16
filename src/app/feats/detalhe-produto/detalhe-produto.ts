@@ -1,3 +1,4 @@
+import { environment } from '../../../environments/environment';
 import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ConsumoApi } from '../posts/consumo-api';
@@ -24,7 +25,7 @@ export class DetalheProduto {
   contadorForm = form(this.contador);
 
   // chamando a url dos produtos 
-  private readonly urlApi = 'http://localhost:8080/produtos';
+  private readonly urlApi = environment.apiUrl;
 
   // injetando a rota ativada
   private route = inject(ActivatedRoute);

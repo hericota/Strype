@@ -1,3 +1,4 @@
+import { environment } from '../../../environments/environment';
 import { HttpClient, httpResource } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
 import { Produto } from './produto';
@@ -8,7 +9,7 @@ export class ConsumoApi {
 
     private readonly httpClient = inject(HttpClient);
 
-    private readonly urlApi = 'http://localhost:8080/produtos'
+    private readonly urlApi = environment.apiUrl
 
     cadastrarPostService(postCadastrado:Produto){
         return this.httpClient.post<Produto>(this.urlApi , postCadastrado)

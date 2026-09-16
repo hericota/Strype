@@ -1,3 +1,4 @@
+import { environment } from '../../../environments/environment';
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -5,7 +6,7 @@ import { provideRouter } from '@angular/router';
 import { GerenciarProdutos } from './gerenciar-produtos';
 
 const produto = { id: 7, nome: 'Tênis', descricao: 'Esportivo', preco: 150, urlImagem: 'https://example.com/tenis.jpg' };
-const url = 'http://localhost:8080/produtos';
+const url = environment.apiUrl;
 
 describe('GerenciarProdutos', () => {
   let fixture: ComponentFixture<GerenciarProdutos>;

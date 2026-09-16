@@ -1,3 +1,4 @@
+import { environment } from '../../environments/environment';
 import { httpResource } from '@angular/common/http';
 import { DecimalPipe } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
@@ -27,7 +28,7 @@ type ProdutoFavorito = {
   styleUrl: './favoritos.css',
 })
 export class Favoritos {
-  private readonly urlApi = 'http://localhost:8080/produtos';
+  private readonly urlApi = environment.apiUrl;
 
   private readonly chaveFavoritos = 'strype-favoritos';
 
