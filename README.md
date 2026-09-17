@@ -10,7 +10,7 @@ Projeto acadêmico concluído: página inicial com vídeos, catálogo, pesquisa,
 [![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Vitest](https://img.shields.io/badge/Vitest-4-6E9F18?logo=vitest&logoColor=white)](https://vitest.dev/)
 
-[Planejamento no Figma](https://www.figma.com/design/vwQVA1HrobIvbGSWvCdff7/Projeto-aula-Henrique?node-id=0-1) · [Código-fonte](https://github.com/hericota/Strype)
+[Site online](https://strype-frontend.henriquegdall.workers.dev/) · [Planejamento no Figma](https://www.figma.com/design/vwQVA1HrobIvbGSWvCdff7/Projeto-aula-Henrique?node-id=0-1) · [Código-fonte](https://github.com/hericota/Strype)
 
 </div>
 
@@ -20,7 +20,84 @@ O Strype é um projeto acadêmico de e-commerce voltado a tênis, roupas, acess�
 
 A aplicação utiliza componentes standalone, Signals e serviços compartilhados. O fluxo administrativo permite cadastrar, consultar, editar e excluir produtos. A experiência de compra inclui pesquisa, detalhes, carrinho e uma tela de favoritos.
 
-**Status: concluído no escopo acadêmico.** Este repositório contém o front-end; a API de produtos deve ser executada separadamente. A entrega demonstra os fluxos da loja e as operações de cadastro, consulta, edição e exclusão de produtos. Login, cadastro de usuários e finalização da compra possuem comportamento demonstrativo, descrito na seção de escopo.
+**Status: concluído no escopo acadêmico.** A versão online usa Cloudflare para o front-end, Render para a API e Aiven para o MySQL. A cópia da API e as configurações de publicação estão na branch de deploy. A entrega demonstra os fluxos da loja e as operações de cadastro, consulta, edição e exclusão de produtos. Login, cadastro de usuários e finalização da compra possuem comportamento demonstrativo, descrito na seção de escopo.
+
+## Deploy e acesso online
+
+**[Acessar o Strype](https://strype-frontend.henriquegdall.workers.dev/)**
+
+| Parte | Hospedagem | Endereço ou função |
+| --- | --- | --- |
+| Front-end Angular | Cloudflare Workers com arquivos estáticos | [Site publicado](https://strype-frontend.henriquegdall.workers.dev/) |
+| API Spring Boot | Render, Web Service com Docker no plano Free | [API de produtos](https://strype-ehou.onrender.com/produtos) |
+| Banco MySQL | Aiven, plano gratuito | Armazenamento dos produtos acessado pela API |
+
+O navegador carrega a aplicação no Cloudflare e consulta a API no Render por HTTPS. A API se conecta ao MySQL no Aiven usando SSL.
+
+### Onde estão as configurações
+
+A publicação foi preparada na branch [`deploy/producao-2026-09-16`](https://github.com/hericota/Strype/tree/deploy/producao-2026-09-16). A `main` mantém a versão acadêmica com configuração local; os arquivos de implantação citados abaixo estão na branch de deploy.
+
+| Arquivo na branch de deploy | Finalidade |
+| --- | --- |
+| [backend/ORIGEM.md](https://github.com/hericota/Strype/blob/deploy/producao-2026-09-16/backend/ORIGEM.md) | Crédito e referência da API original |
+| [backend/Dockerfile](https://github.com/hericota/Strype/blob/deploy/producao-2026-09-16/backend/Dockerfile) | Compilação Maven e execução com Java 21 |
+| [backend/render.yaml](https://github.com/hericota/Strype/blob/deploy/producao-2026-09-16/backend/render.yaml) | Serviço Docker Free e variáveis do Render |
+| [application-prod.properties](https://github.com/hericota/Strype/blob/deploy/producao-2026-09-16/backend/src/main/resources/application-prod.properties) | Conexão ao banco e CORS por variáveis |
+| [scripts/configure-api.mjs](https://github.com/hericota/Strype/blob/deploy/producao-2026-09-16/scripts/configure-api.mjs) | Grava a URL pública da API antes do build |
+| [wrangler.jsonc](https://github.com/hericota/Strype/blob/deploy/producao-2026-09-16/wrangler.jsonc) | Arquivos estáticos e fallback das rotas Angular |
+
+### Como hospedamos a API gratuitamente
+
+1. **Preparamos uma cópia da API.** A base veio de [HenriqueDelegrego/api-produtos](https://github.com/HenriqueDelegrego/api-produtos) e foi colocada em `backend/` na branch de deploy. O repositório original não foi alterado. A origem e o commit utilizado estão registrados em `backend/ORIGEM.md`.
+2. **Criamos o MySQL no Aiven.** O banco ficou em um serviço separado, no plano gratuito, para que os dados não dependessem do disco temporário do Render.
+3. **Empacotamos a aplicação com Docker.** O Dockerfile compila o JAR com Maven e Java 21 e o executa em uma imagem Java 21 JRE, com o perfil `prod`.
+4. **Publicamos no Render.** Usamos um Web Service com runtime Docker, plano Free e os arquivos de `backend/`. A aplicação lê a porta fornecida pelo Render em `PORT` e disponibiliza `/actuator/health` para verificação de saúde.
+5. **Configuramos banco e CORS no ambiente.** As credenciais ficam nas variáveis do serviço. A origem do site Cloudflare foi autorizada para que o navegador pudesse consultar a API.
+6. **Conectamos o front-end.** A URL HTTPS do Render foi fornecida ao build Angular por `API_URL`, substituindo o endereço local na versão publicada.
+
+O ponto principal foi separar a execução da API, no Render Free, do banco persistente, no Aiven Free. O Aiven oferece MySQL gratuito sem cartão e distingue esse plano dos créditos temporários de avaliação. [Documentação do plano gratuito do Aiven](https://aiven.io/docs/platform/concepts/service-pricing#free-tier).
+
+### Variáveis da API no Render
+
+| Variável | Configuração |
+| --- | --- |
+| `SPRING_PROFILES_ACTIVE` | `prod` |
+| `DB_URL` | URL JDBC do MySQL com SSL |
+| `DB_USERNAME` | Usuário fornecido pelo Aiven |
+| `DB_PASSWORD` | Senha do banco, armazenada apenas no ambiente |
+| `CORS_ALLOWED_ORIGINS` | `https://strype-frontend.henriquegdall.workers.dev` |
+| `PORT` | Porta fornecida pelo Render; a aplicação usa `${PORT:8080}` |
+| `DB_POOL_SIZE` | Opcional; padrão de 5 conexões |
+
+**Correção que permitiu conectar ao banco:** o driver Java precisa de uma URL iniciada por `jdbc:mysql://`. A URL `mysql://...` não era aceita pelo driver. Usamos o formato abaixo, com os dados do serviço Aiven:
+
+```text
+jdbc:mysql://HOST:PORTA/defaultdb?sslMode=REQUIRED
+```
+
+O host e a porta devem vir do painel do banco. Usuário e senha são informados em suas próprias variáveis, sem incluí-los no README ou no código do front-end.
+
+### Publicação do front-end no Cloudflare
+
+Na branch de deploy, o script `build:deploy` configura o endereço da API e gera a aplicação de produção.
+
+| Configuração | Valor |
+| --- | --- |
+| Branch com os arquivos de publicação | `deploy/producao-2026-09-16` |
+| Variável de build `API_URL` | `https://strype-ehou.onrender.com/produtos` |
+| Comando de build | `npm run build:deploy` |
+| Diretório dos arquivos estáticos | `dist/stryde/browser` |
+| Tratamento de rotas | `single-page-application` em `wrangler.jsonc` |
+
+O script exige uma URL HTTPS terminada em `/produtos`. Ela é incorporada ao JavaScript durante a compilação; não é uma variável secreta. O fallback de SPA permite abrir rotas como `/produtos` e `/gerenciar` diretamente.
+
+### Limites da hospedagem gratuita
+
+O Render Free suspende a API após 15 minutos sem tráfego e a reativa no próximo acesso, o que pode levar cerca de um minuto. Por isso, o site pode abrir antes de os produtos carregarem. O plano compartilha 750 horas gratuitas por workspace ao mês e possui limites de tráfego e build. O disco local é temporário; neste projeto, os produtos ficam no MySQL externo. [Limites oficiais do Render Free](https://render.com/docs/free).
+
+O Aiven pode desligar serviços gratuitos sem atividade contínua, com aviso prévio. Esses planos atendem à demonstração acadêmica, mas não representam garantia de disponibilidade permanente ou recursos ilimitados. [Condições do Aiven Free](https://aiven.io/docs/platform/concepts/service-pricing#free-tier).
+
 
 ## Funcionalidades
 
@@ -125,13 +202,15 @@ Os arquivos de produção são gerados em `dist/stryde/`. Em uma hospedagem est�
 
 ## Integração com a API
 
-O front-end utiliza a seguinte URL base:
+Na `main`, a execução local utiliza a seguinte URL base:
 
 ```text
 http://localhost:8080/produtos
 ```
 
-As chamadas administrativas estão no [ConsumoApi](src/app/feats/posts/consumo-api.ts). Os componentes de detalhes e favoritos também possuem URLs próprias no código; ao trocar o endereço da API, revise esses pontos.
+Na branch de deploy, o endereço de produção é `https://strype-ehou.onrender.com/produtos`, configurado por `API_URL` no build. As instruções de publicação estão na seção de deploy acima.
+
+As chamadas administrativas da versão local estão no [ConsumoApi](src/app/feats/posts/consumo-api.ts). Os componentes de detalhes e favoritos também possuem URLs próprias no código; ao trocar o endereço da API, revise esses pontos.
 
 | Método | Endpoint | Dados enviados | Resposta esperada pelo front-end |
 | --- | --- | --- | --- |
@@ -243,4 +322,6 @@ Os testes HTTP simulam respostas da API e podem ser executados sem o back-end. P
 
 ## Autoria
 
-Desenvolvido por **Smap**.
+Front-end desenvolvido por **Smap**.
+
+A API original foi desenvolvida por [HenriqueDelegrego](https://github.com/HenriqueDelegrego), no repositório [api-produtos](https://github.com/HenriqueDelegrego/api-produtos). A cópia utilizada no deploy recebeu adaptações de implantação, sem alteração do repositório original. Consulte o [registro de origem](https://github.com/hericota/Strype/blob/deploy/producao-2026-09-16/backend/ORIGEM.md).
